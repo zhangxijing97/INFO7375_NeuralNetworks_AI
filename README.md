@@ -5,7 +5,6 @@
 - [Chapter 1: Human Brain and Neural Networks](#chapter-1-human-brain-and-neural-networks)
   - [Python Environment](#python-environment)
   - [Human Brain and Biological Neurons](#human-brain-and-biological-neurons)
-  - [Synapses and Neural Networks](#synapses-and-neural-networks)
   - [McCulloch and Pitts Neuron Model](#mcculloch-and-pitts-neuron-model)
 
 - [Chapter 2: The Perceptron](#chapter-2-the-perceptron)
@@ -91,3 +90,17 @@ The **NOR gate** outputs 1 only when both inputs are 0 (inversion of OR gate).
 | 0   | 1   | 0              |
 | 1   | 0   | 0              |
 | 1   | 1   | 0              |
+
+The **XOR gate** outputs 1 only when the inputs are different (i.e., one input is 1 and the other is 0).
+
+| x1  | x2  | XOR Output (y) |
+| --- | --- | ---------------|
+| 0   | 0   | 0              |
+| 0   | 1   | 1              |
+| 1   | 0   | 1              |
+| 1   | 1   | 0              |
+
+XOR Gate Construction:
+\[
+\text{XOR}(x_1, x_2) = \text{(} x_1 \, \text{OR} \, x_2 \text{)} \, \text{AND} \, \text{NOT(} x_1 \, \text{AND} \, x_2 \text{)}
+\]
