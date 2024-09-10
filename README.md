@@ -1,10 +1,9 @@
 # INFO7375_NeuralNetworks_AI
 
-# Table of Contents
-
-# Table of Contents
+## Table of Contents
 
 - [Chapter 1: Human Brain and Neural Networks](#chapter-1-human-brain-and-neural-networks)
+  - [Python Environment](#python-environment)
   - [Human Brain and Biological Neurons](#human-brain-and-biological-neurons)
   - [Synapses and Neural Networks](#synapses-and-neural-networks)
   - [McCulloch and Pitts Neuron Model](#mcculloch-and-pitts-neuron-model)
@@ -27,9 +26,9 @@
   - [Logistic Regression](#logistic-regression)
   - [Neural Networks for Logistic Regression](#neural-networks-for-logistic-regression)
 
-## chapter 1 Human Brain and Biological Neurons
+## Chapter 1: Human Brain and Neural Networks
 
-
+### Python Environment
 Create a virtual environment:
 ```
 python -m venv env_name
@@ -46,5 +45,9 @@ pip install <package_name>
 ```
 
 ### Human Brain and Biological Neurons
+The human brain is made up of billions of neurons, which are specialized cells that transmit information throughout the brain and body. These neurons communicate with each other through electrical and chemical signals, forming complex networks responsible for everything from movement to thought processes.
 
-test
+### Synapses and Neural Networks
+Synapses are the junctions between neurons where signals are passed. Neural networks are a system of interconnected neurons, and they form the foundation for both biological systems and artificial neural networks used in computing.
+
+### McCulloch and Pitts Neuron Model
