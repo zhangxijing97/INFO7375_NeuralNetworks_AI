@@ -45,9 +45,12 @@ pip install <package_name>
 ```
 
 ### Human Brain and Biological Neurons
-The human brain is made up of billions of neurons, which are specialized cells that transmit information throughout the brain and body. These neurons communicate with each other through electrical and chemical signals, forming complex networks responsible for everything from movement to thought processes.
-
-### Synapses and Neural Networks
-Synapses are the junctions between neurons where signals are passed. Neural networks are a system of interconnected neurons, and they form the foundation for both biological systems and artificial neural networks used in computing.
+1. **Neuron**: The basic unit of the nervous system, responsible for processing and transmitting information.
+2. **Dendrite**: Receives signals toward the cell body, many per neuron, short and branched, not myelinated, tree-like structure.
+3. **Neuron Cell Body**: The signal travels toward the neuron's cell body (soma), where it is processed.
+4. **Axon**: Transmits signals away from the cell body, usually one per neuron, can be long, often myelinated, smooth structure.
+5. **Synapse**: The junction between two neurons where information is transmitted from one neuron to another.
+6. **Neuromorphic**: Referring to the design and development of hardware and software systems inspired by the structure and function of the human brain.
+7. **Synaptic Plasticity**: The ability of synapses to strengthen or weaken over time, in response to increases or decreases in their activity.
 
 ### McCulloch and Pitts Neuron Model
