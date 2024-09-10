@@ -45,6 +45,7 @@ pip install <package_name>
 ```
 
 ### Human Brain and Biological Neurons
+![Neuron Structure](./Image/neuron_structure.png)
 1. **Neuron**: The basic unit of the nervous system, responsible for processing and transmitting information.
 2. **Dendrite**: Receives signals toward the cell body, many per neuron, short and branched, not myelinated, tree-like structure.
 3. **Neuron Cell Body**: The signal travels toward the neuron's cell body (soma), where it is processed.
