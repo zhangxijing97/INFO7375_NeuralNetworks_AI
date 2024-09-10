@@ -101,6 +101,5 @@ The **XOR gate** outputs 1 only when the inputs are different (i.e., one input i
 | 1   | 1   | 0              |
 
 XOR Gate Construction:
-\[
-\text{XOR}(x_1, x_2) = \text{(} x_1 \, \text{OR} \, x_2 \text{)} \, \text{AND} \, \text{NOT(} x_1 \, \text{AND} \, x_2 \text{)}
-\]
+XOR can be constructed using **AND**, **OR**, and **NOT** gates:
+$ \text{XOR}(x_1, x_2) = \left( x_1 \, \text{OR} \, x_2 \right) \, \text{AND} \, \text{NOT}\left( x_1 \, \text{AND} \, x_2 \right) $
