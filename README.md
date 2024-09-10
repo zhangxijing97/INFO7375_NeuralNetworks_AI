@@ -58,7 +58,6 @@ pip install <package_name>
 
 #### Logic Gates using McCulloch-Pitts Neuron Model
 
-**AND gate**
 The **AND gate** outputs 1 only when both inputs are 1.
 
 | x1  | x2  | AND Output (y) |
@@ -68,7 +67,6 @@ The **AND gate** outputs 1 only when both inputs are 1.
 | 1   | 0   | 0              |
 | 1   | 1   | 1              |
 
-**OR gate**
 The **OR gate** outputs 1 if at least one input is 1.
 
 | x1  | x2  | OR Output (y)  |
@@ -78,8 +76,6 @@ The **OR gate** outputs 1 if at least one input is 1.
 | 1   | 0   | 1              |
 | 1   | 1   | 1              |
 
-
-**NOT gate**
 The **NOT gate** inverts the input. If the input is 0, the output is 1. If the input is 1, the output is 0.
 
 | z   | NOT Output (y) |
@@ -87,7 +83,6 @@ The **NOT gate** inverts the input. If the input is 0, the output is 1. If the i
 | 0   | 1              |
 | 1   | 0              |
 
-**NOR gate**
 The **NOR gate** outputs 1 only when both inputs are 0 (inversion of OR gate).
 
 | x1  | x2  | NOR Output (y) |
@@ -96,4 +91,3 @@ The **NOR gate** outputs 1 only when both inputs are 0 (inversion of OR gate).
 | 0   | 1   | 0              |
 | 1   | 0   | 0              |
 | 1   | 1   | 0              |
-
