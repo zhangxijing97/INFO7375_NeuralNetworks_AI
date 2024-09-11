@@ -67,6 +67,7 @@ Digit images have 28 × 28 = 784 pixels, so we create a the first layer with 784
 </p>
 
 ![Neuron Structure](./Image/output-layer.png)
+<img src="./Image/output-layer.png" alt="Neuron Structure" width="200"/>
 The output layer of our network has 10 neurons, corresponds 1 - 10.<br>
 
 ### McCulloch and Pitts Neuron Model
