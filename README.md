@@ -56,19 +56,16 @@ pip install <package_name>
 
 ### Neural Network Basics
 Neurons: a thing that holds a number between 0.0 and 1.0.<br>
-<p align="left">
-  <img src="./Image/highlight-first-layer.png" alt="First Layer" width="400"/>
-</p>
+
+<img src="./Image/highlight-first-layer.png" alt="First Layer" width="400"/>
 Digit images have 28 × 28 = 784 pixels, so we create a the first layer with 784 neurons<br>
 
-<br>
-<p align="left">
-  <img src="./Image/output-layer.png" alt="Output Layer" width="400"/>
-</p>
-
-![Neuron Structure](./Image/output-layer.png)
-<img src="./Image/output-layer.png" alt="Neuron Structure" width="200"/>
+<img src="./Image/output-layer.png" alt="Output Layer" width="400"/>
 The output layer of our network has 10 neurons, corresponds 1 - 10.<br>
+
+<img src="./Image/loop-edges.png" alt="Image" width="400"/>
+<img src="./Image/upper-loop-neuron.png" alt="Image" width="400"/>
+In a perfect world, A loop can be broken down into several small edges.
 
 ### McCulloch and Pitts Neuron Model
 
