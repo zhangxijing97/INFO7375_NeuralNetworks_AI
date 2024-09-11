@@ -5,6 +5,7 @@
 - [Chapter 1: Human Brain and Neural Networks](#chapter-1-human-brain-and-neural-networks)
   - [Python Environment](#python-environment)
   - [Human Brain and Biological Neurons](#human-brain-and-biological-neurons)
+  - [Neural Network Basics](#neural-metwork-basics)
   - [McCulloch and Pitts Neuron Model](#mcculloch-and-pitts-neuron-model)
 
 - [Chapter 2: The Perceptron](#chapter-2-the-perceptron)
@@ -53,10 +54,16 @@ pip install <package_name>
 6. **Neuromorphic**: Referring to the design and development of hardware and software systems inspired by the structure and function of the human brain.
 7. **Synaptic Plasticity**: The ability of synapses to strengthen or weaken over time, in response to increases or decreases in their activity.
 
+### Neural Network Basics
+Neurons: a thing that holds a number between 0.0 and 1.0.<br>
+<p align="center">
+  <img src="highlight-first-layer.png" alt="First Layer" width="200"/>
+  <img src="output-layer.png" alt="Output Layer" width="200"/>
+</p>
+
 ### McCulloch and Pitts Neuron Model
 
 #### Logic Gates using McCulloch-Pitts Neuron Model
-
 The **AND gate** outputs 1 only when both inputs are 1.
 
 | x1  | x2  | AND Output (y) |
