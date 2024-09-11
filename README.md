@@ -57,8 +57,8 @@ pip install <package_name>
 ### Neural Network Basics
 Neurons: a thing that holds a number between 0.0 and 1.0.<br>
 <p align="center">
-  <img src="highlight-first-layer.png" alt="First Layer" width="200"/>
-  <img src="output-layer.png" alt="Output Layer" width="200"/>
+  <img src="./Image/highlight-first-layer.png" alt="First Layer" width="200"/>
+  <img src="./Image/output-layer.png" alt="Output Layer" width="200"/>
 </p>
 
 ### McCulloch and Pitts Neuron Model
