@@ -56,8 +56,14 @@ pip install <package_name>
 
 ### Neural Network Basics
 Neurons: a thing that holds a number between 0.0 and 1.0.<br>
+Digit images have 28 × 28 = 784 pixels, so we create a the first layer with 784 neurons<br>
 <p align="left">
   <img src="./Image/highlight-first-layer.png" alt="First Layer" width="400"/>
+</p>
+
+The output layer of our network has 10 neurons, corresponds 1 - 10.<br>
+<br>
+<p align="left">
   <img src="./Image/output-layer.png" alt="Output Layer" width="400"/>
 </p>
 
