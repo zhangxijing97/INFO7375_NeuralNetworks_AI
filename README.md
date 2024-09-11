@@ -101,5 +101,5 @@ The **XOR gate** outputs 1 only when the inputs are different (i.e., one input i
 | 1   | 1   | 0              |
 
 XOR Gate Construction:
-XOR can be constructed using **AND**, **OR**, and **NOT** gates:
+XOR can be constructed using **AND**, **OR**, and **NOT** gates:<br>
 `XOR(x1, x2) = (x1 OR x2) AND NOT(x1 AND x2)`
