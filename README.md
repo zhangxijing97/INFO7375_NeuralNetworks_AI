@@ -157,8 +157,23 @@ By following the slope (moving in the downhill direction), we approach a local m
   <img src="./Image/infeasible-minimum.png" alt="Image" width="400"/>
 </p>
 
+#### Multivariable (2-Variable) Gradient Descent
+
 Imagine a function with two inputs and one output, we get a space with xy-plane.<br>
 <img src="./Image/negative-gradient.png" alt="Image" width="400"/>
+
+In multivariable gradient descent with two variables, the update rules are:
+
+`x_1 = x_1 - α * ∂J(x_1, x_2) / ∂x_1`
+
+`x_2 = x_2 - α * ∂J(x_1, x_2) / ∂x_2`
+
+Where:
+- `α` is the learning rate,
+- `∂J(x_1, x_2) / ∂x_1` and `∂J(x_1, x_2) / ∂x_2` are the partial derivatives of the cost function with respect to `x_1` and `x_2`.
+
+This process is repeated iteratively until convergence.
+
 
 ### McCulloch and Pitts Neuron Model
 
