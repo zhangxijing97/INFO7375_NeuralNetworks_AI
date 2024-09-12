@@ -65,7 +65,7 @@ The output layer of our network has 10 neurons, corresponds 1 - 10.<br>
 <img src="./Image/output-layer.png" alt="Output Layer" width="400"/>
 
 In a perfect world, A loop can be broken down into several small edges.<br>
-<img src="./Image/loop-edges.png" alt="Image" width="400"/>
+<img src="./Image/loop-edges.png" alt="Image" width="400"/><br>
 <img src="./Image/upper-loop-neuron.png" alt="Image" width="400"/>
 
 ### McCulloch and Pitts Neuron Model
