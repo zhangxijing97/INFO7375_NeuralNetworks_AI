@@ -99,8 +99,7 @@ The formula for the sigmoid function is:
 <img src="./Image/sigmoid.png" alt="Image" width="400"/>
 
 #### Vanishing Gradient Problem
-
-The **vanishing gradient problem** occurs when gradients become very small as they are backpropagated through many layers, especially with activation functions like Sigmoid. This causes earlier layers to learn very slowly or not at all, making training inefficient. **ReLU** mitigates this issue by maintaining larger gradients for positive inputs.
+For an input that results in large positive or negative values, the sigmoid function will output values near 0 or 1, and the derivative (gradient) will be close to 0. When this gradient is backpropagated through many layers, it shrinks even further.<br>
 
 
 
