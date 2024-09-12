@@ -151,12 +151,14 @@ Where:
 - `α` is the learning rate,
 - `J(θ)` is the cost function.
 
+By following the slope (moving in the downhill direction), we approach a local minimum.<br>
 <p align="left">
   <img src="./Image/single-input-cost.png" alt="Image" width="400"/>
   <img src="./Image/infeasible-minimum.png" alt="Image" width="400"/>
 </p>
 
-
+Imagine a function with two inputs and one output, we get a space with xy-plane.<br>
+<img src="./Image/negative-gradient.png" alt="Image" width="400"/>
 
 ### McCulloch and Pitts Neuron Model
 
