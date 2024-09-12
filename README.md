@@ -82,6 +82,25 @@ Since there are 784 neurons in the first layer, each neuron in the second layer 
   <img src="./Image/weights-square-blue.png" alt="Image" width="400"/>
 </p>
 
+#### Sigmoid Function
+The **sigmoid** activation function maps input values to a range between 0 and 1, which is useful for binary classification tasks.
+
+The formula for the sigmoid function is:
+
+\[
+\sigma(x) = \frac{1}{1 + e^{-x}}
+\]
+
+#### ReLU (Rectified Linear Unit)
+The **ReLU** activation function outputs the input directly if it is positive; otherwise, it returns 0. This function is widely used in hidden layers for its efficiency.
+
+The formula for the ReLU function is:
+
+\[
+\text{ReLU}(x) = \max(0, x)
+\]
+
+
 
 ### McCulloch and Pitts Neuron Model
 
