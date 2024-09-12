@@ -77,6 +77,15 @@ Weighted Sum = w1*a1 + w2*a2 + w3*a4 + ... + wn*an<br>
 - w (weight) represents how important each pixel(neuron) from the image is for a neuron in the next layer.<br>
 
 Since there are 784 neurons in the first layer, each neuron in the second layer has 784 weights.<br>
+
+Example:<br>
+| Layer            | Number of Neurons | Weights per Neuron | Total Weights | Bias per Neuron | Total Biases |
+|------------------|-------------------|--------------------|---------------|-----------------|--------------|
+| Input Layer      | 50                | 0                  | 0             | 0               | 0            |
+| Second Layer     | 100               | 50                 | 5000          | 1               | 100          |
+| Third Layer      | 64                | 100                | 6400          | 1               | 64           |
+| Output Layer     | 10                | 64                 | 640           | 1               | 10           |
+
 <p align="left">
   <img src="./Image/weights-blue.png" alt="Image" width="400"/>
   <img src="./Image/weights-square-blue.png" alt="Image" width="400"/>
@@ -102,7 +111,9 @@ The formula for the sigmoid function is:
 For an input that results in large positive or negative values, the sigmoid function will output values near 0 or 1, and the derivative (gradient) will be close to 0. When this gradient is backpropagated through many layers, it shrinks even further.<br>
 
 #### Bias in Neural Networks
-A **bias** is a parameter added to neurons that allows the model to adjust the relationship between inputs (x) and outputs (y). Without bias, the network is constrained to model a **linear relationship** passing through the origin (when x = 0, y = 0). This limits its ability to capture complex patterns. With bias, the model can shift the relationship, allowing it to better fit data where the output isn't directly proportional to the input, resulting in more flexibility and better predictions.
+**Bias** allows the model to adjust the relationship between inputs (x) and outputs (y). Without bias, the network is constrained to model a **linear relationship** passing through the origin (when x = 0, y = 0). This limits its ability to capture complex patterns. With bias, the model can better fit data where the output isn't directly proportional to the input.
+
+
 
 
 ### McCulloch and Pitts Neuron Model
