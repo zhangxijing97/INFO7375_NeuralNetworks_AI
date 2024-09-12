@@ -87,9 +87,7 @@ The **sigmoid** activation function maps input values to a range between 0 and 1
 
 The formula for the sigmoid function is:
 
-\[
-\sigma(x) = \frac{1}{1 + e^{-x}}
-\]
+`σ(x) = 1 / (1 + exp(-x))`
 
 #### ReLU (Rectified Linear Unit)
 The **ReLU** activation function outputs the input directly if it is positive; otherwise, it returns 0. This function is widely used in hidden layers for its efficiency.
