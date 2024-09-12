@@ -5,7 +5,7 @@
 - [Chapter 1: Human Brain and Neural Networks](#chapter-1-human-brain-and-neural-networks)
   - [Python Environment](#python-environment)
   - [Human Brain and Biological Neurons](#human-brain-and-biological-neurons)
-  - [Neural Networks Basics](#neural-metworks-basics)
+  - [Neural Networks Basics](#neural-networks-basics)
   - [McCulloch and Pitts Neuron Model](#mcculloch-and-pitts-neuron-model)
 
 - [Chapter 2: The Perceptron](#chapter-2-the-perceptron)
