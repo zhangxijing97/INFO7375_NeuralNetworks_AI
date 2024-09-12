@@ -6,6 +6,7 @@
   - [Python Environment](#python-environment)
   - [Human Brain and Biological Neurons](#human-brain-and-biological-neurons)
   - [Neural Networks Basics](#neural-networks-basics)
+  - [Gradient Descent and How Neural Networks Learn](#gradient-descent-and-how-neural-networks-learn)
   - [McCulloch and Pitts Neuron Model](#mcculloch-and-pitts-neuron-model)
 
 - [Chapter 2: The Perceptron](#chapter-2-the-perceptron)
@@ -111,20 +112,34 @@ The formula for the sigmoid function is:
 For an input that results in large positive or negative values, the sigmoid function will output values near 0 or 1, and the derivative (gradient) will be close to 0. When this gradient is backpropagated through many layers, it shrinks even further.<br>
 
 #### Bias in Neural Networks
-**Bias** allows the model to adjust the relationship between inputs (x) and outputs (y). Without bias, the network is constrained to model a **linear relationship** passing through the origin (when x = 0, y = 0). This limits its ability to capture complex patterns. With bias, the model can better fit data where the output isn't directly proportional to the input.
+**Bias** allows the model to shift the activation of neurons, ensuring the relationship between inputs (x) and outputs (y) doesn't have to pass through the origin (when x = 0, y = 0).
 
 #### Softmax Function
-To convert the output values of the neurons in the output layer into probabilities that sum to 1, we apply the **softmax** function. The softmax function is defined as:
 
-\[
-P(y_i) = \frac{e^{z_i}}{\sum_{j} e^{z_j}}
-\]
+To convert the output values of the neurons in the output layer into probabilities, we apply the **softmax** function. The softmax function is:
+
+`P(y_i) = e^(z_i) / Σ(e^(z_j))`
 
 Where:
-- \( z_i \) is the raw output (weighted sum + bias) of the neuron.
-- The exponentials \( e^{z_i} \) ensure that all output values are positive.
-- The result is a set of probabilities, and the neuron with the highest probability is considered the predicted class.
+- `z_i` is the raw output (weighted sum + bias) of the neuron.
+- The softmax function converts the raw outputs into probabilities, ensure that all output values are positive.
+- The result is a set of probabilities that sum to 1, and the neuron with the highest probability is considered the predicted class.
 
+### Gradient Descent and How Neural Networks Learn
+#### Cost
+The **cost function** (also called the loss function) measures the error between the predicted output of the neural network and the actual target values. It helps determine how well the model is performing. Common cost functions include:<br>
+
+- **Mean Squared Error (MSE)**: Typically used for regression tasks.
+- **Cross-Entropy Loss**: Commonly used for classification tasks.
+
+The goal during training is to minimize the cost by adjusting the weights and biases, thereby improving the model’s accuracy.<br>
+
+Initialized with totally random weights and biases, the network is terrible at identifying digits.<br>
+
+<p align="left">
+  <img src="./Image/cost-of-difference.png" alt="Image" width="400"/>
+  <img src="./Image/cost-calculation.png" alt="Image" width="400"/>
+</p>
 
 
 ### McCulloch and Pitts Neuron Model
