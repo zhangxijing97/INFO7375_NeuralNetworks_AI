@@ -78,8 +78,8 @@ Weighted Sum = w1*a1 + w2*a2 + w3*a4 + ... + wn*an<br>
 
 Since there are 784 neurons in the first layer, each neuron in the second layer has 784 weights.<br>
 <p align="left">
-  <img src="./Image/weights-blue.png" alt="Image" width="200"/>
-  <img src="./Image/weights-square-blue.png" alt="Image" width="200"/>
+  <img src="./Image/weights-blue.png" alt="Image" width="400"/>
+  <img src="./Image/weights-square-blue.png" alt="Image" width="400"/>
 </p>
 
 
