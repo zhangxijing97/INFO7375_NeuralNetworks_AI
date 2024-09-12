@@ -142,17 +142,14 @@ Initialized with totally random weights and biases, the network is terrible at i
 </p>
 
 #### Gradient Descent
-**Gradient Descent** is used to minimize the cost function by adjusting weights and biases in the direction that reduces error. The update rule is:
+**Gradient Descent** minimizes the cost function by updating weights and biases. The update rule is:
 
-\[
-\theta = \theta - \alpha \frac{\partial J(\theta)}{\partial \theta}
-\]
+`θ = θ - α * ∂J(θ) / ∂θ`
 
 Where:
-- \( \theta \) are the weights/biases,
-- \( \alpha \) is the learning rate,
-- \( J(\theta) \) is the cost function.
-
+- `θ` represents the weights/biases,
+- `α` is the learning rate,
+- `J(θ)` is the cost function.
 
 
 
