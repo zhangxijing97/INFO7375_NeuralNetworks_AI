@@ -78,18 +78,18 @@ Weighted Sum = w1*a1 + w2*a2 + w3*a4 + ... + wn*an<br>
 
 Since there are 784 neurons in the first layer, each neuron in the second layer has 784 weights.<br>
 
-Example:<br>
+<p align="left">
+  <img src="./Image/weights-blue.png" alt="Image" width="400"/>
+  <img src="./Image/weights-square-blue.png" alt="Image" width="400"/>
+</p>
+
+#### Neural Network Structure: Neurons, Weights, and Biases
 | Layer            | Number of Neurons | Weights per Neuron | Total Weights | Bias per Neuron | Total Biases |
 |------------------|-------------------|--------------------|---------------|-----------------|--------------|
 | Input Layer      | 50                | 0                  | 0             | 0               | 0            |
 | Second Layer     | 100               | 50                 | 5000          | 1               | 100          |
 | Third Layer      | 64                | 100                | 6400          | 1               | 64           |
 | Output Layer     | 10                | 64                 | 640           | 1               | 10           |
-
-<p align="left">
-  <img src="./Image/weights-blue.png" alt="Image" width="400"/>
-  <img src="./Image/weights-square-blue.png" alt="Image" width="400"/>
-</p>
 
 #### ReLU (Rectified Linear Unit)
 The **ReLU** activation function outputs the input directly if it is positive; otherwise, it returns 0. This function is widely used in hidden layers for its efficiency.
