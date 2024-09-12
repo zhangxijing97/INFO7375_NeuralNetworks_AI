@@ -160,6 +160,7 @@ By following the slope (moving in the downhill direction), we approach a local m
 #### Multivariable (2-Variable) Gradient Descent
 
 Imagine a function with two inputs and one output, we get a space with xy-plane.<br>
+
 <img src="./Image/negative-gradient.png" alt="Image" width="400"/>
 
 In multivariable gradient descent with two variables, the update rules are:
@@ -173,6 +174,22 @@ Where:
 - `∂J(x_1, x_2) / ∂x_1` and `∂J(x_1, x_2) / ∂x_2` are the partial derivatives of the cost function with respect to `x_1` and `x_2`.
 
 This process is repeated iteratively until convergence.
+
+#### Example of Partial Derivatives
+
+Given a function:
+
+`f(x, y) = x^2 + 3xy + y^2`
+
+The partial derivative of `f` with respect to `x` is:
+
+`∂f/∂x = 2x + 3y`
+
+The partial derivative of `f` with respect to `y` is:
+
+`∂f/∂y = 3x + 2y`
+
+These derivatives represent how the function changes with respect to `x` and `y` individually while keeping the other variable constant.
 
 
 ### McCulloch and Pitts Neuron Model
