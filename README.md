@@ -5,7 +5,7 @@
 - [Chapter 1: Human Brain and Neural Networks](#chapter-1-human-brain-and-neural-networks)
   - [Python Environment](#python-environment)
   - [Human Brain and Biological Neurons](#human-brain-and-biological-neurons)
-  - [Neural Network Basics](#neural-metwork-basics)
+  - [Neural Networks Basics](#neural-metworks-basics)
   - [McCulloch and Pitts Neuron Model](#mcculloch-and-pitts-neuron-model)
 
 - [Chapter 2: The Perceptron](#chapter-2-the-perceptron)
@@ -101,7 +101,8 @@ The formula for the sigmoid function is:
 #### Vanishing Gradient Problem
 For an input that results in large positive or negative values, the sigmoid function will output values near 0 or 1, and the derivative (gradient) will be close to 0. When this gradient is backpropagated through many layers, it shrinks even further.<br>
 
-
+#### Bias in Neural Networks
+A **bias** is a parameter added to neurons that allows the model to adjust the relationship between inputs (x) and outputs (y). Without bias, the network is constrained to model a **linear relationship** passing through the origin (when x = 0, y = 0). This limits its ability to capture complex patterns. With bias, the model can shift the relationship, allowing it to better fit data where the output isn't directly proportional to the input, resulting in more flexibility and better predictions.
 
 
 ### McCulloch and Pitts Neuron Model
