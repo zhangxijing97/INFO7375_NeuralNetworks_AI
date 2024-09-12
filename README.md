@@ -113,6 +113,17 @@ For an input that results in large positive or negative values, the sigmoid func
 #### Bias in Neural Networks
 **Bias** allows the model to adjust the relationship between inputs (x) and outputs (y). Without bias, the network is constrained to model a **linear relationship** passing through the origin (when x = 0, y = 0). This limits its ability to capture complex patterns. With bias, the model can better fit data where the output isn't directly proportional to the input.
 
+#### Softmax Function
+To convert the output values of the neurons in the output layer into probabilities that sum to 1, we apply the **softmax** function. The softmax function is defined as:
+
+\[
+P(y_i) = \frac{e^{z_i}}{\sum_{j} e^{z_j}}
+\]
+
+Where:
+- \( z_i \) is the raw output (weighted sum + bias) of the neuron.
+- The exponentials \( e^{z_i} \) ensure that all output values are positive.
+- The result is a set of probabilities, and the neuron with the highest probability is considered the predicted class.
 
 
 
