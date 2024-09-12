@@ -55,7 +55,7 @@ pip install <package_name>
 7. **Synaptic Plasticity**: The ability of synapses to strengthen or weaken over time, in response to increases or decreases in their activity.
 
 ### Neural Networks Basics
-#### Neural Networks
+#### Neurons
 Neurons: a thing that holds a number between 0.0 and 1.0.<br>
 
 Digit images have 28 × 28 = 784 pixels, so we create a the first layer with 784 neurons.<br>
@@ -64,9 +64,17 @@ Digit images have 28 × 28 = 784 pixels, so we create a the first layer with 784
 The output layer of our network has 10 neurons, corresponds 1 - 10.<br>
 <img src="./Image/output-layer.png" alt="Output Layer" width="400"/>
 
+#### Neural Network Architecture
 In a perfect world, A loop can be broken down into several small edges.<br>
 <img src="./Image/loop-edges.png" alt="Image" width="400"/><br>
 <img src="./Image/upper-loop-neuron.png" alt="Image" width="400"/>
+
+#### Weighted Sum Formula
+Weighted Sum = w1*a1 + w2*a2 + w3*a4 + ... + wn*an<br>
+- a represents the activation or the output of the neuron in the previous layer.
+- w represents the weight of the connection between neurons.<br>
+Since there are 784 neurons in the first layer, each neuron in the second layer has 784 weights.<br>
+
 
 ### McCulloch and Pitts Neuron Model
 
