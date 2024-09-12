@@ -89,14 +89,14 @@ The formula for the sigmoid function is:
 
 `σ(x) = 1 / (1 + exp(-x))`
 
+<img src="./Image/sigmoid.png" alt="Image" width="400"/>
+
 #### ReLU (Rectified Linear Unit)
 The **ReLU** activation function outputs the input directly if it is positive; otherwise, it returns 0. This function is widely used in hidden layers for its efficiency.
 
 The formula for the ReLU function is:
 
-\[
-\text{ReLU}(x) = \max(0, x)
-\]
+`ReLU(x) = max(0, x)`
 
 
 
