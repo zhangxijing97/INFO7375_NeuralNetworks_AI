@@ -82,6 +82,13 @@ Since there are 784 neurons in the first layer, each neuron in the second layer 
   <img src="./Image/weights-square-blue.png" alt="Image" width="400"/>
 </p>
 
+#### ReLU (Rectified Linear Unit)
+The **ReLU** activation function outputs the input directly if it is positive; otherwise, it returns 0. This function is widely used in hidden layers for its efficiency.
+
+The formula for the ReLU function is:
+
+`ReLU(x) = max(0, x)`
+
 #### Sigmoid Function
 The **sigmoid** activation function maps input values to a range between 0 and 1, which is useful for binary classification tasks.
 
@@ -91,12 +98,10 @@ The formula for the sigmoid function is:
 
 <img src="./Image/sigmoid.png" alt="Image" width="400"/>
 
-#### ReLU (Rectified Linear Unit)
-The **ReLU** activation function outputs the input directly if it is positive; otherwise, it returns 0. This function is widely used in hidden layers for its efficiency.
+#### Vanishing Gradient Problem
 
-The formula for the ReLU function is:
+The **vanishing gradient problem** occurs when gradients become very small as they are backpropagated through many layers, especially with activation functions like Sigmoid. This causes earlier layers to learn very slowly or not at all, making training inefficient. **ReLU** mitigates this issue by maintaining larger gradients for positive inputs.
 
-`ReLU(x) = max(0, x)`
 
 
 
