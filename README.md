@@ -141,6 +141,22 @@ Initialized with totally random weights and biases, the network is terrible at i
   <img src="./Image/cost-calculation.png" alt="Image" width="400"/>
 </p>
 
+#### Gradient Descent
+**Gradient Descent** is used to minimize the cost function by adjusting weights and biases in the direction that reduces error. The update rule is:
+
+\[
+\theta = \theta - \alpha \frac{\partial J(\theta)}{\partial \theta}
+\]
+
+Where:
+- \( \theta \) are the weights/biases,
+- \( \alpha \) is the learning rate,
+- \( J(\theta) \) is the cost function.
+
+
+
+
+
 
 ### McCulloch and Pitts Neuron Model
 
