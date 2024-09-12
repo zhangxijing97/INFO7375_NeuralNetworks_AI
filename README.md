@@ -151,7 +151,10 @@ Where:
 - `α` is the learning rate,
 - `J(θ)` is the cost function.
 
-
+<p align="left">
+  <img src="./Image/single-input-cost.png" alt="Image" width="400"/>
+  <img src="./Image/infeasible-minimum.png" alt="Image" width="400"/>
+</p>
 
 
 
