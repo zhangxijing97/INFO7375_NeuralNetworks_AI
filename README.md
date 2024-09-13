@@ -150,6 +150,7 @@ Where:
 - `θ` represents the weights/biases,
 - `α` is the learning rate,
 - `J(θ)` is the cost function.
+- `∂J(θ) / ∂θ` is slope of the cost function `J(θ)` at the current value of `θ`
 
 By following the slope (moving in the downhill direction), we approach a local minimum.<br>
 <p align="left">
