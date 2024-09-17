@@ -15,7 +15,8 @@ class MCPNeuron:
     
     def train(self, X, y, epochs=10, lr=0.1):
         # Training using simple weight update (Perceptron-like learning)
-        for _ in range(epochs):
+        for _ in range(20000):
+            print(epochs)
             for inputs, label in zip(X, y):
                 prediction = self.predict(inputs)
                 # Update weights if prediction is incorrect
