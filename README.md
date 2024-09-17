@@ -162,7 +162,10 @@ By following the slope (moving in the downhill direction), we approach a local m
 
 Imagine a function with two inputs and one output, we get a space with xy-plane.<br>
 
-<img src="./Image/negative-gradient.png" alt="Image" width="400"/>
+<p align="left">
+  <img src="./Image/negative-gradient.png" alt="Image" width="400"/>
+  <img src="./Image/weights-and-gradient.png" alt="Image" width="400"/>
+</p>
 
 In multivariable gradient descent with two variables, the update rules are:
 
