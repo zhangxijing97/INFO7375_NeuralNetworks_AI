@@ -253,6 +253,32 @@ XOR Gate Construction:
 XOR can be constructed using **AND**, **OR**, and **NOT** gates:<br>
 `XOR(x1, x2) = (x1 OR x2) AND NOT(x1 AND x2)`
 
+#### mcp_neuron.py
+
+```python
+import numpy as np
+
+class MCPNeuron:
+    def __init__(self, n_inputs, threshold=0):
+        self.weights = np.zeros(n_inputs)  # Initialize weights as zero
+        self.threshold = threshold  # Threshold for activation
+    
+    def predict(self, inputs):
+        # Compute the weighted sum of inputs
+        weighted_sum = np.dot(inputs, self.weights)
+        # Apply activation function (binary step function)
+        return 1 if weighted_sum >= self.threshold else 0
+    
+    def train(self, X, y, epochs=10, lr=0.1):
+        # Training using simple weight update (Perceptron-like learning)
+        for _ in range(epochs):
+            for inputs, label in zip(X, y):
+                prediction = self.predict(inputs)
+                # Update weights if prediction is incorrect
+                error = label - prediction
+                self.weights += lr * error * inputs
+```
+
 ### Essential Python Libraries for Data Science and Machine Learning
 
 1. **Pandas**:
