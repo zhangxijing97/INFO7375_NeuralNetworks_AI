@@ -183,7 +183,9 @@ Where:
 
 This process is repeated iteratively until convergence.
 
-
+`C(w)` and `J(w)` are commonly used to denote the cost function in different contexts:
+- `C(w)` is often used as shorthand for the **cost function**, representing the model's error or loss.
+- `J(w)` is also used to denote the **cost function**, particularly in optimization problems.
 
 #### Example of Partial Derivatives
 
