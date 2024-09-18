@@ -279,6 +279,16 @@ class MCPNeuron:
                 self.weights += lr * error * inputs
 ```
 
+In your weight update formula:
+
+`self.weights += lr * error * features`
+
+- `error` is the difference between actual and predicted output, guiding the update direction.
+- `features` represents the input, indicating which inputs contributed to the error.
+- `lr` (learning rate) controls the size of the adjustment.
+
+The term `lr * error * features` adjusts the weights proportionally to each feature's contribution to the error, improving the model's predictions over time.
+
 ### Essential Python Libraries for Data Science and Machine Learning
 
 1. **Pandas**:
