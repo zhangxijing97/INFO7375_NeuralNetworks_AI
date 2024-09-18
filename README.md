@@ -8,6 +8,8 @@
   - [Neural Networks Basics](#neural-networks-basics)
   - [Gradient Descent and How Neural Networks Learn](#gradient-descent-and-how-neural-networks-learn)
   - [McCulloch and Pitts Neuron Model](#mcculloch-and-pitts-neuron-model)
+  - [Essential Python Libraries for Data Science and Machine Learning](#essentia-python-libraries-for-data-science-and-machine-learning)
+  Essential Python Libraries for Data Science and Machine Learning
 
 - [Chapter 2: The Perceptron](#chapter-2-the-perceptron)
   - [Introduction to the Perceptron](#introduction-to-the-perceptron)
@@ -251,6 +253,20 @@ The **XOR gate** outputs 1 only when the inputs are different (i.e., one input i
 XOR Gate Construction:
 XOR can be constructed using **AND**, **OR**, and **NOT** gates:<br>
 `XOR(x1, x2) = (x1 OR x2) AND NOT(x1 AND x2)`
+
+### Essential Python Libraries for Data Science and Machine Learning
+
+1. **Pandas**:
+   - **Key functionality**: Data manipulation and analysis.
+   - **Most important feature**: `DataFrame` allows for easy handling of structured data, such as tables and spreadsheets.
+
+2. **scikit-learn**:
+   - **Key functionality**: Machine learning algorithms.
+   - **Most important feature**: `Model selection and training` with algorithms like classification, regression, and clustering.
+
+3. **NumPy**:
+   - **Key functionality**: Numerical computing.
+   - **Most important feature**: `ndarray` provides n-dimensional arrays and supports fast mathematical operations like matrix multiplication.
 
 ## Chapter 3: Supervised Training and Logistic Regression
 

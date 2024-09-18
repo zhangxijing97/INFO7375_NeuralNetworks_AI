@@ -1,9 +1,9 @@
 # main.py
 
-import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
-import numpy as np
+import pandas as pd # Import Pandas for data manipulation
+from sklearn.model_selection import train_test_split # For splitting data into training and testing sets
+from sklearn.metrics import accuracy_score # For calculating the accuracy of the model
+import numpy as np # Import NumPy for numerical operations
 
 from mcp_neuron import MCPNeuron  # Import the class from the mcp_neuron file
 
