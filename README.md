@@ -167,6 +167,10 @@ Imagine a function with two inputs and one output, we get a space with xy-plane.
   <img src="./Image/weights-and-gradient.png" alt="Image" width="400"/>
 </p>
 
+Where:
+- `C(w)` represents the **cost function**.
+- `∇C(w)` is the **gradient of the cost function** with respect to the weights and biases (`w`).
+
 In multivariable gradient descent with two variables, the update rules are:
 
 `x_1 = x_1 - α * ∂J(x_1, x_2) / ∂x_1`
@@ -178,6 +182,8 @@ Where:
 - `∂J(x_1, x_2) / ∂x_1` and `∂J(x_1, x_2) / ∂x_2` are the partial derivatives of the cost function with respect to `x_1` and `x_2`.
 
 This process is repeated iteratively until convergence.
+
+
 
 #### Example of Partial Derivatives
 
