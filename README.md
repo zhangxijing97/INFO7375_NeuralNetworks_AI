@@ -8,8 +8,7 @@
   - [Neural Networks Basics](#neural-networks-basics)
   - [Gradient Descent and How Neural Networks Learn](#gradient-descent-and-how-neural-networks-learn)
   - [McCulloch and Pitts Neuron Model](#mcculloch-and-pitts-neuron-model)
-  - [Essential Python Libraries for Data Science and Machine Learning](#essentia-python-libraries-for-data-science-and-machine-learning)
-  Essential Python Libraries for Data Science and Machine Learning
+  - [Essential Python Libraries for Data Science and Machine Learning](#essential-python-libraries-for-data-science-and-machine-learning)
 
 - [Chapter 2: The Perceptron](#chapter-2-the-perceptron)
   - [Introduction to the Perceptron](#introduction-to-the-perceptron)
