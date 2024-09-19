@@ -19,12 +19,7 @@
   - [Linear Binary Classifier](#linear-binary-classifier)
 
 - [Chapter 4: Advanced Topics in Logistic Regression](#chapter-4-advanced-topics-in-logistic-regression)
-  - [Perceptron for Logistic Regression with Sigmoid Activation Function](#perceptron-for-logistic-regression-with-sigmoid-activation-function)
   - [Vectors and Matrices](#vectors-and-matrices)
-  - [Perceptron for Logistic Regression with Many Training Samples](#perceptron-for-logistic-regression-with-many-training-samples)
-  - [Gradient Descent Optimization](#gradient-descent-optimization)
-  - [Logistic Regression](#logistic-regression)
-  - [Neural Networks for Logistic Regression](#neural-networks-for-logistic-regression)
 
 ## Chapter 1: Human Brain and Neural Networks
 
@@ -419,3 +414,29 @@ Backpropagation computes the error and adjusts weights using gradient descent to
   `w = w + α * (y_true - y_pred) * x`
 
   Here, `α` is the learning rate, and updates only happen when there's a misclassification.
+
+## Chapter 4: Advanced Topics in Logistic Regression
+
+### Vectors and Matrices
+
+1. **Matrix Multiplication (Dot Product)**: Multiply rows of the first matrix by columns of the second matrix. The result is a new matrix where each element is the sum of these products:
+
+   `C_ij = Σ(A_ik * B_kj)`
+
+For matrices `A` and `B`:
+
+`A = [[1, 2], [3, 4]]`, `B = [[5, 6], [7, 8]]`
+
+The result of `A * B` is:
+
+`C = [[(1 * 5 + 2 * 7), (1 * 6 + 2 * 8)], [(3 * 5 + 4 * 7), (3 * 6 + 4 * 8)]] = [[19, 22], [43, 50]]`
+
+2. **Element-wise Multiplication (Hadamard Product)**: Multiply corresponding elements of two matrices of the same size:
+
+   `C_ij = A_ij * B_ij`
+
+These operations are essential in linear algebra and machine learning for different purposes.
+
+For the same matrices `A` and `B`:
+
+`C = [[1 * 5, 2 * 6], [3 * 7, 4 * 8]] = [[5, 12], [21, 32]]`
