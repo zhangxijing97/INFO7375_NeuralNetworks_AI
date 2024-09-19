@@ -305,7 +305,7 @@ The term `lr * error * features` adjusts the weights proportionally to each feat
 
 ## Chapter 2: The Perceptron
 
-### What is a Perceptron?
+### Introduction to the Perceptron
 
 A **Perceptron** is a type of artificial neuron used for **binary classification**. It takes multiple inputs, multiplies them by weights, sums them, and applies a threshold (activation function) to produce an output of 0 or 1.
 
@@ -334,6 +334,10 @@ During training, weights are adjusted based on the error:
 `w_i = w_i + learning rate * error * x_i`
 
 The perceptron learns by updating weights over multiple epochs until the prediction error is minimized.
+
+### History of the Perceptron
+
+
 
 ## Chapter 3: Supervised Training and Logistic Regression
 
