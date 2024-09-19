@@ -331,13 +331,13 @@ The activation function outputs 1 because the sum is greater than 0.
 ### Training:
 During training, weights are adjusted based on the error:
 
-`w_i = w_i + learning rate * error * x_i`
+`w_i = w_i + learning rate * error * x_i`(`self.weights += lr * error * features`)
 
 The perceptron learns by updating weights over multiple epochs until the prediction error is minimized.
 
 ### History of the Perceptron
 
-
+The **Perceptron**, developed by Frank Rosenblatt in 1958, built upon the earlier **McCulloch-Pitts (MCP) model**. While the MCP model performed fixed logical operations using static weights, the Perceptron introduced **learning** by adjusting weights based on input data. This made the Perceptron more flexible and capable of solving linearly separable problems, making it a significant advancement in neural network development.
 
 ## Chapter 3: Supervised Training and Logistic Regression
 
