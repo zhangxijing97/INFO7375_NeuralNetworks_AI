@@ -20,6 +20,7 @@
 
 - [Chapter 4: Perceptron Training](#chapter-4-perceptron-training)
   - [Vectors and Matrices](#vectors-and-matrices)
+  - [Limitations of Perceptron](#limitations-of-perceptron)
 
 ## Chapter 1: Human Brain and Neural Networks
 
@@ -440,3 +441,23 @@ These operations are essential in linear algebra and machine learning for differ
 For the same matrices `A` and `B`:
 
 `C = [[1 * 5, 2 * 6], [3 * 7, 4 * 8]] = [[5, 12], [21, 32]]`
+
+### Limitations of Perceptron
+
+The **Perceptron** computes a linear combination of inputs:
+
+`z = w_1 * x_1 + w_2 * x_2 + ... + w_n * x_n + b`
+
+This creates a **linear decision boundary** in the feature space, meaning it can only separate linearly separable data. For example, it can classify **AND** and **OR**, but fails with **XOR**, which is non-linearly separable.
+
+#### Improving the Perceptron
+
+To solve non-linear problems like XOR, we can:
+- Add **hidden layers**.
+- Use **non-linear activation functions** (e.g., ReLU or Sigmoid).
+
+In a multi-layer perceptron (MLP), each layer computes:
+
+`z = W * x + b`
+
+The non-linearity enables solving complex, non-linear problems.
