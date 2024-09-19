@@ -40,6 +40,11 @@ Install required packages (if any):
 pip install <package_name>
 ```
 
+Remove venv from the Repository
+```
+git rm -r --cached venv/
+```
+
 ### Human Brain and Biological Neurons
 ![Neuron Structure](./Image/neuron_structure.png)
 1. **Neuron**: The basic unit of the nervous system, responsible for processing and transmitting information.
