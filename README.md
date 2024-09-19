@@ -303,6 +303,38 @@ The term `lr * error * features` adjusts the weights proportionally to each feat
    - **Key functionality**: Numerical computing.
    - **Most important feature**: `ndarray` provides n-dimensional arrays and supports fast mathematical operations like matrix multiplication.
 
+## Chapter 2: The Perceptron
+
+### What is a Perceptron?
+
+A **Perceptron** is a type of artificial neuron used for **binary classification**. It takes multiple inputs, multiplies them by weights, sums them, and applies a threshold (activation function) to produce an output of 0 or 1.
+
+#### Formula:
+The perceptron computes the weighted sum as:
+
+`y = activation(w_1 * x_1 + w_2 * x_2 + ... + w_n * x_n + b)`
+
+Where:
+- `w_i` are the weights,
+- `x_i` are the input features,
+- `b` is the bias.
+
+The **activation function** (usually a step function) outputs 1 if the sum is greater than a threshold, otherwise 0.
+
+### Example:
+For input `x_1 = 1`, `x_2 = 2`, weights `w_1 = 0.5`, `w_2 = 0.75`, and `b = -0.5`, the perceptron computes:
+
+`y = activation(0.5 * 1 + 0.75 * 2 - 0.5) = activation(1.5)`
+
+The activation function outputs 1 because the sum is greater than 0.
+
+### Training:
+During training, weights are adjusted based on the error:
+
+`w_i = w_i + learning rate * error * x_i`
+
+The perceptron learns by updating weights over multiple epochs until the prediction error is minimized.
+
 ## Chapter 3: Supervised Training and Logistic Regression
 
 #### Forward Propagation
