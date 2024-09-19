@@ -40,9 +40,24 @@ Install required packages (if any):
 pip install <package_name>
 ```
 
-Remove venv from the Repository
+Create a .gitignore file
 ```
-git rm -r --cached venv/
+touch .gitignore
+```
+
+Add files or directories to ignore
+```
+venv/
+```
+
+Commit the .gitignore file
+```
+git add .gitignore
+```
+
+Create requirements.txt
+```
+pip install -r requirements.txt
 ```
 
 ### Human Brain and Biological Neurons
