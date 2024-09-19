@@ -19,7 +19,7 @@ class Perceptron:
 
     def train(self, X, y):
         for epoch in range(self.epochs):
-            print(self.epochs)
+            print(f"Epoch {epoch+1} is training in progress...")
             for inputs, label in zip(X, y):
                 z = np.dot(inputs, self.weights) + self.bias
                 probabilities = self.softmax(z)

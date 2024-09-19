@@ -60,6 +60,11 @@ Create requirements.txt
 pip install -r requirements.txt
 ```
 
+Regenerate requirements.txt
+```
+pip freeze > requirements.txt
+```
+
 ### Human Brain and Biological Neurons
 ![Neuron Structure](./Image/neuron_structure.png)
 1. **Neuron**: The basic unit of the nervous system, responsible for processing and transmitting information.
