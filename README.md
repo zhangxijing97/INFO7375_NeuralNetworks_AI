@@ -14,11 +14,11 @@
   - [Introduction to the Perceptron](#introduction-to-the-perceptron)
   - [History of the Perceptron](#history-of-the-perceptron)
 
-- [Chapter 3: Supervised Training and Logistic Regression](#chapter-3-supervised-training-and-logistic-regression)
+- [Chapter 3: The Perceptron for Logistic Regression](#chapter-3-the-perceptron-for-logistic-regression)
   - [Supervised Learning](#supervised-learning)
   - [Linear Binary Classifier](#linear-binary-classifier)
 
-- [Chapter 4: Advanced Topics in Logistic Regression](#chapter-4-advanced-topics-in-logistic-regression)
+- [Chapter 4: Perceptron Training](#chapter-4-perceptron-training)
   - [Vectors and Matrices](#vectors-and-matrices)
 
 ## Chapter 1: Human Brain and Neural Networks
@@ -363,7 +363,7 @@ The **Perceptron**, developed by Frank Rosenblatt in 1958, built upon the earlie
 
 The **XOR function** is not linearly separable, meaning no single straight line can separate its outputs. A single-layer Perceptron cannot solve the XOR problem because it can only create linear decision boundaries. Solving XOR requires **multiple layers** or non-linear models.
 
-## Chapter 3: Supervised Training and Logistic Regression
+## Chapter 3: The Perceptron for Logistic Regression
 
 ### Supervised Learning
 
@@ -415,7 +415,7 @@ Backpropagation computes the error and adjusts weights using gradient descent to
 
   Here, `α` is the learning rate, and updates only happen when there's a misclassification.
 
-## Chapter 4: Advanced Topics in Logistic Regression
+## Chapter 4: Perceptron Training
 
 ### Vectors and Matrices
 
