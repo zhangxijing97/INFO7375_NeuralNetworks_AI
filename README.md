@@ -15,10 +15,8 @@
   - [History of the Perceptron](#history-of-the-perceptron)
 
 - [Chapter 3: Supervised Training and Logistic Regression](#chapter-3-supervised-training-and-logistic-regression)
-  - [Perceptron for Logistic Regression](#perceptron-for-logistic-regression)
-  - [Neural Networks for Logistic Regression and Classification](#neural-networks-for-logistic-regression-and-classification)
+  - [Supervised Learning](#supervised-learning)
   - [Linear Binary Classifier](#linear-binary-classifier)
-  - [Loss (Cost) Function](#loss-cost-function)
 
 - [Chapter 4: Advanced Topics in Logistic Regression](#chapter-4-advanced-topics-in-logistic-regression)
   - [Perceptron for Logistic Regression with Sigmoid Activation Function](#perceptron-for-logistic-regression-with-sigmoid-activation-function)
@@ -334,7 +332,7 @@ The term `lr * error * features` adjusts the weights proportionally to each feat
 
 ### Introduction to the Perceptron
 
-A **Perceptron** is a type of artificial neuron used for **binary classification**. It takes multiple inputs, multiplies them by weights, sums them, and applies a threshold (activation function) to produce an output of 0 or 1.
+A **Perceptron** is a type of artificial neuron used for **binary classification**. It takes multiple inputs, multiplies them by weights, sums them, and applies a threshold (activation function) to produce an output of 0 or 1. The Perceptron introduced **learning** by adjusting weights based on input data.
 
 #### Formula:
 The perceptron computes the weighted sum as:
@@ -358,7 +356,7 @@ The activation function outputs 1 because the sum is greater than 0.
 ### Training:
 During training, weights are adjusted based on the error:
 
-`w_i = w_i + learning rate * error * x_i`(`self.weights += lr * error * features`)
+`w_i = w_i + learning rate * error * x_i`(Similar to `self.weights += lr * error * features`)
 
 The perceptron learns by updating weights over multiple epochs until the prediction error is minimized.
 
@@ -372,18 +370,52 @@ The **XOR function** is not linearly separable, meaning no single straight line 
 
 ## Chapter 3: Supervised Training and Logistic Regression
 
-#### Forward Propagation
+### Supervised Learning
 
+#### Supervised Learning:
+- **Common Approaches**: 
+  - **Classification** (e.g., image recognition, spam detection).
+  - **Regression** (e.g., predicting house prices).
+
+#### Unsupervised Learning:
+- **Common Approaches**: 
+  - **Clustering** (e.g., K-Means for customer segmentation).
+  - **Dimensionality Reduction** (e.g., PCA to reduce feature space).
+
+#### Key Difference:
+- **Supervised Learning** uses labeled data to predict outputs.
+- **Unsupervised Learning** discovers patterns in unlabeled data without predefined outputs.
+
+### Linear Binary Classifier
+
+#### Forward Propagation
+In forward propagation, input data passes through each layer, computing a weighted sum, adding a bias, and applying an activation function to generate output.
 1. **Input**: Pass the input data `x` into the network.
 2. **Weighted Sum**: Calculate the weighted sum `z = w * x + b` for each neuron.
 3. **Activation Function**: Apply an activation function `f(z)` to get the output `y`.
 4. **Repeat**: Perform this process for each layer until reaching the output layer.
 5. **Final Output**: The final output is the model’s prediction.
 
-#### Backpropagation
+**Formula**: 
+`y = f(w_1 * x_1 + w_2 * x_2 + ... + w_n * x_n + b)`
 
+#### Backpropagation
+Backpropagation computes the error and adjusts weights using gradient descent to minimize the loss.
 1. **Error Calculation**: Compute the loss between the predicted output and the actual target.
 2. **Gradient Calculation**: Compute the gradient of the loss with respect to weights using the chain rule.
 3. **Update Weights**: Adjust weights using gradient descent: 
    `w = w - α * ∂J/∂w`
 4. **Repeat**: Continue updating weights and biases across all layers to minimize the loss.
+
+**Formula**: 
+`w = w - α * ∂J/∂w`
+
+#### Perceptron Comparison
+
+- **Perceptron Forward Propagation**: Uses a step function for binary output. It computes a simple weighted sum and applies a threshold to decide the output (0 or 1).
+  
+- **Perceptron Backpropagation**: Unlike modern neural networks, Perceptron doesn’t use true backpropagation or gradient descent. Weights are updated only if the prediction is incorrect. The update rule is:
+
+  `w = w + α * (y_true - y_pred) * x`
+
+  Here, `α` is the learning rate, and updates only happen when there's a misclassification.
