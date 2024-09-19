@@ -21,7 +21,4 @@ class MCPNeuron:
                 prediction = self.predict(features)
                 # Update weights if prediction is incorrect
                 error = label - prediction
-                if update_count < 10:  # Print only the first 10 updates
-                    print(self.weights)
-                    update_count += 1
                 self.weights += lr * error * features

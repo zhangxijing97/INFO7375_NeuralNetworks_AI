@@ -279,11 +279,11 @@ class MCPNeuron:
                 self.weights += lr * error * inputs
 ```
 
-In your weight update formula:
+In the weight update formula:
 
 `self.weights += lr * error * features`
 
-- `error` is the difference between actual and predicted output, guiding the update direction.
+- `error` is the difference between actual and predicted output, guiding the update direction. In this case, `error` can only be `0`, `1`, or `-1`.
 - `features` represents the input, indicating which inputs contributed to the error.
 - `lr` (learning rate) controls the size of the adjustment.
 
