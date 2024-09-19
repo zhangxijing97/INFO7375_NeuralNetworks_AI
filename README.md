@@ -205,6 +205,33 @@ These derivatives represent how the function changes with respect to `x` and `y`
 
 ### McCulloch and Pitts Neuron Model
 
+The McCulloch-Pitts neuron outputs either 1 or 0 based on the weighted sum of inputs. The formula is:
+
+`y = 1` if `∑(w_i * x_i) ≥ threshold`
+
+`y = 0` if `∑(w_i * x_i) < threshold`
+
+Where:
+- `w_i` are the weights,
+- `x_i` are the inputs.
+
+If the weighted sum of inputs is greater than or equal to the threshold, the neuron fires (outputs 1). Otherwise, it outputs 0.
+
+#### Example of McCulloch-Pitts Neuron
+
+Consider the inputs:
+
+- `x_1 = 1`
+- `x_2 = 1`
+- Weights: `w_1 = 0.5`, `w_2 = 0.5`
+- Threshold: `1`
+
+The weighted sum is:
+
+`y = (0.5 * 1) + (0.5 * 1) = 1`
+
+Since the weighted sum `y = 1` is equal to the threshold, the neuron outputs `1`.
+
 #### Logic Gates using McCulloch-Pitts Neuron Model
 The **AND gate** outputs 1 only when both inputs are 1.
 
@@ -338,6 +365,10 @@ The perceptron learns by updating weights over multiple epochs until the predict
 ### History of the Perceptron
 
 The **Perceptron**, developed by Frank Rosenblatt in 1958, built upon the earlier **McCulloch-Pitts (MCP) model**. While the MCP model performed fixed logical operations using static weights, the Perceptron introduced **learning** by adjusting weights based on input data. This made the Perceptron more flexible and capable of solving linearly separable problems, making it a significant advancement in neural network development.
+
+#### XOR and Perceptron Limitation
+
+The **XOR function** is not linearly separable, meaning no single straight line can separate its outputs. A single-layer Perceptron cannot solve the XOR problem because it can only create linear decision boundaries. Solving XOR requires **multiple layers** or non-linear models.
 
 ## Chapter 3: Supervised Training and Logistic Regression
 
