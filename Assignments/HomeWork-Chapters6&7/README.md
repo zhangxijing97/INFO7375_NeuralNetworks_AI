@@ -1,44 +1,52 @@
+# HW to Chapter 4 & 5 “Neural Network with one hidden layer”
+
+# Non-programming Assignment
+
 ## 1. What is Hadamard Matrix Product?
 
-The Hadamard matrix product, also known as the element-wise product or Schur product, is an operation that takes two matrices of the same dimensions and produces another matrix where each element \(i, j\) is the product of elements \(i, j\) of the original two matrices. If \(A\) and \(B\) are two matrices of the same dimension, then their Hadamard product \(C\) is defined as: `C_{ij} = A_{ij} \cdot B_{ij}`.
+The Hadamard matrix product, also known as the element-wise product or Schur product, is an operation that takes two matrices of the same dimensions and produces another matrix where each element \(i, j\) is the product of elements \(i, j\) of the original two matrices. If \(A\) and \(B\) are two matrices of the same dimension, then their Hadamard product \(C\) is defined as:
+
+\[ C_{ij} = A_{ij} \cdot B_{ij} \]
 
 For example, if 
 
-`A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}` and `B = \begin{pmatrix} 5 & 6 \\ 7 & 8 \end{pmatrix}`,
+\[ A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix} \]
+\[ B = \begin{pmatrix} 5 & 6 \\ 7 & 8 \end{pmatrix} \]
 
-then their Hadamard product `C` is:
+then their Hadamard product \(C\) is:
 
-`C = \begin{pmatrix} 1 \cdot 5 & 2 \cdot 6 \\ 3 \cdot 7 & 4 \cdot 8 \end{pmatrix} = \begin{pmatrix} 5 & 12 \\ 21 & 32 \end{pmatrix}`.
+\[ C = \begin{pmatrix} 1 \cdot 5 & 2 \cdot 6 \\ 3 \cdot 7 & 4 \cdot 8 \end{pmatrix} = \begin{pmatrix} 5 & 12 \\ 21 & 32 \end{pmatrix} \]
 
 ## 2. Describe Matrix Multiplication
 
-Matrix multiplication is an operation that produces a new matrix from two matrices. Given two matrices \(A\) of dimension `m \times n` and \(B\) of dimension `n \times p`, the product `C = A \times B` will be a matrix of dimension `m \times p`. The element at row \(i\) and column \(j\) of `C` is calculated as the dot product of the \(i\)-th row of \(A\) and the \(j\)-th column of \(B\):
+Matrix multiplication is an operation that produces a new matrix from two matrices. Given two matrices \(A\) of dimension \(m \times n\) and \(B\) of dimension \(n \times p\), the product \(C = A \times B\) will be a matrix of dimension \(m \times p\). The element at row \(i\) and column \(j\) of \(C\) is calculated as the dot product of the \(i\)-th row of \(A\) and the \(j\)-th column of \(B\):
 
-`C_{ij} = \sum_{k=1}^{n} A_{ik} \cdot B_{kj}`.
+\[ C_{ij} = \sum_{k=1}^{n} A_{ik} \cdot B_{kj} \]
 
 For example, if 
 
-`A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}` and `B = \begin{pmatrix} 5 & 6 \\ 7 & 8 \end{pmatrix}`,
+\[ A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix} \]
+\[ B = \begin{pmatrix} 5 & 6 \\ 7 & 8 \end{pmatrix} \]
 
-then their product `C` is:
+then their product \(C\) is:
 
-`C = \begin{pmatrix} 1 \cdot 5 + 2 \cdot 7 & 1 \cdot 6 + 2 \cdot 8 \\ 3 \cdot 5 + 4 \cdot 7 & 3 \cdot 6 + 4 \cdot 8 \end{pmatrix} = \begin{pmatrix} 19 & 22 \\ 43 & 50 \end{pmatrix}`.
+\[ C = \begin{pmatrix} 1 \cdot 5 + 2 \cdot 7 & 1 \cdot 6 + 2 \cdot 8 \\ 3 \cdot 5 + 4 \cdot 7 & 3 \cdot 6 + 4 \cdot 8 \end{pmatrix} = \begin{pmatrix} 19 & 22 \\ 43 & 50 \end{pmatrix} \]
 
 ## 3. What is Transpose Matrix and Vector?
 
-The transpose of a matrix is a new matrix whose rows are the columns of the original. Formally, the transpose of matrix \(A\), denoted as `A^T`, is defined by:
+The transpose of a matrix is a new matrix whose rows are the columns of the original. Formally, the transpose of matrix \(A\), denoted as \(A^T\), is defined by:
 
-`(A^T)_{ij} = A_{ji}`.
+\[ (A^T)_{ij} = A_{ji} \]
 
 For example, if 
 
-`A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}`,
+\[ A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix} \]
 
 then the transpose of \(A\) is:
 
-`A^T = \begin{pmatrix} 1 & 3 \\ 2 & 4 \end{pmatrix}`.
+\[ A^T = \begin{pmatrix} 1 & 3 \\ 2 & 4 \end{pmatrix} \]
 
-The concept is similar for vectors. For a column vector \(v\), its transpose `v^T` is a row vector, and vice versa.
+The concept is similar for vectors. For a column vector \(v\), its transpose \(v^T\) is a row vector, and vice versa.
 
 ## 4. Describe the Training Set Batch
 
@@ -56,9 +64,9 @@ Entropy-based loss functions are used to measure the difference between the pred
 
 For a single instance, the cross-entropy loss is defined as:
 
-`L(y, ŷ) = - \sum_{i} y_i \log(ŷ_i)`,
+\[ L(y, \hat{y}) = - \sum_{i} y_i \log(\hat{y}_i) \]
 
-where \(y\) is the true distribution (usually a one-hot encoded vector), and `ŷ` is the predicted distribution (the output of the softmax function in classification problems).
+where \(y\) is the true distribution (usually a one-hot encoded vector), and \(\hat{y}\) is the predicted distribution (the output of the softmax function in classification problems).
 
 The cross-entropy loss is used because it provides a robust way to penalize incorrect classifications by the model and encourages the model to output high probabilities for the correct classes.
 
@@ -82,9 +90,10 @@ Forward propagation is the process by which input data is passed through the neu
 1. **Input Layer**: Input features are fed into the network.
 2. **Hidden Layers**: Each hidden layer processes the input from the previous layer using weights, biases, and activation functions. The output of each neuron is calculated as:
 
-   `z_i = w_i \cdot x + b_i` and `a_i = σ(z_i)`,
+   \[ z_i = w_i \cdot x + b_i \]
+   \[ a_i = \sigma(z_i) \]
 
-   where `z_i` is the weighted sum of inputs, `w_i` are the weights, `b_i` is the bias, \(x\) is the input, and `σ` is the activation function.
+   where \(z_i\) is the weighted sum of inputs, \(w_i\) are the weights, \(b_i\) is the bias, \(x\) is the input, and \(\sigma\) is the activation function.
 3. **Output Layer**: The final layer produces the output using a suitable activation function (e.g., softmax for classification).
 
 ### Backpropagation
@@ -97,3 +106,8 @@ Backpropagation is the process of computing the gradient of the loss function wi
 4. **Weight Update**: Update the weights and biases using the computed gradients and an optimization algorithm (e.g., stochastic gradient descent).
 
 Backpropagation ensures that each weight is adjusted to minimize the loss, leading to a trained model.
+
+---
+
+This document provides an overview of various concepts related to neural networks and their training processes, offering a foundation for further study and implementation.
+
