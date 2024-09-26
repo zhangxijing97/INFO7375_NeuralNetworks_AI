@@ -2,112 +2,97 @@
 
 # Non-programming Assignment
 
-## 1. What is Hadamard Matrix Product?
+## What is Hadamard Matrix Product?
+The **Hadamard product**, also known as the element-wise product, is an operation on two matrices of the same dimensions. The result is another matrix, where each element is the product of the corresponding elements from the two input matrices. If \( A \) and \( B \) are two matrices of the same size, the Hadamard product is defined as:
 
-The Hadamard matrix product, also known as the element-wise product or Schur product, is an operation that takes two matrices of the same dimensions and produces another matrix where each element \(i, j\) is the product of elements \(i, j\) of the original two matrices. If \(A\) and \(B\) are two matrices of the same dimension, then their Hadamard product \(C\) is defined as:
+`C = A ⊙ B` where `C_ij = A_ij * B_ij`.
 
-\[ C_{ij} = A_{ij} \cdot B_{ij} \]
+## Describe Matrix Multiplication
+**Matrix multiplication** involves taking two matrices and producing a new matrix. For matrices \( A \) (of size `m × n`) and \( B \) (of size `n × p`), the resulting matrix \( C \) (of size `m × p`) is calculated as:
 
-For example, if 
+`C_ij = ∑(k=1 to n) (A_ik * B_kj)`.
 
-\[ A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix} \]
-\[ B = \begin{pmatrix} 5 & 6 \\ 7 & 8 \end{pmatrix} \]
+The key requirement for matrix multiplication is that the number of columns in the first matrix must equal the number of rows in the second matrix.
 
-then their Hadamard product \(C\) is:
+## What is Transpose Matrix and Vector?
+The **transpose** of a matrix \( A \), denoted as `A^T`, is formed by flipping the matrix over its diagonal. This means that the row and column indices are swapped. If \( A \) is of size `m × n`, then `A^T` will be of size `n × m`.
 
-\[ C = \begin{pmatrix} 1 \cdot 5 & 2 \cdot 6 \\ 3 \cdot 7 & 4 \cdot 8 \end{pmatrix} = \begin{pmatrix} 5 & 12 \\ 21 & 32 \end{pmatrix} \]
+For a vector, the transpose converts a row vector into a column vector and vice versa. For example, if `v` is a column vector:
 
-## 2. Describe Matrix Multiplication
+`v = [a, b, c]^T`
 
-Matrix multiplication is an operation that produces a new matrix from two matrices. Given two matrices \(A\) of dimension \(m \times n\) and \(B\) of dimension \(n \times p\), the product \(C = A \times B\) will be a matrix of dimension \(m \times p\). The element at row \(i\) and column \(j\) of \(C\) is calculated as the dot product of the \(i\)-th row of \(A\) and the \(j\)-th column of \(B\):
+Then its transpose `v^T` is a row vector:
 
-\[ C_{ij} = \sum_{k=1}^{n} A_{ik} \cdot B_{kj} \]
+`v^T = [a, b, c]`.
 
-For example, if 
+## Describe the Training Set Batch
+In machine learning, a **training set batch** refers to a subset of the training dataset used to train the model in one iteration of the training process. Rather than using the entire dataset at once, which can be computationally expensive and inefficient, the dataset is often divided into smaller batches. This approach allows for more manageable computations and helps in optimizing the learning process.
 
-\[ A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix} \]
-\[ B = \begin{pmatrix} 5 & 6 \\ 7 & 8 \end{pmatrix} \]
+The size of the batch (often called the **batch size**) can significantly impact the performance and stability of the training process. Common strategies include:
 
-then their product \(C\) is:
+- **Mini-batch Gradient Descent**: Using small batches (e.g., 32 or 64 samples).
+- **Stochastic Gradient Descent**: Using a batch size of 1 (updating weights after each training example).
+- **Full-batch Gradient Descent**: Using the entire dataset as a single batch.
 
-\[ C = \begin{pmatrix} 1 \cdot 5 + 2 \cdot 7 & 1 \cdot 6 + 2 \cdot 8 \\ 3 \cdot 5 + 4 \cdot 7 & 3 \cdot 6 + 4 \cdot 8 \end{pmatrix} = \begin{pmatrix} 19 & 22 \\ 43 & 50 \end{pmatrix} \]
+## Describe the Entropy-Based Loss (Cost or Error) Function
+The **entropy-based loss function**, commonly referred to as **cross-entropy loss**, measures the dissimilarity between the predicted probability distribution and the actual distribution (ground truth). It is especially used in classification tasks. The cross-entropy loss `L` for two probability distributions `p` (true distribution) and `q` (predicted distribution) is defined as:
 
-## 3. What is Transpose Matrix and Vector?
+`L(p, q) = -∑(i=1 to n) (p(i) * log(q(i)))`.
 
-The transpose of a matrix is a new matrix whose rows are the columns of the original. Formally, the transpose of matrix \(A\), denoted as \(A^T\), is defined by:
+### Why Use It for Training Neural Networks?
+Cross-entropy loss is used in training neural networks because it provides a clear gradient for optimization, particularly in the context of logistic regression and softmax outputs. It helps in effectively adjusting the weights during backpropagation, ensuring that the network learns to output probabilities that align closely with the actual labels.
 
-\[ (A^T)_{ij} = A_{ji} \]
+## Describe Neural Network Supervised Training Process
+The **supervised training process** for neural networks involves several key steps:
 
-For example, if 
+1. **Data Preparation**: The dataset is divided into training and validation sets. The training set is used to train the model, while the validation set is used to evaluate its performance.
 
-\[ A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix} \]
+2. **Forward Propagation**: Input data is fed into the network, and predictions are made based on current weights and biases. The output is computed as:
 
-then the transpose of \(A\) is:
+   `y = f(w_1 * x_1 + w_2 * x_2 + ... + w_n * x_n + b)`
 
-\[ A^T = \begin{pmatrix} 1 & 3 \\ 2 & 4 \end{pmatrix} \]
+3. **Loss Calculation**: The loss function (e.g., cross-entropy) computes the difference between predicted and actual outputs.
 
-The concept is similar for vectors. For a column vector \(v\), its transpose \(v^T\) is a row vector, and vice versa.
+4. **Backward Propagation**: The gradients of the loss function are calculated concerning the model parameters using the chain rule.
 
-## 4. Describe the Training Set Batch
+5. **Weight Update**: The model's weights are updated using an optimization algorithm (e.g., Stochastic Gradient Descent) to minimize the loss.
 
-In machine learning, especially in training neural networks, a batch is a subset of the training dataset. Instead of processing the entire training set at once, the training data is divided into smaller chunks called batches. Each batch is used to update the model's weights. This approach has several benefits:
+6. **Iteration**: Steps 2-5 are repeated for multiple epochs until the model converges or achieves satisfactory performance.
 
-1. It makes the training process more efficient by reducing memory requirements.
-2. It helps in faster convergence as the weights are updated more frequently.
-3. It allows for parallelism in computations.
-
-A training set batch typically contains a fixed number of training examples, known as the batch size.
-
-## 5. Describe the Entropy-Based Loss (Cost or Error) Function and Explain Why It is Used for Training Neural Networks
-
-Entropy-based loss functions are used to measure the difference between the predicted probability distribution and the true distribution. The most common entropy-based loss function is the cross-entropy loss, especially used in classification problems. 
-
-For a single instance, the cross-entropy loss is defined as:
-
-\[ L(y, \hat{y}) = - \sum_{i} y_i \log(\hat{y}_i) \]
-
-where \(y\) is the true distribution (usually a one-hot encoded vector), and \(\hat{y}\) is the predicted distribution (the output of the softmax function in classification problems).
-
-The cross-entropy loss is used because it provides a robust way to penalize incorrect classifications by the model and encourages the model to output high probabilities for the correct classes.
-
-## 6. Describe Neural Network Supervised Training Process
-
-In supervised training of neural networks, the model learns to map input data to output labels using labeled training data. The process involves:
-
-1. **Initialization**: Initialize the network's weights and biases.
-2. **Forward Propagation**: Pass input data through the network to get predicted outputs.
-3. **Loss Calculation**: Compute the loss (error) between the predicted output and the true output using a loss function.
-4. **Backward Propagation**: Compute gradients of the loss with respect to each weight using backpropagation.
-5. **Weight Update**: Update the weights using an optimization algorithm (e.g., gradient descent) to minimize the loss.
-6. **Iteration**: Repeat steps 2-5 for a number of epochs or until convergence.
-
-## 7. Describe in Detail Forward Propagation and Backpropagation
-
+## Describe in Detail Forward Propagation and Backpropagation
 ### Forward Propagation
+**Forward propagation** is the process of passing input data through the network to obtain output predictions. Each layer of the network computes a weighted sum of its inputs, applies a bias, and then passes the result through an activation function. For a simple feedforward neural network, the forward propagation process can be described as follows:
 
-Forward propagation is the process by which input data is passed through the neural network to obtain the output. It involves the following steps:
+1. **Input Layer**: The input features are fed into the network.
+2. **Hidden Layers**: Each hidden layer computes its output as:
 
-1. **Input Layer**: Input features are fed into the network.
-2. **Hidden Layers**: Each hidden layer processes the input from the previous layer using weights, biases, and activation functions. The output of each neuron is calculated as:
+   `z^(l) = W^(l) * a^(l-1) + b^(l)`
 
-   \[ z_i = w_i \cdot x + b_i \]
-   \[ a_i = \sigma(z_i) \]
+   `a^(l) = f(z^(l))`
 
-   where \(z_i\) is the weighted sum of inputs, \(w_i\) are the weights, \(b_i\) is the bias, \(x\) is the input, and \(\sigma\) is the activation function.
-3. **Output Layer**: The final layer produces the output using a suitable activation function (e.g., softmax for classification).
+   Where `z^(l)` is the weighted sum of inputs, `W^(l)` is the weight matrix, `b^(l)` is the bias vector, `a^(l-1)` is the output from the previous layer, and `f` is the activation function (e.g., ReLU, sigmoid).
+
+3. **Output Layer**: The final layer produces predictions using a suitable activation function, such as softmax for classification tasks.
 
 ### Backpropagation
+**Backpropagation** is the process of computing the gradient of the loss function concerning the weights of the network by applying the chain rule. The steps involved are:
 
-Backpropagation is the process of computing the gradient of the loss function with respect to each weight by the chain rule, allowing for efficient computation of gradients.
+1. **Loss Calculation**: Compute the loss using the output from forward propagation and the true labels.
+   
+2. **Output Layer Gradients**: Calculate the gradients of the loss with respect to the outputs:
 
-1. **Loss Gradient**: Compute the gradient of the loss function with respect to the output of the network.
-2. **Output Layer Gradient**: Calculate the gradient of the loss with respect to the output layer's weights and biases.
-3. **Hidden Layers Gradient**: Propagate the gradient back through the network, layer by layer, using the chain rule to compute gradients for each layer's weights and biases.
-4. **Weight Update**: Update the weights and biases using the computed gradients and an optimization algorithm (e.g., stochastic gradient descent).
+   `δ^(L) = ∇_a L * f'(z^(L))`.
 
-Backpropagation ensures that each weight is adjusted to minimize the loss, leading to a trained model.
+3. **Hidden Layer Gradients**: For each hidden layer `l`:
 
----
+   `δ^(l) = (W^(l+1))^T * δ^(l+1) * f'(z^(l))`.
 
-This document provides an overview of various concepts related to neural networks and their training processes, offering a foundation for further study and implementation.
+4. **Weight Updates**: Update weights and biases for each layer using the calculated gradients:
 
+   `W^(l) = W^(l) - α * ∂L/∂W^(l)`
+
+   `b^(l) = b^(l) - α * ∂L/∂b^(l)`.
+
+Where `α` is the learning rate.
+
+This process is repeated iteratively over multiple epochs until the model converges to an optimal set of weights and biases, minimizing the loss function.
