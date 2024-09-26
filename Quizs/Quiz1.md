@@ -1,6 +1,5 @@
 # Quiz 1
 
-Non-programming Assignment:
 ## Describe in detail forward- and backpropagation method for a neural network with one hidden layer including the expressions how to calculate the derivatives and update the parameters for a deep neural network.
 
 #### Forward Propagation
