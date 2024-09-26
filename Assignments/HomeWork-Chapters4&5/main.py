@@ -1,36 +1,39 @@
 # main.py
 
-# NOTE: Before running this script, make sure to run 'resize_mnist_images.py' to generate the 'resized_mnist.csv' file.
-# This file is required to load the MNIST dataset resized to 20x20 pixels.
-
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 import numpy as np
 
-from perceptron import Perceptron
+from neural_network import NeuralNetwork
 
 # Load the dataset
-df = pd.read_csv('Assignments/HomeWork-Chapter3&4/resized_mnist.csv')
+df = pd.read_csv('Datasets/breast_cancer_dataset.csv')
 
 # Separate features and labels
-X = df.drop('label', axis=1)  # Features
-y = df['label']  # Labels (0-9)
+X = df.drop('target', axis=1)  # Features
+y = df['target']  # Labels (0 or 1)
 
 # Normalize data between 0 and 1
-X = X / 255.0
+X = (X - np.min(X, axis=0)) / (np.max(X, axis=0) - np.min(X, axis=0))
 
 # Split the dataset into training and testing sets
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# Initialize the Perceptron model for multi-class classification
-perceptron = Perceptron(input_size=X_train.shape[1], num_classes=10, learning_rate=0.01, epochs=100)
+# Initialize the Neural Network model
+input_size = X_train.shape[1]
+hidden_size = 50  # Adjust hidden_size
+num_classes = 2  # Since it's a binary classification problem
+learning_rate = 0.01
+epochs = 100
 
-# Train the Perceptron model
-perceptron.train(X_train.values, y_train.values)
+neural_network = NeuralNetwork(input_size, hidden_size, num_classes, learning_rate, epochs)
+
+# Train the Neural Network model
+neural_network.train(X_train.values, y_train.values)
 
 # Make predictions on the test set
-y_pred = [perceptron.predict(x) for x in X_test.values]
+y_pred = neural_network.predict(X_test.values)
 
 # Calculate and print the accuracy
 accuracy = accuracy_score(y_test, y_pred)
