@@ -1,113 +1,100 @@
-# HW to Chapter 4 & 5 “Neural Network with one hidden layer”
+# HW to Chapters 6 “Deep Neural Networks” and 7 “Activation Functions”
 
 # Non-programming Assignment
 
-## 1. What is Hadamard Matrix Product?
+## Why are Multilayer (Deep) Neural Networks Needed?
+**Multilayer (deep) neural networks** are necessary because they can learn complex patterns and representations from data. A single-layer network (or shallow network) may not be able to capture the intricate relationships within the data, leading to underfitting. Deep networks, on the other hand, utilize multiple layers of neurons to progressively extract higher-level features from the input. This hierarchical feature learning allows them to perform well on tasks like image recognition, natural language processing, and speech recognition, where the relationships among input features are highly non-linear.
 
-The Hadamard matrix product, also known as the element-wise product or Schur product, is an operation that takes two matrices of the same dimensions and produces another matrix where each element \(i, j\) is the product of elements \(i, j\) of the original two matrices. If \(A\) and \(B\) are two matrices of the same dimension, then their Hadamard product \(C\) is defined as:
+## What is the Structure of Weight Matrix?
+The **weight matrix** in a neural network layer has dimensions determined by the number of neurons in the current layer and the number of neurons in the previous layer. Specifically, if the previous layer has \( n \) neurons and the current layer has \( m \) neurons, the weight matrix \( W \) will be of size:
 
-\[ C_{ij} = A_{ij} \cdot B_{ij} \]
+`W ∈ ℝ^(m × n)`
 
-For example, if 
+This means it has \( m \) rows (one for each neuron in the current layer) and \( n \) columns (one for each neuron in the previous layer).
 
-\[ A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix} \]
-\[ B = \begin{pmatrix} 5 & 6 \\ 7 & 8 \end{pmatrix} \]
+## Describe the Gradient Descent Method
+The **gradient descent method** is an optimization algorithm used to minimize the loss function in machine learning and neural networks. It iteratively adjusts the model parameters (weights and biases) to reduce the difference between the predicted outputs and the actual targets. The steps involved in gradient descent are as follows:
 
-then their Hadamard product \(C\) is:
+1. **Initialize Parameters**: Set initial values for the weights and biases (often randomly).
+2. **Compute the Loss**: Use the current parameters to calculate the loss using a suitable loss function.
+3. **Calculate Gradients**: Compute the gradients of the loss function with respect to each parameter by applying the chain rule.
+4. **Update Parameters**: Adjust the parameters in the opposite direction of the gradients to minimize the loss:
 
-\[ C = \begin{pmatrix} 1 \cdot 5 & 2 \cdot 6 \\ 3 \cdot 7 & 4 \cdot 8 \end{pmatrix} = \begin{pmatrix} 5 & 12 \\ 21 & 32 \end{pmatrix} \]
+   `W_new = W_old - α * ∂L/∂W`
 
-## 2. Describe Matrix Multiplication
+   `b_new = b_old - α * ∂L/∂b`
 
-Matrix multiplication is an operation that produces a new matrix from two matrices. Given two matrices \(A\) of dimension \(m \times n\) and \(B\) of dimension \(n \times p\), the product \(C = A \times B\) will be a matrix of dimension \(m \times p\). The element at row \(i\) and column \(j\) of \(C\) is calculated as the dot product of the \(i\)-th row of \(A\) and the \(j\)-th column of \(B\):
+   Where \( α \) is the learning rate that controls the step size of the updates.
+5. **Iterate**: Repeat steps 2-4 until convergence or for a predetermined number of epochs.
 
-\[ C_{ij} = \sum_{k=1}^{n} A_{ik} \cdot B_{kj} \]
-
-For example, if 
-
-\[ A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix} \]
-\[ B = \begin{pmatrix} 5 & 6 \\ 7 & 8 \end{pmatrix} \]
-
-then their product \(C\) is:
-
-\[ C = \begin{pmatrix} 1 \cdot 5 + 2 \cdot 7 & 1 \cdot 6 + 2 \cdot 8 \\ 3 \cdot 5 + 4 \cdot 7 & 3 \cdot 6 + 4 \cdot 8 \end{pmatrix} = \begin{pmatrix} 19 & 22 \\ 43 & 50 \end{pmatrix} \]
-
-## 3. What is Transpose Matrix and Vector?
-
-The transpose of a matrix is a new matrix whose rows are the columns of the original. Formally, the transpose of matrix \(A\), denoted as \(A^T\), is defined by:
-
-\[ (A^T)_{ij} = A_{ji} \]
-
-For example, if 
-
-\[ A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix} \]
-
-then the transpose of \(A\) is:
-
-\[ A^T = \begin{pmatrix} 1 & 3 \\ 2 & 4 \end{pmatrix} \]
-
-The concept is similar for vectors. For a column vector \(v\), its transpose \(v^T\) is a row vector, and vice versa.
-
-## 4. Describe the Training Set Batch
-
-In machine learning, especially in training neural networks, a batch is a subset of the training dataset. Instead of processing the entire training set at once, the training data is divided into smaller chunks called batches. Each batch is used to update the model's weights. This approach has several benefits:
-
-1. It makes the training process more efficient by reducing memory requirements.
-2. It helps in faster convergence as the weights are updated more frequently.
-3. It allows for parallelism in computations.
-
-A training set batch typically contains a fixed number of training examples, known as the batch size.
-
-## 5. Describe the Entropy-Based Loss (Cost or Error) Function and Explain Why It is Used for Training Neural Networks
-
-Entropy-based loss functions are used to measure the difference between the predicted probability distribution and the true distribution. The most common entropy-based loss function is the cross-entropy loss, especially used in classification problems. 
-
-For a single instance, the cross-entropy loss is defined as:
-
-\[ L(y, \hat{y}) = - \sum_{i} y_i \log(\hat{y}_i) \]
-
-where \(y\) is the true distribution (usually a one-hot encoded vector), and \(\hat{y}\) is the predicted distribution (the output of the softmax function in classification problems).
-
-The cross-entropy loss is used because it provides a robust way to penalize incorrect classifications by the model and encourages the model to output high probabilities for the correct classes.
-
-## 6. Describe Neural Network Supervised Training Process
-
-In supervised training of neural networks, the model learns to map input data to output labels using labeled training data. The process involves:
-
-1. **Initialization**: Initialize the network's weights and biases.
-2. **Forward Propagation**: Pass input data through the network to get predicted outputs.
-3. **Loss Calculation**: Compute the loss (error) between the predicted output and the true output using a loss function.
-4. **Backward Propagation**: Compute gradients of the loss with respect to each weight using backpropagation.
-5. **Weight Update**: Update the weights using an optimization algorithm (e.g., gradient descent) to minimize the loss.
-6. **Iteration**: Repeat steps 2-5 for a number of epochs or until convergence.
-
-## 7. Describe in Detail Forward Propagation and Backpropagation
-
+## Describe in Detail Forward Propagation and Backpropagation for Deep Neural Networks
 ### Forward Propagation
+In **forward propagation** for deep neural networks, the input data is passed through each layer of the network to obtain the final output. The process is as follows:
 
-Forward propagation is the process by which input data is passed through the neural network to obtain the output. It involves the following steps:
+1. **Input Layer**: The input features are fed into the network.
+2. **Hidden Layers**: Each hidden layer computes its output using:
 
-1. **Input Layer**: Input features are fed into the network.
-2. **Hidden Layers**: Each hidden layer processes the input from the previous layer using weights, biases, and activation functions. The output of each neuron is calculated as:
+   `z^(l) = W^(l) * a^(l-1) + b^(l)`
 
-   \[ z_i = w_i \cdot x + b_i \]
-   \[ a_i = \sigma(z_i) \]
+   `a^(l) = f(z^(l))`
 
-   where \(z_i\) is the weighted sum of inputs, \(w_i\) are the weights, \(b_i\) is the bias, \(x\) is the input, and \(\sigma\) is the activation function.
-3. **Output Layer**: The final layer produces the output using a suitable activation function (e.g., softmax for classification).
+   Where `z^(l)` is the weighted sum of inputs, `W^(l)` is the weight matrix, `b^(l)` is the bias vector, and `f` is the activation function applied to the layer's output.
+3. **Output Layer**: The final layer produces the output predictions based on the chosen activation function (e.g., softmax for classification).
 
 ### Backpropagation
+In **backpropagation** for deep neural networks, gradients are computed to update the weights and biases. The process involves:
 
-Backpropagation is the process of computing the gradient of the loss function with respect to each weight by the chain rule, allowing for efficient computation of gradients.
+1. **Loss Calculation**: Compute the loss using the output from forward propagation and the true labels.
+2. **Output Layer Gradients**: Calculate gradients for the output layer:
 
-1. **Loss Gradient**: Compute the gradient of the loss function with respect to the output of the network.
-2. **Output Layer Gradient**: Calculate the gradient of the loss with respect to the output layer's weights and biases.
-3. **Hidden Layers Gradient**: Propagate the gradient back through the network, layer by layer, using the chain rule to compute gradients for each layer's weights and biases.
-4. **Weight Update**: Update the weights and biases using the computed gradients and an optimization algorithm (e.g., stochastic gradient descent).
+   `δ^(L) = ∇_a L * f'(z^(L))`.
 
-Backpropagation ensures that each weight is adjusted to minimize the loss, leading to a trained model.
+3. **Hidden Layer Gradients**: For each hidden layer \( l \):
 
----
+   `δ^(l) = (W^(l+1))^T * δ^(l+1) * f'(z^(l))`.
 
-This document provides an overview of various concepts related to neural networks and their training processes, offering a foundation for further study and implementation.
+4. **Weight Updates**: Update weights and biases for each layer using the gradients:
 
+   `W^(l) = W^(l) - α * ∂L/∂W^(l)`
+
+   `b^(l) = b^(l) - α * ∂L/∂b^(l)`.
+
+5. **Iterate**: This process is repeated for multiple epochs until the model converges.
+
+## Describe Linear, ReLU, Sigmoid, Tanh, and Softmax Activation Functions
+### 1. Linear Activation Function
+The **linear activation function** outputs the input directly, defined as:
+
+`f(x) = x`.
+
+**Use**: It is often used in regression tasks where the output is a continuous value.
+
+### 2. ReLU Activation Function
+The **Rectified Linear Unit (ReLU)** activation function is defined as:
+
+`f(x) = max(0, x)`.
+
+**Use**: It is widely used in hidden layers of deep networks due to its simplicity and effectiveness in alleviating the vanishing gradient problem.
+
+### 3. Sigmoid Activation Function
+The **sigmoid activation function** is defined as:
+
+`f(x) = 1 / (1 + exp(-x))`.
+
+**Use**: It squashes the input to a range between 0 and 1, making it suitable for binary classification tasks. However, it can suffer from the vanishing gradient problem.
+
+### 4. Tanh Activation Function
+The **tanh activation function** is defined as:
+
+`f(x) = (exp(x) - exp(-x)) / (exp(x) + exp(-x))`.
+
+**Use**: It squashes the input to a range between -1 and 1, making it zero-centered. It is often preferred over sigmoid in hidden layers, though it can still experience vanishing gradients.
+
+### 5. Softmax Activation Function
+The **softmax activation function** is defined as:
+
+`f(x_i) = exp(x_i) / ∑(j=1 to K) exp(x_j)`,
+
+where \( K \) is the number of classes.
+
+**Use**: It is typically used in the output layer of multi-class classification problems to produce a probability distribution over multiple classes, allowing for effective interpretation of model outputs.
