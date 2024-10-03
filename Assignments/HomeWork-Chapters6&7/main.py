@@ -22,7 +22,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 
 # Initialize the Neural Network model
 input_size = X_train.shape[1]
-hidden_size = 50  # Adjust hidden_size
+hidden_size = 50  # Adjust hidden_size as needed
 num_classes = 2  # Since it's a binary classification problem
 learning_rate = 0.01
 epochs = 100

@@ -20,12 +20,34 @@ class NeuralNetwork:
     def relu_derivative(self, z):
         return (z > 0).astype(float)
 
+    def sigmoid(self, z):
+        return 1 / (1 + np.exp(-z))
+
+    def sigmoid_derivative(self, z):
+        return z * (1 - z)
+
+    def tanh(self, z):
+        return np.tanh(z)
+
+    def tanh_derivative(self, z):
+        return 1 - np.tanh(z) ** 2
+
+    def linear(self, z):
+        return z
+
     def predict(self, X):
         hidden_input = np.dot(X, self.weights_input_hidden) + self.bias_hidden
         hidden_output = self.relu(hidden_input)
         output_input = np.dot(hidden_output, self.weights_hidden_output) + self.bias_output
         output = self.softmax(output_input)
         return np.argmax(output, axis=1)
+
+    def compute_loss(self, y_pred, y_true):
+        # One-hot encoding of the true labels
+        y_true_one_hot = np.zeros_like(y_pred)
+        y_true_one_hot[np.arange(len(y_true)), y_true] = 1
+        # Cross-entropy loss
+        return -np.sum(y_true_one_hot * np.log(y_pred + 1e-12)) / y_pred.shape[0]
 
     def train(self, X, y):
         for epoch in range(self.epochs):
@@ -37,7 +59,7 @@ class NeuralNetwork:
                 output = self.softmax(output_input)
 
                 # Compute error
-                error_output = output
+                error_output = output.copy()
                 error_output[label] -= 1  # One-hot encoding of the label
 
                 # Backpropagation
@@ -50,4 +72,6 @@ class NeuralNetwork:
                 self.weights_input_hidden -= self.lr * np.outer(inputs, delta_hidden)
                 self.bias_hidden -= self.lr * delta_hidden
 
-            print(f"Epoch {epoch+1} training in progress...")
+            # Print the loss for the current epoch
+            # loss = self.compute_loss(output, y)
+            # print(f"Epoch {epoch+1} training in progress... Loss: {loss:.4f}")
