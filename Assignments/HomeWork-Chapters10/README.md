@@ -7,29 +7,28 @@ Normalization transforms the features of the dataset to a common scale, like [0,
 
 Common Normalization Techniques:
 
-Original Data:
- [[1 2 3]
- [4 5 6]
- [7 8 9]]
+Original Data:<br>
+ [[1 2 3]<br>
+ [4 5 6]<br>
+ [7 8 9]]<br>
 
-Min-Max Scaled Data:
-Min-Max Scaling X' = (X - Xmin)/(Xmax - Xmin)
- [[0.  0.  0. ]
- [0.5 0.5 0.5]
- [1.  1.  1. ]]
+Min-Max Scaled Data:<br>
+Min-Max Scaling X' = (X - Xmin)/(Xmax - Xmin)<br>
+ [[0.  0.  0. ]<br>
+ [0.5 0.5 0.5]<br>
+ [1.  1.  1. ]]<br>
 
+Z-Score Normalization<br>
+Min-Max Scaling X' = (X - Xmin)/(Xmax - Xmin)<br>
+ [[-1.22474487 -1.22474487 -1.22474487]<br>
+ [ 0.          0.          0.        ]<br>
+ [ 1.22474487  1.22474487  1.22474487]]<br>
 
-Z-Score Normalization
-Min-Max Scaling X' = (X - Xmin)/(Xmax - Xmin)
- [[-1.22474487 -1.22474487 -1.22474487]
- [ 0.          0.          0.        ]
- [ 1.22474487  1.22474487  1.22474487]]
-
-Robust Scaling
-Min-Max Scaling X' = (X - Xmin)/(Xmax - Xmin)
- [[-1. -1. -1.]
- [ 0.  0.  0.]
- [ 1.  1.  1.]]
+Robust Scaling<br>
+Min-Max Scaling X' = (X - Xmin)/(Xmax - Xmin)<br>
+ [[-1. -1. -1.]<br>
+ [ 0.  0.  0.]<br>
+ [ 1.  1.  1.]]<br>
 
 ## 2. What are vanishing and exploding gradients?
 
