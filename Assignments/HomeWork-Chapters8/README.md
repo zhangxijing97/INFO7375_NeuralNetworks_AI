@@ -2,36 +2,22 @@
 
 # Non-programming Assignment
 
-## Neural Networks Initialization and Training Concepts
+### 1. To which values initialize parameters (W, b) in a neural networks and why?
 
-### Parameter Initialization (W, b)
-- **Weights (W)**:
-  - **Xavier Initialization**: `Variance = 2 / (n_in + n_out)`
-  - **He Initialization**: `Variance = 2 / n_in`
-  - **Random Initialization**: Small values to avoid exploding gradients.
-- **Biases (b)**: Initialized to zero.
+Zero Initialization leads to symmetry; all neurons will learn the same features and thus fail to break symmetry during training.
 
-### Exploding and Vanishing Gradients
-- **Exploding Gradients**: Large gradients causing unstable updates.
-- **Vanishing Gradients**: Small gradients preventing significant updates.
+Random Initialization helps break symmetry, it can lead to exploding or vanishing gradients, especially in deep networks.
 
-### Xavier Initialization
-- Weights from `N(0, 2 / (n_in + n_out))`
-- Helps in maintaining variance and gradients across layers.
+Xavier (Glorot) Initialization helps maintain the variance of the outputs of each layer, which mitigates the vanishing gradient problem in networks using activation functions like sigmoid or tanh.
 
-### Data Sets
-- **Training Set**: For model learning.
-- **Validation Set**: For tuning and preventing overfitting.
-- **Testing Set**: For final performance evaluation.
+### 2. Describe the problem of exploding and vanishing gradients?
 
-### Training Epoch
-- One complete pass through the entire training dataset.
+### 3. What is Xavier initialization?
 
-### Data Set Distribution
-- **Training Set**: 70-80%
-- **Validation Set**: 10-15%
-- **Testing Set**: 10-15%
+### 4. Describe training, validation, and testing data sets and explain their role and why all they are needed.
 
-### Data Augmentation
-- **Purpose**: Increase dataset size, improve generalization, reduce overfitting.
-- **Methods**: Rotations, flips, shifts, scaling, noise addition.
+### 5. What is training epoch?
+
+### 6. How to distribute training, validation, and testing sets?
+
+### 7. What is data augmentation and why may it needed?
