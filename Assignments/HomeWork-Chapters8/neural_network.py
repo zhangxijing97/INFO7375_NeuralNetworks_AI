@@ -12,6 +12,7 @@ class NeuralNetwork:
         L = len(self.layers)
         for l in range(1, L):
             parameters[f'W{l}'] = np.random.randn(self.layers[l-1], self.layers[l]) * 0.01
+            print(parameters[f'W{l}'])
             parameters[f'b{l}'] = np.zeros((1, self.layers[l]))
         return parameters
 

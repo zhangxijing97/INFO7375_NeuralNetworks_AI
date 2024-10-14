@@ -74,4 +74,4 @@ class NeuralNetwork:
 
             # Print the loss for the current epoch
             # loss = self.compute_loss(output, y)
-            print(f"Epoch {epoch+1} training in progress... Loss: {loss:.4f}")
+            # print(f"Epoch {epoch+1} training in progress... Loss: {loss:.4f}")

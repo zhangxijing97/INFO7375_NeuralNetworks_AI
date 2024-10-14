@@ -1,10 +1,11 @@
-# # main.py
+# main.py
 
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 from neural_network import NeuralNetwork
+from dataset_splitter import train_val_test_split
 
 # Load the dataset
 df = pd.read_csv('Datasets/breast_cancer_dataset.csv')
@@ -17,12 +18,12 @@ y = df['target'].values.reshape(-1, 1)  # Labels (0 or 1)
 scaler = StandardScaler()
 X = scaler.fit_transform(X)
 
-# Split the data into training and testing sets
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+# Split the data
+X_train, X_val, X_test, y_train, y_val, y_test = train_val_test_split(X, y, random_state=42)
 
 # Define the network structure
 input_size = X_train.shape[1]
-hidden_layers = [6, 6]  # Example: two hidden layers with 30 and 30 units
+hidden_layers = [16, 8]  # Example: two hidden layers with 16 and 8 units
 output_size = 1
 layers = [input_size] + hidden_layers + [output_size]
 
