@@ -1,24 +1,20 @@
+# neural_network.py
+
 import numpy as np
 
 class NeuralNetwork:
-    def __init__(self, input_size, hidden_size, num_classes, learning_rate=0.1, epochs=100):
-        # Initialize weights
-        self.weights_input_hidden = np.random.randn(input_size, hidden_size) * 0.01
-        self.bias_hidden = np.zeros(hidden_size)
-        self.weights_hidden_output = np.random.randn(hidden_size, num_classes) * 0.01
-        self.bias_output = np.zeros(num_classes)
-        self.lr = learning_rate
-        self.epochs = epochs
+    def __init__(self, layers):
+        self.layers = layers
+        self.parameters = self.initialize_parameters()
 
-    def softmax(self, z):
-        exp_z = np.exp(z - np.max(z))  # For numerical stability
-        return exp_z / np.sum(exp_z)
-
-    def relu(self, z):
-        return np.maximum(0, z)
-
-    def relu_derivative(self, z):
-        return (z > 0).astype(float)
+    def initialize_parameters(self):
+        parameters = {}
+        L = len(self.layers)
+        for l in range(1, L):
+            parameters[f'W{l}'] = np.random.randn(self.layers[l-1], self.layers[l]) * 0.01
+            print(parameters[f'W{l}'])
+            parameters[f'b{l}'] = np.zeros((1, self.layers[l]))
+        return parameters
 
     def sigmoid(self, z):
         return 1 / (1 + np.exp(-z))
@@ -26,52 +22,44 @@ class NeuralNetwork:
     def sigmoid_derivative(self, z):
         return z * (1 - z)
 
-    def tanh(self, z):
-        return np.tanh(z)
+    def forward(self, X):
+        cache = {'A0': X}
+        L = len(self.layers) - 1
+        for l in range(1, L + 1):
+            cache[f'Z{l}'] = np.dot(cache[f'A{l-1}'], self.parameters[f'W{l}']) + self.parameters[f'b{l}']
+            cache[f'A{l}'] = self.sigmoid(cache[f'Z{l}'])
+        return cache
 
-    def tanh_derivative(self, z):
-        return 1 - np.tanh(z) ** 2
+    def compute_loss(self, Y, Y_hat):
+        # Mean Squared Error
+        return np.mean((Y - Y_hat) ** 2)
 
-    def linear(self, z):
-        return z
+    def backward(self, cache, X, Y, learning_rate):
+        gradients = {}
+        L = len(self.layers) - 1
+        m = X.shape[0]
 
-    def predict(self, X):
-        hidden_input = np.dot(X, self.weights_input_hidden) + self.bias_hidden
-        hidden_output = self.relu(hidden_input)
-        output_input = np.dot(hidden_output, self.weights_hidden_output) + self.bias_output
-        output = self.softmax(output_input)
-        return np.argmax(output, axis=1)
+        # Compute the gradient on the output layer
+        dA = cache[f'A{L}'] - Y
+        for l in reversed(range(1, L + 1)):
+            dZ = dA * self.sigmoid_derivative(cache[f'A{l}'])
+            dW = (1 / m) * np.dot(cache[f'A{l-1}'].T, dZ)
+            db = (1 / m) * np.sum(dZ, axis=0, keepdims=True)
+            if l > 1:
+                dA = np.dot(dZ, self.parameters[f'W{l}'].T)
+            
+            gradients[f'dW{l}'] = dW
+            gradients[f'db{l}'] = db
 
-    def compute_loss(self, y_pred, y_true):
-        # One-hot encoding of the true labels
-        y_true_one_hot = np.zeros_like(y_pred)
-        y_true_one_hot[np.arange(len(y_true)), y_true] = 1
-        # Cross-entropy loss
-        return -np.sum(y_true_one_hot * np.log(y_pred + 1e-12)) / y_pred.shape[0]
+            # Update weights and biases
+            self.parameters[f'W{l}'] -= learning_rate * gradients[f'dW{l}']
+            self.parameters[f'b{l}'] -= learning_rate * gradients[f'db{l}']
 
-    def train(self, X, y):
-        for epoch in range(self.epochs):
-            for inputs, label in zip(X, y):
-                # Forward pass
-                hidden_input = np.dot(inputs, self.weights_input_hidden) + self.bias_hidden
-                hidden_output = self.relu(hidden_input)
-                output_input = np.dot(hidden_output, self.weights_hidden_output) + self.bias_output
-                output = self.softmax(output_input)
-
-                # Compute error
-                error_output = output.copy()
-                error_output[label] -= 1  # One-hot encoding of the label
-
-                # Backpropagation
-                delta_output = error_output
-                delta_hidden = np.dot(self.weights_hidden_output, delta_output) * self.relu_derivative(hidden_output)
-
-                # Update weights and biases
-                self.weights_hidden_output -= self.lr * np.outer(hidden_output, delta_output)
-                self.bias_output -= self.lr * delta_output
-                self.weights_input_hidden -= self.lr * np.outer(inputs, delta_hidden)
-                self.bias_hidden -= self.lr * delta_hidden
-
-            # Print the loss for the current epoch
-            # loss = self.compute_loss(output, y)
-            # print(f"Epoch {epoch+1} training in progress... Loss: {loss:.4f}")
+    def train(self, X, Y, epochs, learning_rate):
+        for epoch in range(epochs):
+            cache = self.forward(X)
+            Y_hat = cache[f'A{len(self.layers)-1}']
+            loss = self.compute_loss(Y, Y_hat)
+            self.backward(cache, X, Y, learning_rate)
+            if epoch % 100 == 0:
+                print(f'Epoch {epoch}, Loss: {loss}')
