@@ -2,70 +2,63 @@
 
 import numpy as np
 
-class DenseLayer:
-    def __init__(self, input_size, output_size, activation=None):
-        self.weights = np.random.randn(input_size, output_size) * 0.01
-        self.biases = np.zeros((1, output_size))
-        self.activation = activation
-        self.inputs = None
-        self.outputs = None
-
-    def forward(self, inputs):
-        self.inputs = inputs
-        self.outputs = np.dot(inputs, self.weights) + self.biases
-        if self.activation == 'relu':
-            self.outputs = np.maximum(0, self.outputs)
-        elif self.activation == 'sigmoid':
-            self.outputs = 1 / (1 + np.exp(-self.outputs))
-        return self.outputs
-
-    def backward(self, dvalues):
-        # Backward pass calculation
-        if self.activation == 'relu':
-            self.dinputs = dvalues * (self.inputs > 0)
-        elif self.activation == 'sigmoid':
-            self.dinputs = dvalues * (self.outputs * (1 - self.outputs))
-        else:
-            self.dinputs = dvalues  # For no activation or other types
-
-        self.dweights = np.dot(self.inputs.T, self.dinputs)
-        self.dbiases = np.sum(self.dinputs, axis=0, keepdims=True)
-        return self.dinputs
-
 class NeuralNetwork:
-    def __init__(self):
-        self.layers = []
+    def __init__(self, layers):
+        self.layers = layers
+        self.parameters = self.initialize_parameters()
 
-    def add(self, layer):
-        self.layers.append(layer)
+    def initialize_parameters(self):
+        parameters = {}
+        L = len(self.layers)
+        for l in range(1, L):
+            parameters[f'W{l}'] = np.random.randn(self.layers[l-1], self.layers[l]) * 0.01
+            parameters[f'b{l}'] = np.zeros((1, self.layers[l]))
+        return parameters
+
+    def sigmoid(self, z):
+        return 1 / (1 + np.exp(-z))
+
+    def sigmoid_derivative(self, z):
+        return z * (1 - z)
 
     def forward(self, X):
-        for layer in self.layers:
-            X = layer.forward(X)
-        return X
+        cache = {'A0': X}
+        L = len(self.layers) - 1
+        for l in range(1, L + 1):
+            cache[f'Z{l}'] = np.dot(cache[f'A{l-1}'], self.parameters[f'W{l}']) + self.parameters[f'b{l}']
+            cache[f'A{l}'] = self.sigmoid(cache[f'Z{l}'])
+        return cache
 
-    def backward(self, y_true, y_pred):
-        # Calculate the loss gradient
-        dvalues = y_pred - y_true
-        for layer in reversed(self.layers):
-            dvalues = layer.backward(dvalues)
+    def compute_loss(self, Y, Y_hat):
+        # Mean Squared Error
+        return np.mean((Y - Y_hat) ** 2)
 
-    def update(self, learning_rate):
-        for layer in self.layers:
-            layer.weights -= learning_rate * layer.dweights
-            layer.biases -= learning_rate * layer.dbiases
+    def backward(self, cache, X, Y, learning_rate):
+        gradients = {}
+        L = len(self.layers) - 1
+        m = X.shape[0]
 
-    def fit(self, X, y, epochs=50, learning_rate=0.001):
+        # Compute the gradient on the output layer
+        dA = cache[f'A{L}'] - Y
+        for l in reversed(range(1, L + 1)):
+            dZ = dA * self.sigmoid_derivative(cache[f'A{l}'])
+            dW = (1 / m) * np.dot(cache[f'A{l-1}'].T, dZ)
+            db = (1 / m) * np.sum(dZ, axis=0, keepdims=True)
+            if l > 1:
+                dA = np.dot(dZ, self.parameters[f'W{l}'].T)
+            
+            gradients[f'dW{l}'] = dW
+            gradients[f'db{l}'] = db
+
+            # Update weights and biases
+            self.parameters[f'W{l}'] -= learning_rate * gradients[f'dW{l}']
+            self.parameters[f'b{l}'] -= learning_rate * gradients[f'db{l}']
+
+    def train(self, X, Y, epochs, learning_rate):
         for epoch in range(epochs):
-            # Forward pass
-            y_pred = self.forward(X)
-
-            # Backward pass
-            self.backward(y, y_pred)
-
-            # Update weights
-            self.update(learning_rate)
-
-            # Optionally print loss for monitoring
-            loss = np.mean((y_pred - y) ** 2)  # Example loss (mean squared error)
-            print(f"Epoch {epoch+1}/{epochs}, Loss: {loss:.4f}")
+            cache = self.forward(X)
+            Y_hat = cache[f'A{len(self.layers)-1}']
+            loss = self.compute_loss(Y, Y_hat)
+            self.backward(cache, X, Y, learning_rate)
+            if epoch % 100 == 0:
+                print(f'Epoch {epoch}, Loss: {loss}')
