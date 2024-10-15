@@ -64,6 +64,44 @@ X11' = (1-4)/3 = -1<br>
 
 ## 2. What are vanishing and exploding gradients?
 
+### Vanishing Gradients
+
+Vanishing gradients occur when the gradients (partial derivatives of the loss function with respect to the weights) become very small during backpropagation. This can cause the following issues:<br>
+
+- **Slow Learning**: The weights update very slowly because the gradient is too small.<br>
+- **Poor Performance**: The network might not learn properly.<br>
+
+**Why Does It Happen?**<br>
+This problem is common in deep networks with activation functions like the sigmoid or tanh, which squash their input into a small output range (0 to 1 for sigmoid and -1 to 1 for tanh).<br>
+
+When gradients are backpropagated through many layers, they can be repeatedly multiplied by small numbers, causing them to shrink exponentially.<br>
+
+**Solutions**<br>
+
+**Activation Functions**: Using activation functions that do not squash the gradient as much, such as ReLU.<br>
+
+**Weight Initialization**: Using better weight initialization methods like He initialization or Xavier initialization to maintain the scale of gradients.<br>
+
+**Batch Normalization**: Normalizing the inputs of each layer to maintain a stable gradient flow.<br>
+
+### Exploding Gradients
+
+Exploding gradients occur when the gradients grow exponentially during backpropagation. This can cause the following issues:<br>
+
+- **Unstable Training**: The weights can change dramatically, causing the training process to become unstable.<br>
+- **Overflow**: The weights can become so large that they result in numerical overflow, causing the model to fail.<br>
+
+**Why Does It Happen?**
+Exploding gradients can occur in deep networks when the gradients are repeatedly multiplied by large numbers during backpropagation, leading to an exponential increase.<br>
+
+This is often seen with certain weight initialization methods or when using activation functions that don't constrain their output.<br>
+
+**Solutions**<br>
+
+**Gradient Clipping**: Clipping the gradients during backpropagation to a maximum value to prevent them from growing too large.<br>
+
+**Weight Regularization**: Adding regularization terms to the loss function to penalize large weights.<br>
+
 ## 3. What Adam algorithm and why is it needed?
 
 ## 4. How to choose hyperparameters?
