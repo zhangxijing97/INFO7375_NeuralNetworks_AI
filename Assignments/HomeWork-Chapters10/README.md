@@ -107,33 +107,33 @@ Adam maintains two moving averages for each parameter: one for the gradient (fir
 
 1. **Initialization**:
    - Initialize the parameters of the model.
-   - Initialize the first moment vector \(m\) and the second moment vector \(v\) to zero.
-   - Initialize the timestep \(t = 0\).
+   - Initialize the first moment vector `m` and the second moment vector `v` to zero.
+   - Initialize the timestep `t = 0`.
 
 2. **Hyperparameters**:
-   - \(\alpha\): Learning rate (usually \(0.001\)).
-   - \(\beta_1\): Exponential decay rate for the first moment estimates (usually \(0.9\)).
-   - \(\beta_2\): Exponential decay rate for the second moment estimates (usually \(0.999\)).
-   - \(\epsilon\): Small constant to prevent division by zero (usually \(10^{-8}\)).
+   - `α`: Learning rate (usually `0.001`).
+   - `β1`: Exponential decay rate for the first moment estimates (usually `0.9`).
+   - `β2`: Exponential decay rate for the second moment estimates (usually `0.999`).
+   - `ε`: Small constant to prevent division by zero (usually `10^-8`).
 
 3. **Algorithm**:
-   For each iteration \(t\):
-   - Increment the timestep: \(t = t + 1\).
-   - Compute the gradients \(g_t\) of the loss with respect to the parameters \(\theta\).
+   For each iteration `t`:
+   - Increment the timestep: `t = t + 1`.
+   - Compute the gradients `g_t` of the loss with respect to the parameters `θ`.
 
 4. **Update Biased First Moment Estimate**:
-   - \(m_t = \beta_1 m_{t-1} + (1 - \beta_1) g_t\).
+   - `m_t = β1 * m_{t-1} + (1 - β1) * g_t`.
 
 5. **Update Biased Second Moment Estimate**:
-   - \(v_t = \beta_2 v_{t-1} + (1 - \beta_2) g_t^2\).
+   - `v_t = β2 * v_{t-1} + (1 - β2) * g_t^2`.
 
 6. **Compute Bias-Corrected First Moment Estimate**:
-   - \(\hat{m}_t = \frac{m_t}{1 - \beta_1^t}\).
+   - `m̂_t = m_t / (1 - β1^t)`.
 
 7. **Compute Bias-Corrected Second Moment Estimate**:
-   - \(\hat{v}_t = \frac{v_t}{1 - \beta_2^t}\).
+   - `v̂_t = v_t / (1 - β2^t)`.
 
 8. **Update Parameters**:
-   - \(\theta_t = \theta_{t-1} - \alpha \frac{\hat{m}_t}{\sqrt{\hat{v}_t} + \epsilon}\).
+   - `θ_t = θ_{t-1} - α * (m̂_t / (√v̂_t + ε))`.
 
 ## 4. How to choose hyperparameters?
