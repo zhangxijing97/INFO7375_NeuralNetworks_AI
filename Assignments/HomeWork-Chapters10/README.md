@@ -73,10 +73,9 @@ Vanishing gradients occur when the gradients (partial derivatives of the loss fu
 
 **Why Does It Happen?**<br>
 This problem is common in deep networks with activation functions like the sigmoid or tanh, which squash their input into a small output range (0 to 1 for sigmoid and -1 to 1 for tanh).<br>
-
 When gradients are backpropagated through many layers, they can be repeatedly multiplied by small numbers, causing them to shrink exponentially.<br>
 
-**Solutions**<br>
+**Solutions**:<br>
 
 **Activation Functions**: Using activation functions that do not squash the gradient as much, such as ReLU.<br>
 
@@ -91,17 +90,50 @@ Exploding gradients occur when the gradients grow exponentially during backpropa
 - **Unstable Training**: The weights can change dramatically, causing the training process to become unstable.<br>
 - **Overflow**: The weights can become so large that they result in numerical overflow, causing the model to fail.<br>
 
-**Why Does It Happen?**
+**Why Does It Happen?**<br>
 Exploding gradients can occur in deep networks when the gradients are repeatedly multiplied by large numbers during backpropagation, leading to an exponential increase.<br>
-
 This is often seen with certain weight initialization methods or when using activation functions that don't constrain their output.<br>
 
-**Solutions**<br>
+**Solutions**:<br>
 
 **Gradient Clipping**: Clipping the gradients during backpropagation to a maximum value to prevent them from growing too large.<br>
 
 **Weight Regularization**: Adding regularization terms to the loss function to penalize large weights.<br>
 
 ## 3. What Adam algorithm and why is it needed?
+
+Adam provides adaptive learning rates, which can lead to more efficient and effective training. If you don't use Adam, we may need to spend significant time and effort on manually tuning.<br>
+Adam maintains two moving averages for each parameter: one for the gradient (first moment) and one for the gradient's square (second moment). It also includes bias-correction terms to account for the initialization of these moving averages. Here's a detailed breakdown of how Adam works:<br>
+
+1. **Initialization**:
+   - Initialize the parameters of the model.
+   - Initialize the first moment vector \(m\) and the second moment vector \(v\) to zero.
+   - Initialize the timestep \(t = 0\).
+
+2. **Hyperparameters**:
+   - \(\alpha\): Learning rate (usually \(0.001\)).
+   - \(\beta_1\): Exponential decay rate for the first moment estimates (usually \(0.9\)).
+   - \(\beta_2\): Exponential decay rate for the second moment estimates (usually \(0.999\)).
+   - \(\epsilon\): Small constant to prevent division by zero (usually \(10^{-8}\)).
+
+3. **Algorithm**:
+   For each iteration \(t\):
+   - Increment the timestep: \(t = t + 1\).
+   - Compute the gradients \(g_t\) of the loss with respect to the parameters \(\theta\).
+
+4. **Update Biased First Moment Estimate**:
+   - \(m_t = \beta_1 m_{t-1} + (1 - \beta_1) g_t\).
+
+5. **Update Biased Second Moment Estimate**:
+   - \(v_t = \beta_2 v_{t-1} + (1 - \beta_2) g_t^2\).
+
+6. **Compute Bias-Corrected First Moment Estimate**:
+   - \(\hat{m}_t = \frac{m_t}{1 - \beta_1^t}\).
+
+7. **Compute Bias-Corrected Second Moment Estimate**:
+   - \(\hat{v}_t = \frac{v_t}{1 - \beta_2^t}\).
+
+8. **Update Parameters**:
+   - \(\theta_t = \theta_{t-1} - \alpha \frac{\hat{m}_t}{\sqrt{\hat{v}_t} + \epsilon}\).
 
 ## 4. How to choose hyperparameters?
