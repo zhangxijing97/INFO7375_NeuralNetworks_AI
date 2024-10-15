@@ -33,7 +33,8 @@ X_standardized = scaler.fit_transform(X)
 
 print("Original Data:\n", X)
 print("Standardized Data:\n", X_standardized)
-
+standard_deviations = scaler.scale_
+print(standard_deviations)
 
 
 
