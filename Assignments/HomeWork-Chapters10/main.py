@@ -5,6 +5,7 @@ import pandas as pd
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 from neural_network import NeuralNetwork
+from normalization import Normalization
 
 # Load the dataset
 df = pd.read_csv('Datasets/breast_cancer_dataset.csv')
@@ -13,9 +14,13 @@ df = pd.read_csv('Datasets/breast_cancer_dataset.csv')
 X = df.drop('target', axis=1).values  # Features
 y = df['target'].values.reshape(-1, 1)  # Labels (0 or 1)
 
+# # Standardize the features
+# scaler = StandardScaler()
+# X = scaler.fit_transform(X)
+
 # Standardize the features
-scaler = StandardScaler()
-X = scaler.fit_transform(X)
+normalizer = Normalization()
+X = normalizer.robust_scaling(X)
 
 # Split the dataset into training and testing sets
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
