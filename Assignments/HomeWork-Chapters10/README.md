@@ -136,4 +136,34 @@ Adam maintains two moving averages for each parameter: one for the gradient (fir
 8. **Update Parameters**:
    - `θ_t = θ_{t-1} - α * (m̂_t / (√v̂_t + ε))`.
 
+### Summary
+
+- **Large Gradients**: Adam decreases the effective learning rate to make smaller updates.
+- **Small Gradients**: Adam increases the effective learning rate to make larger updates.
+
 ## 4. How to choose hyperparameters?
+
+Choosing hyperparameters for the Adam optimizer involves understanding its key parameters and their impact on model performance. The primary hyperparameters in Adam are:
+
+1. **Learning Rate (α)**:
+   - The learning rate is a critical hyperparameter that controls the step size during the optimization process. A typical starting point is `α = 0.001`.
+   - **Too High**: If the learning rate is too high, the optimization may overshoot the minimum, leading to divergence.
+   - **Too Low**: If the learning rate is too low, convergence will be slow, and it may get stuck in local minima.
+
+2. **Beta Parameters (β₁, β₂)**:
+   - These parameters control the exponential decay rates for the first and second moment estimates:
+     - `β₁` (typically around 0.9) is the decay rate for the first moment (mean of gradients).
+     - `β₂` (typically around 0.999) is the decay rate for the second moment (uncentered variance of gradients).
+   - Adjusting these values can affect how quickly the model adapts to changes in the gradient.
+
+3. **Epsilon (ε)**:
+   - `ε` is a small constant added to prevent division by zero in the update step. A common default value is `ε = 1e-8`.
+   - It improves numerical stability, especially when dealing with very small gradients.
+
+### General Guidelines for Hyperparameter Tuning
+
+- **Start with Default Values**: It is generally recommended to start with the default values for `α`, `β₁`, `β₂`, and `ε`.
+- **Learning Rate Schedules**: Experiment with learning rate schedules (e.g., exponential decay, step decay) to improve convergence.
+- **Grid Search or Random Search**: Utilize techniques like grid search or random search to explore combinations of hyperparameters.
+- **Cross-Validation**: Use cross-validation to evaluate the model's performance with different hyperparameter settings.
+- **Monitor Performance**: Keep an eye on training and validation losses to detect overfitting or underfitting, adjusting hyperparameters accordingly.
