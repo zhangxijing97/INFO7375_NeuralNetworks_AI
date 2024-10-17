@@ -1,39 +1,23 @@
-# HW to Chapter 9 “Fitting, Bias, Regularization, and Dropout”
+# HW to Chapter 11 “Learning Rates Decay and Hyperparameters”
 
 # Non-programming Assignment
 
-### 1. What are underfitting and overfitting?
+## 1. What is learning rate decay and why is it needed?
 
-**Underfitting** occurs when a model is too simple to capture the underlying patterns in the data, leading to poor performance on both the training and validation datasets. It fails to learn effectively from the data.
+- Stability: High learning rates can cause the model to oscillate around the minimum. Decaying the learning rate helps the model settle into the minimum smoothly.
+- Avoiding Local Minima: High initial learning rates help escape local minima. As training progresses, a lower learning rate allows finer adjustments.
+- Improving Performance: Smaller updates later in training can help achieve lower loss and higher accuracy.
+- Efficiency: It ensures efficient training by dynamically adjusting the learning rate.
 
-**Overfitting** happens when a model learns the training data too well, including its noise and outliers. This results in excellent performance on the training set but poor generalization to new, unseen data.
+Common Strategies for Learning Rate Decay
 
-### 2. What may cause an early stopping of the gradient descent optimization process?
+- Step Decay: Reduces the learning rate by a factor at specific intervals (e.g., halving every 10 epochs).
+- Exponential Decay: Reduces the learning rate exponentially based on the epoch number.
+- 1/t Decay: Learning rate decreases proportionally to the inverse of the epoch number.
+- Cosine Annealing: Learning rate follows a cosine function for non-linear decay.
 
-Early stopping can be caused by:
-- **Convergence**: When the loss function reaches a predefined threshold or shows minimal improvement over several iterations.
-- **Validation Performance**: If the model's performance on the validation set starts to degrade, indicating potential overfitting.
+## 2. What are saddle and plateau problems?
 
-### 3. Describe the recognition bias vs variance and their relationship.
+## 3. Why should we avoid grid approach in hyperparameter choice?
 
-**Bias** refers to the error introduced by approximating a real-world problem (which may be complex) using a simplified model. High bias can lead to underfitting.
-
-**Variance** refers to the model's sensitivity to fluctuations in the training data. High variance can lead to overfitting.
-
-The relationship between bias and variance is known as the **bias-variance tradeoff**: reducing bias increases variance and vice versa. The goal is to find a balance that minimizes total error.
-
-### 4. Describe regularization as a method and the reasons for it.
-
-**Regularization** is a technique used to prevent overfitting by adding a penalty term to the loss function. Common methods include L1 (Lasso) and L2 (Ridge) regularization.
-
-**Reasons for Regularization**:
-- **Reduces Overfitting**: Helps improve generalization by discouraging overly complex models.
-- **Simplifies Models**: Encourages the model to focus on the most important features.
-
-### 5. Describe dropout as a method and the reasons for it.
-
-**Dropout** is a regularization technique where randomly selected neurons are ignored (dropped out) during training. This prevents the model from becoming too reliant on any one neuron.
-
-**Reasons for Dropout**:
-- **Prevents Overfitting**: Helps improve generalization by reducing co-adaptation of neurons.
-- **Encourages Robust Features**: Forces the network to learn more robust features that are useful in conjunction with various combinations of neurons.
+## 4. What is mini batch and how is it used?
