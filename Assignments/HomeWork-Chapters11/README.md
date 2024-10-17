@@ -11,9 +11,13 @@
 
 Common Strategies for Learning Rate Decay
 
+- 1/t Decay: Learning rate decreases proportionally to the inverse of the epoch number.
+r = rₒ/1+γ
+rₒ is the initial learning rate<bar>
+γ is the decay rate<bar>
+e is the epoch sequential number<bar>
 - Step Decay: Reduces the learning rate by a factor at specific intervals (e.g., halving every 10 epochs).
 - Exponential Decay: Reduces the learning rate exponentially based on the epoch number.
-- 1/t Decay: Learning rate decreases proportionally to the inverse of the epoch number.
 - Cosine Annealing: Learning rate follows a cosine function for non-linear decay.
 
 ## 2. What are saddle and plateau problems?
