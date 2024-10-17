@@ -199,7 +199,7 @@ A small, random subset of the training dataset used in each iteration of model t
 
 - Training Efficiency:
 
-Balances between Stochastic Gradient Descent (SGD) and Batch Gradient Descent.
+Balances between Stochastic Gradient Descent (SGD) and Batch Gradient Descent.<br>
 Updates weights more frequently than Batch Gradient Descent.<br>
 
 - Generalization:
