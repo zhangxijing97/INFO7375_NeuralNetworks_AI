@@ -1,6 +1,7 @@
 # neural_network.py
 
 import numpy as np
+from activations import Softmax
 
 class NeuralNetwork:
     def __init__(self, layers):
@@ -21,13 +22,28 @@ class NeuralNetwork:
 
     def sigmoid_derivative(self, z):
         return z * (1 - z)
+    
+    def softmax(self, z):
+        exp_z = np.exp(z - np.max(z))  # for numerical stability
+        return exp_z / np.sum(exp_z, axis=1, keepdims=True)
 
+    # def forward(self, X):
+    #     cache = {'A0': X}
+    #     L = len(self.layers) - 1
+    #     for l in range(1, L + 1):
+    #         cache[f'Z{l}'] = np.dot(cache[f'A{l-1}'], self.parameters[f'W{l}']) + self.parameters[f'b{l}']
+    #         cache[f'A{l}'] = self.sigmoid(cache[f'Z{l}'])
+    #     return cache
+    
     def forward(self, X):
         cache = {'A0': X}
         L = len(self.layers) - 1
-        for l in range(1, L + 1):
+        for l in range(1, L):
             cache[f'Z{l}'] = np.dot(cache[f'A{l-1}'], self.parameters[f'W{l}']) + self.parameters[f'b{l}']
             cache[f'A{l}'] = self.sigmoid(cache[f'Z{l}'])
+        # Apply softmax to the output layer
+        cache[f'Z{L}'] = np.dot(cache[f'A{L-1}'], self.parameters[f'W{L}']) + self.parameters[f'b{L}']
+        cache[f'A{L}'] = self.softmax(cache[f'Z{L}'])
         return cache
 
     def compute_loss(self, Y, Y_hat):

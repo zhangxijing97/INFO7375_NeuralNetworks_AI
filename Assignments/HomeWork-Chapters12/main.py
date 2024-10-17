@@ -23,7 +23,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 # Define the network structure
 input_size = X_train.shape[1]
 hidden_layers = [16, 8]  # Example: two hidden layers with 16 and 8 units
-output_size = 1
+output_size = 2  # For binary classification with softmax, use 2 output units
 layers = [input_size] + hidden_layers + [output_size]
 
 # Hyperparameters
@@ -36,7 +36,7 @@ nn.train(X_train, y_train, epochs, learning_rate)
 
 # Test the neural network
 predictions = nn.forward(X_test)[f'A{len(layers)-1}']
-predictions = (predictions > 0.5).astype(int)  # Convert probabilities to binary predictions
+predictions = np.argmax(predictions, axis=1).reshape(-1, 1)  # Get the class with the highest probability
 
 # Calculate accuracy
 accuracy = np.mean(predictions == y_test)
