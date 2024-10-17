@@ -22,6 +22,27 @@ e is the epoch sequential number<bar>
 
 ## 2. What are saddle and plateau problems?
 
+- Saddle Points
+Definition: Points where the gradient is zero but are not local minima. Loss increases in some directions and decreases in others. Which make the value of gradients close to zero<bar>
+Problem: Optimization can stall because the gradients are very small, slowing down or halting progress.<bar>
+
+- Plateaus
+Definition: Flat regions of the loss function with very small or zero gradients over a large area.<bar>
+Problem: Training can stall, leading to slow convergence and inefficiency.<bar>
+
 ## 3. Why should we avoid grid approach in hyperparameter choice?
+
+- Computational Expense:
+
+Exponential Growth: The number of evaluations increases exponentially with the number of hyperparameters.<bar>
+High Resource Usage: This makes grid search computationally expensive and time-consuming.<bar>
+
+- Inefficient Exploration:
+
+Fixed Intervals: Grid search evaluates hyperparameters at fixed points, potentially missing optimal values between these points.<bar>
+Poor Coverage: This can lead to suboptimal exploration, especially in high-dimensional spaces.<bar>
+
+- Artificial Period Dependencies:
+Pattern Bias: Fixed intervals can introduce artificial biases, leading to misleading results due to periodic patterns in hyperparameter interactions.<bar>
 
 ## 4. What is mini batch and how is it used?
