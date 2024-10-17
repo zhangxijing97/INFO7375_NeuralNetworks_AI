@@ -20,24 +20,37 @@ Logistic Regression is a type of regression used for binary classification probl
 
 A single-layer network (or shallow network) may not be able to capture the intricate relationships within the data, leading to underfitting. However multilayer (deep) neural networks can learn complex non-linear patterns and representations from data. And just like a single-layer network, we can use Forward Propagation and Backpropagation to train the model<br>
 
-Forward Propagation:<br>
-In forward propagation, input data passes through each layer, computing a weighted sum, adding a bias, and applying an activation function to generate output.<br>
-1. **Input**: Pass the input data `x` into the network.
-2. **Weighted Sum**: Calculate the weighted sum `z = w * x + b` for each neuron.
-3. **Activation Function**: Apply an activation function `f(z)` to get the output `y`.
-4. **Repeat**: Perform this process for each layer until reaching the output layer.
-5. **Final Output**: The final output is the model’s prediction.
+Forward propagation:<br>
 
-**Formula**: 
-`y = f(w_1 * x_1 + w_2 * x_2 + ... + w_n * x_n + b)`
+1. **Input Layer**: The input features are fed into the network.
+2. **Hidden Layers**: Each hidden layer computes its output using:
+
+   `z^(l) = W^(l) * a^(l-1) + b^(l)`
+
+   `a^(l) = f(z^(l))`
+
+   Where `z^(l)` is the weighted sum of inputs, `W^(l)` is the weight matrix, `b^(l)` is the bias vector, and `f` is the activation function applied to the layer's output.
+3. **Output Layer**: The final layer produces the output predictions based on the chosen activation function (e.g., softmax for classification).
 
 Backpropagation<br>
-Backpropagation computes the error and adjusts weights using gradient descent to minimize the loss.<br>
-1. **Error Calculation**: Compute the loss between the predicted output and the actual target.
-2. **Gradient Calculation**: Compute the gradient of the loss with respect to weights using the chain rule.
-3. **Update Weights**: Adjust weights using gradient descent: 
-   `w = w - α * ∂J/∂w`
-4. **Repeat**: Continue updating weights and biases across all layers to minimize the loss.
+In **backpropagation** for deep neural networks, gradients are computed to update the weights and biases. The process involves:
+
+1. **Loss Calculation**: Compute the loss using the output from forward propagation and the true labels.
+2. **Output Layer Gradients**: Calculate gradients for the output layer:
+
+   `δ^(L) = ∇_a L * f'(z^(L))`.
+
+3. **Hidden Layer Gradients**: For each hidden layer \( l \):
+
+   `δ^(l) = (W^(l+1))^T * δ^(l+1) * f'(z^(l))`.
+
+4. **Weight Updates**: Update weights and biases for each layer using the gradients:
+
+   `W^(l) = W^(l) - α * ∂L/∂W^(l)`
+
+   `b^(l) = b^(l) - α * ∂L/∂b^(l)`.
+
+5. **Iterate**: This process is repeated for multiple epochs until the model converges.
 
 **Formula**: 
 `w = w - α * ∂J/∂w`
@@ -113,9 +126,12 @@ The cost function (also called the loss function) measures the error between the
 Mean Squared Error (MSE): Typically used for regression tasks.<br>
 Cross-Entropy Loss: Commonly used for classification tasks.<br>
 
+The cross-entropy loss `L` for two probability distributions `p` (true distribution) and `q` (predicted distribution) is defined as:<br>
+`L(p, q) = -∑(i=1 to n) (p(i) * log(q(i)))`
+
 ## 7. (max points 4). Describe forward and backward propagation for a multilayer (deep) neural network.
 
-In **forward propagation** for deep neural networks, the input data is passed through each layer of the network to obtain the final output. The process is as follows:
+Forward propagation:<br>
 
 1. **Input Layer**: The input features are fed into the network.
 2. **Hidden Layers**: Each hidden layer computes its output using:
@@ -127,7 +143,7 @@ In **forward propagation** for deep neural networks, the input data is passed th
    Where `z^(l)` is the weighted sum of inputs, `W^(l)` is the weight matrix, `b^(l)` is the bias vector, and `f` is the activation function applied to the layer's output.
 3. **Output Layer**: The final layer produces the output predictions based on the chosen activation function (e.g., softmax for classification).
 
-### Backpropagation
+Backpropagation<br>
 In **backpropagation** for deep neural networks, gradients are computed to update the weights and biases. The process involves:
 
 1. **Loss Calculation**: Compute the loss using the output from forward propagation and the true labels.
