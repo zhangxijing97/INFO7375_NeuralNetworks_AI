@@ -165,15 +165,33 @@ In **backpropagation** for deep neural networks, gradients are computed to updat
 
 ## 8. (max points 4). What are parameters and hyperparameters in neural networks and what is the conceptual difference between them.
 
-The hyperparameters you can change it before training, and the parameters is the training it self.
+### Parameters
+Definition: Parameters are the internal variables of the model that are learned from the training data. They are the weights and biases in a neural network.<br>
+
+
+Examples: In a simple feedforward neural network, the parameters include the weights W and biases b associated with each neuron.<br>
+
+### Hyperparameters
+Definition: Hyperparameters are the external configurations set before the training process begins. They govern the training process and the structure of the neural network.<br>
+
+
+Examples: learning rate, the number of hidden layers, the number of neurons in each layer, the batch size, the number of epochs, the activation functions, and regularization techniques (like dropout rate).<br>
+
+### Key difference
+
+Parameters are the internal values (weights and biases) learned by the neural network from the training data. They directly influence the network's output and are updated during training.<br>
+
+Hyperparameters are external settings that configure the training process and network architecture. They are set before training and influence how the parameters are learned.<br>
 
 ## 9. (max points 4). How to set the initial values for the neural network training
 
-Zero Initialization leads to symmetry; all neurons will learn the same features and thus fail to break symmetry during training.
+Zero Initialization leads to symmetry; all neurons will learn the same features and thus fail to break symmetry during training.<br>
 
-Random Initialization helps break symmetry, it can lead to exploding or vanishing gradients, especially in deep networks.
+Random Initialization helps break symmetry, it can lead to exploding or vanishing gradients, especially in deep networks.<br>
 
-Xavier (Glorot) Initialization helps maintain the variance of the outputs of each layer, which mitigates the vanishing gradient problem in networks using activation functions like sigmoid or tanh.
+Xavier (Glorot) Initialization helps maintain the variance of the outputs of each layer, which mitigates the vanishing gradient problem in networks using activation functions like sigmoid or tanh.<br>
+
+For a layer with n int input units and n out output units, Xavier initialization sets the weights W of the layer using the Uniform Distribution and Normal Distribution.<br>
 
 ## 10. (max points 4). Why are mini-batches used instead of complete batches in training of neural networks.
 
