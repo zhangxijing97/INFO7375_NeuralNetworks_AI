@@ -43,6 +43,18 @@ Fixed Intervals: Grid search evaluates hyperparameters at fixed points, potentia
 Poor Coverage: This can lead to suboptimal exploration, especially in high-dimensional spaces.<br>
 
 - Artificial Period Dependencies:
+
 Pattern Bias: Fixed intervals can introduce artificial biases, leading to misleading results due to periodic patterns in hyperparameter interactions.<br>
 
 ## 4. What is mini batch and how is it used?
+
+A small, random subset of the training dataset used in each iteration of model training.<br>
+
+- Training Efficiency:
+
+Balances between Stochastic Gradient Descent (SGD) and Batch Gradient Descent.
+Updates weights more frequently than Batch Gradient Descent.<br>
+
+- Generalization:
+
+Introduces noise, helping the model avoid overfitting and generalize better.<br>

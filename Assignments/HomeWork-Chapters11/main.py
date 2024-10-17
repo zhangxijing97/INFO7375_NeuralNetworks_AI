@@ -29,10 +29,11 @@ layers = [input_size] + hidden_layers + [output_size]
 # Hyperparameters
 epochs = 10000
 learning_rate = 0.1
+batch_size = 32  # Mini-batch size
 
 # Create and train the neural network
 nn = NeuralNetwork(layers)
-nn.train(X_train, y_train, epochs, learning_rate)
+nn.train(X_train, y_train, epochs, learning_rate, batch_size)
 
 # Test the neural network
 predictions = nn.forward(X_test)[f'A{len(layers)-1}']

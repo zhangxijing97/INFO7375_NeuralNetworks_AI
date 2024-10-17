@@ -12,7 +12,6 @@ class NeuralNetwork:
         L = len(self.layers)
         for l in range(1, L):
             parameters[f'W{l}'] = np.random.randn(self.layers[l-1], self.layers[l]) * 0.01
-            print(parameters[f'W{l}'])
             parameters[f'b{l}'] = np.zeros((1, self.layers[l]))
         return parameters
 
@@ -55,11 +54,31 @@ class NeuralNetwork:
             self.parameters[f'W{l}'] -= learning_rate * gradients[f'dW{l}']
             self.parameters[f'b{l}'] -= learning_rate * gradients[f'db{l}']
 
-    def train(self, X, Y, epochs, learning_rate):
+    # def train(self, X, Y, epochs, learning_rate):
+    #     for epoch in range(epochs):
+    #         cache = self.forward(X)
+    #         Y_hat = cache[f'A{len(self.layers)-1}']
+    #         loss = self.compute_loss(Y, Y_hat)
+    #         self.backward(cache, X, Y, learning_rate)
+    #         if epoch % 100 == 0:
+    #             print(f'Epoch {epoch}, Loss: {loss}')
+
+    def train(self, X, Y, epochs, learning_rate, batch_size=32):
+        m = X.shape[0]
         for epoch in range(epochs):
-            cache = self.forward(X)
-            Y_hat = cache[f'A{len(self.layers)-1}']
-            loss = self.compute_loss(Y, Y_hat)
-            self.backward(cache, X, Y, learning_rate)
+            permutation = np.random.permutation(m)
+            X_shuffled = X[permutation]
+            Y_shuffled = Y[permutation]
+
+            for i in range(0, m, batch_size):
+                X_batch = X_shuffled[i:i + batch_size]
+                Y_batch = Y_shuffled[i:i + batch_size]
+
+                cache = self.forward(X_batch)
+                Y_hat = cache[f'A{len(self.layers)-1}']
+                self.backward(cache, X_batch, Y_batch, learning_rate)
+
             if epoch % 100 == 0:
+                Y_hat_full = self.forward(X)[f'A{len(self.layers)-1}']
+                loss = self.compute_loss(Y, Y_hat_full)
                 print(f'Epoch {epoch}, Loss: {loss}')
