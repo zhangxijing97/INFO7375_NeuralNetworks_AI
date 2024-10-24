@@ -1,39 +1,39 @@
-# HW to Chapter 9 “Fitting, Bias, Regularization, and Dropout”
+# Lab 1 – Develop a Multilayer (Deep) Neural Network
+Programming Assignment
 
-# Non-programming Assignment
+Task 1: Develop a Multilayer Neural Network
 
-### 1. What are underfitting and overfitting?
+Develop a multilayer (deep) neural networks for binary classification problem according to the following specification.
 
-**Underfitting** occurs when a model is too simple to capture the underlying patterns in the data, leading to poor performance on both the training and validation datasets. It fails to learn effectively from the data.
+Model: (10/ReLU) – (8/ReLU)² – (4/ReLU) – (1/Sigmoid)
+The specification above means the following:
+layer 1 with 10 neurons and ReLU activation function
+layers 2 and 3 (2 layers shown as power 2 in the spec) with 8 neurons per each layer and ReLU activation function
+layer 4 with 4 neurons and ReLU activation function
+one (last) layer 5 with one neuron and Sigmoid activation function
+Task 2: Develop a training set
 
-**Overfitting** happens when a model learns the training data too well, including its noise and outliers. This results in excellent performance on the training set but poor generalization to new, unseen data.
+Choose objects to train the network and develop a training set
 
-### 2. What may cause an early stopping of the gradient descent optimization process?
+Task 3; GitHub
 
-Early stopping can be caused by:
-- **Convergence**: When the loss function reaches a predefined threshold or shows minimal improvement over several iterations.
-- **Validation Performance**: If the model's performance on the validation set starts to degrade, indicating potential overfitting.
+If you do not have your GitHub repository, then create it. If you are not clear how to do it, ask the TA.
+Submission
 
-### 3. Describe the recognition bias vs variance and their relationship.
+Submit either
 
-**Bias** refers to the error introduced by approximating a real-world problem (which may be complex) using a simplified model. High bias can lead to underfitting.
+the link to the repository (if repository is public) or
+the link to the repository and authorization (if repository is private)
+to access your GitHub repository where the Lab 1 results (source code and results snapshots) are stored.
 
-**Variance** refers to the model's sensitivity to fluctuations in the training data. High variance can lead to overfitting.
+Assignment Grading Points:
 
-The relationship between bias and variance is known as the **bias-variance tradeoff**: reducing bias increases variance and vice versa. The goal is to find a balance that minimizes total error.
+4 points - assignment complete
 
-### 4. Describe regularization as a method and the reasons for it.
+3 points - assignment mostly complete
 
-**Regularization** is a technique used to prevent overfitting by adding a penalty term to the loss function. Common methods include L1 (Lasso) and L2 (Ridge) regularization.
+2 points - assignment is half complete
 
-**Reasons for Regularization**:
-- **Reduces Overfitting**: Helps improve generalization by discouraging overly complex models.
-- **Simplifies Models**: Encourages the model to focus on the most important features.
+1 point - assignment is less than half complete
 
-### 5. Describe dropout as a method and the reasons for it.
-
-**Dropout** is a regularization technique where randomly selected neurons are ignored (dropped out) during training. This prevents the model from becoming too reliant on any one neuron.
-
-**Reasons for Dropout**:
-- **Prevents Overfitting**: Helps improve generalization by reducing co-adaptation of neurons.
-- **Encourages Robust Features**: Forces the network to learn more robust features that are useful in conjunction with various combinations of neurons.
+0 points - not done or not submitted

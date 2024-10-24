@@ -21,21 +21,26 @@ X = scaler.fit_transform(X)
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 # Define the network structure
-input_size = X_train.shape[1]
-hidden_layers = [16, 8]  # Example: two hidden layers with 16 and 8 units
-output_size = 1
-layers = [input_size] + hidden_layers + [output_size]
+input_size = X_train.shape[1]  # Adjust input size dynamically
+layers = [
+    (input_size, 'ReLU'),  # Input layer: size matches the input data
+    (10, 'ReLU'),    # Layer 2: 10 neurons, ReLU
+    (8, 'ReLU'),    # Layer 3: 8 neurons, ReLU
+    (8, 'ReLU'),    # Layer 4: 8 neurons, ReLU
+    (4, 'ReLU'),    # Layer 5: 4 neurons, ReLU
+    (1, 'Sigmoid')  # Output layer: 1 neuron, Sigmoid
+]
 
 # Hyperparameters
-epochs = 10000
-learning_rate = 0.1
+epochs = 20000
+learning_rate = 0.5
 
 # Create and train the neural network
 nn = NeuralNetwork(layers)
 nn.train(X_train, y_train, epochs, learning_rate)
 
 # Test the neural network
-predictions = nn.forward(X_test)[f'A{len(layers)-1}']
+predictions = nn.forward(X_test)[f'A{len(layers)-1}']  # Adjust index for last layer
 predictions = (predictions > 0.5).astype(int)  # Convert probabilities to binary predictions
 
 # Calculate accuracy
