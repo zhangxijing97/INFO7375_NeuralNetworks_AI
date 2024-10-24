@@ -168,7 +168,6 @@ In **backpropagation** for deep neural networks, gradients are computed to updat
 ### Parameters
 Definition: Parameters are the internal variables of the model that are learned from the training data. They are the weights and biases in a neural network.<br>
 
-
 Examples: In a simple feedforward neural network, the parameters include the weights W and biases b associated with each neuron.<br>
 
 ### Hyperparameters
