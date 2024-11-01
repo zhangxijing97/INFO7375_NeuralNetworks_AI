@@ -64,43 +64,38 @@ In a multi-layer perceptron (MLP), each layer computes: `z = W * x + b`, The non
 
 ## 4. (max points 4). Describe major activation functions: step function, linear, ReLU, sigmoid, tanh, and softmax, and explain their usage.
 
-1. Linear Activation Function
-The linear activation function outputs the input directly, defined as:<br>
+1. Step Function
+`f(x) = 1 if x >= 0`
+`f(x) = 0 if x < 0`
 
+Usage: Outputs 0 or 1 depending on whether input is below or above a threshold. Used in early neural networks but less common now due to its inability to handle non-linear problems and lack of gradient for backpropagation.<br>
+
+2. Linear Activation Functions
 `f(x) = x`
 
-Use: It is often used in regression tasks where the output is a continuous value.<br>
+Usage: Outputs a scaled value of the input, usefull in simple tasks. It’s rarely used in hidden layers since it doesn’t capture non-linear relationships.<br>
 
-2. ReLU Activation Function
-The Rectified Linear Unit (ReLU) activation function is defined as:<br>
-
+3. ReLU Activation Function
 `f(x) = max(0, x)`
 
-Use: It is widely used in hidden layers of deep networks due to its simplicity and effectiveness in alleviating the vanishing gradient problem.<br>
+Usage: Outputs 0 for negative inputs and the input itself for positive values. Widely used in hidden layers due to its simplicity and efficiency in handling non-linear problems, but it can lead to units stuck at zero.<br>
 
-3. Sigmoid Activation Function<
-The sigmoid activation function is defined as:<br>
-
+4. Sigmoid Activation Function
 `f(x) = 1 / (1 + exp(-x))`
 
-Use: It squashes the input to a range between 0 and 1, making it suitable for binary classification tasks. However, it can suffer from the vanishing gradient problem.<br>
+Usage: Squashes inputs to range (0, 1), making it useful for binary classification in the final layer. However, it has the vanishing gradient problem, which can slow down learning.<br>
 
-4. Tanh Activation Function
-The tanh activation function is defined as:<br>
-
+5. Tanh Activation Function
 `f(x) = (exp(x) - exp(-x)) / (exp(x) + exp(-x))`
 
-Use: It squashes the input to a range between -1 and 1, making it zero-centered. It is often preferred over sigmoid in hidden layers, though it can still experience vanishing gradients.<br>
+Usage: Similar to Sigmoid Activation Function. It squashes the input to a range between -1 and 1, making it zero-centered. It is often preferred over sigmoid in hidden layers, though it can still experience vanishing gradients.<br>
 
-5. Softmax Activation Function
-The softmax activation function is defined as:<br>
-
+6. Softmax Activation Function
 `f(x_i) = exp(x_i) / ∑(j=1 to K) exp(x_j)`
 
 where K is the number of classes.<br>
 
-Use: It is typically used in the output layer of multi-class classification problems to produce a probability distribution over multiple classes, allowing for effective interpretation of model outputs.<br>
-
+Usage: Converts outputs into probabilities that sum to 1, making it ideal for multi-class classification. Usually applied in the output layer of multi-class classification networks.<br>
 
 ## 5. (max points 4). What is the difference between batch and mini-batch training? What are the cons and pros for using batch or mini-batch training?
 
