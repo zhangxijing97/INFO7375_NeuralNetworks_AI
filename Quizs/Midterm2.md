@@ -123,18 +123,45 @@ Some noise in gradient estimates: Mini-batch updates can be noisier than full ba
 
 ## 6. (max points 4). Why is the enthropy-based loss (scost) function is typically used in training neural networks?
 
-Entropy-based loss functions, like cross-entropy loss, are commonly used in training neural networks for classification tasks due to their effectiveness in measuring the difference between predicted probabilities and actual labels. Here’s why they are typically used:
+About Probabilistic: Cross-entropy loss treats the output of a neural network (often after a softmax activation) as a probability distribution over classes. This is ideal for classification tasks where we want the network to output probabilities that align closely with the true class probabilities.<br>
 
-Probabilistic Interpretation: Cross-entropy loss treats the output of a neural network (often after a softmax activation) as a probability distribution over classes. This is ideal for classification tasks where we want the network to output probabilities that align closely with the true class probabilities.
+Penalty for Wrong Predictions: Entropy-based losses are particularly sensitive to incorrect predictions. They penalize confident yet incorrect predictions more heavily, guiding the network to adjust weights to improve accuracy.<br>
 
-Penalty for Incorrect Predictions: Entropy-based losses are particularly sensitive to incorrect predictions. They penalize confident yet incorrect predictions more heavily, guiding the network to adjust weights to improve accuracy.
+Good Gradient Properties: Entropy-based losses provide gradients that are well-suited for backpropagation. This helps the model learn faster and converge more effectively by providing meaningful updates, even when predictions are close but not quite accurate.<br>
 
-Good Gradient Properties: Entropy-based losses provide gradients that are well-suited for backpropagation. This helps the model learn faster and converge more effectively by providing meaningful updates, even when predictions are close but not quite accurate.
-
-Logarithmic Penalty: The logarithmic nature of cross-entropy makes it sensitive to misclassified examples, pushing the model harder to correctly classify difficult samples. This helps the network make predictions that align well with ground truth classes.
-
+Logarithmic Penalty: The logarithmic nature of cross-entropy makes it sensitive to misclassified examples, pushing the model harder to correctly classify difficult samples. This helps the network make predictions that align well with ground truth classes.<br>
 
 ## 7. (max points 4). Describe forward and backward propagation for a multilayer (deep) neural network.
+
+Forward Propagation:<br>
+Forward propagation is the process of passing input data through the network to produce an output.<br>
+
+1. Input Layer: Data enters the network.
+
+2. Layer-by-Layer Computation: Each layer applies a linear transformation (using weights and biases) followed by an activation function, which introduces non-linearity, making it possible for the network to learn complex patterns.
+
+`z^(l) = W^(l) * a^(l-1) + b^(l)`<br>
+
+`z^(l)` is the weighted sum of inputs<br>
+`W^(l)` is the weight matrix<br>
+`b^(l)` is the bias vector.<br>
+
+`a^(l) = f(z^(l))`<br>
+
+`f` is the activation function applied to the layer's output.<br>
+
+3. Output Layer: The final layer produces the output, typically using a softmax or sigmoid activation for classification.
+
+4. Loss Calculation: The output is compared to the ground truth using a loss function (e.g., cross-entropy), which quantifies the error.
+
+Backward Propagation:<br>
+Backward propagation is the process of updating weights to minimize the loss, using gradients computed from the loss with respect to each weight and bias.<br>
+
+1. Loss Calculation: Compute the loss using the output from forward propagation and the true labels.
+
+2. **Weight Updates**: Update weights and biases for each layers
+`W^(l) = W^(l) - α * ∂L/∂W^(l)`<br>
+`b^(l) = b^(l) - α * ∂L/∂b^(l)`<br>
 
 
 ## 8. (max points 4). Why do exploding and vanishing gradients problems occur during the training process and how to resolve these problems.
