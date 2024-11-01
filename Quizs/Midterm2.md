@@ -123,7 +123,9 @@ Some noise in gradient estimates: Mini-batch updates can be noisier than full ba
 
 ## 6. (max points 4). Why is the enthropy-based loss (scost) function is typically used in training neural networks?
 
-About Probabilistic: Cross-entropy loss treats the output of a neural network (often after a softmax activation) as a probability distribution over classes. This is ideal for classification tasks where we want the network to output probabilities that align closely with the true class probabilities.<br>
+We use the cross-entropy loss function because it is a convex function by w and b, which means that it has a single global minimum.<br>
+
+Cross-entropy loss treats the output of a neural network (often after a softmax activation) as a probability distribution over classes. This is ideal for classification tasks where we want the network to output probabilities that align closely with the true class probabilities.<br>
 
 Penalty for Wrong Predictions: Entropy-based losses are particularly sensitive to incorrect predictions. They penalize confident yet incorrect predictions more heavily, guiding the network to adjust weights to improve accuracy.<br>
 
