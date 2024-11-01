@@ -35,15 +35,15 @@ Logistic Regression is a type of regression used for binary classification probl
 
 The output is a probability between 0 and 1, which is then used to classify the data into two categories (0 or 1).<br>
 
-Usage<br>
+Usage:<br>
 Logistic Regression is commonly used for binary classification tasks like spam detection, disease diagnosis, and customer churn prediction.<br>
 
-Advantages<br>
+Advantages:<br>
 Interpretability: Provides clear insights into how features influence outcomes.<br>
 Efficiency: Simple, fast, and effective for smaller datasets.<br>
 Probability Outputs: Predicts probabilities, aiding in decision-making.<br>
 
-Disadvantages<br>
+Disadvantages:<br>
 Linear Boundaries: Assumes a linear relationship, limiting complex data fit.<br>
 Outlier Sensitivity: Prone to distortion from outliers.<br>
 Binary Focus: Primarily for binary classification, needing adjustments for multi-class tasks.<br>
@@ -62,8 +62,44 @@ To solve non-linear problems like XOR, we can:<br>
 
 In a multi-layer perceptron (MLP), each layer computes: `z = W * x + b`, The non-linearity enables solving complex, non-linear problems.<br>
 
-
 ## 4. (max points 4). Describe major activation functions: step function, linear, ReLU, sigmoid, tanh, and softmax, and explain their usage.
+
+1. Linear Activation Function
+The linear activation function outputs the input directly, defined as:<br>
+
+`f(x) = x`
+
+Use: It is often used in regression tasks where the output is a continuous value.<br>
+
+2. ReLU Activation Function
+The Rectified Linear Unit (ReLU) activation function is defined as:<br>
+
+`f(x) = max(0, x)`
+
+Use: It is widely used in hidden layers of deep networks due to its simplicity and effectiveness in alleviating the vanishing gradient problem.<br>
+
+3. Sigmoid Activation Function<
+The sigmoid activation function is defined as:<br>
+
+`f(x) = 1 / (1 + exp(-x))`
+
+Use: It squashes the input to a range between 0 and 1, making it suitable for binary classification tasks. However, it can suffer from the vanishing gradient problem.<br>
+
+4. Tanh Activation Function
+The tanh activation function is defined as:<br>
+
+`f(x) = (exp(x) - exp(-x)) / (exp(x) + exp(-x))`
+
+Use: It squashes the input to a range between -1 and 1, making it zero-centered. It is often preferred over sigmoid in hidden layers, though it can still experience vanishing gradients.<br>
+
+5. Softmax Activation Function
+The softmax activation function is defined as:<br>
+
+`f(x_i) = exp(x_i) / ∑(j=1 to K) exp(x_j)`
+
+where K is the number of classes.<br>
+
+Use: It is typically used in the output layer of multi-class classification problems to produce a probability distribution over multiple classes, allowing for effective interpretation of model outputs.<br>
 
 
 ## 5. (max points 4). What is the difference between batch and mini-batch training? What are the cons and pros for using batch or mini-batch training?
