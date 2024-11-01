@@ -99,8 +99,39 @@ Usage: Converts outputs into probabilities that sum to 1, making it ideal for mu
 
 ## 5. (max points 4). What is the difference between batch and mini-batch training? What are the cons and pros for using batch or mini-batch training?
 
+Batch Training<br>
+The entire dataset is passed through the model at once for each iteration to get the gradient and before updating the model's parameters.<br>
+
+Pros:<br>
+Stable convergence: Uses the full dataset, leading to a more accurate estimate of the gradient and typically more stable convergence.<br>
+Efficient on small datasets: Works well when the dataset is small enough to fit into memory.<br>
+
+Cons:<br>
+High memory consumption: Not feasible for large datasets as it can exhaust memory.<br>
+Slow convergence: Processing the whole dataset per update can slow down training.<br>
+
+Mini-Batch Training<br>
+The dataset is divided into smaller subsets (mini-batches), and model parameters are updated after each mini-batch.<br>
+
+Pros:<br>
+Efficient on big datasets: much faster when the datasets is big, and it allows training on larger datasets that don’t fit in memory at once.<br>
+Faster convergence: Updates parameters more frequently than batch training, leading to faster and more gradual convergence.<br>
+Balanced variance: Maintains some stability by averaging over a subset, reducing variance compared to stochastic gradient descent.<br>
+
+Cons:<br>
+Some noise in gradient estimates: Mini-batch updates can be noisier than full batch training, something mini-batch cannot accurate estimate of the gradient compare to batch training.<br>
 
 ## 6. (max points 4). Why is the enthropy-based loss (scost) function is typically used in training neural networks?
+
+Entropy-based loss functions, like cross-entropy loss, are commonly used in training neural networks for classification tasks due to their effectiveness in measuring the difference between predicted probabilities and actual labels. Here’s why they are typically used:
+
+Probabilistic Interpretation: Cross-entropy loss treats the output of a neural network (often after a softmax activation) as a probability distribution over classes. This is ideal for classification tasks where we want the network to output probabilities that align closely with the true class probabilities.
+
+Penalty for Incorrect Predictions: Entropy-based losses are particularly sensitive to incorrect predictions. They penalize confident yet incorrect predictions more heavily, guiding the network to adjust weights to improve accuracy.
+
+Good Gradient Properties: Entropy-based losses provide gradients that are well-suited for backpropagation. This helps the model learn faster and converge more effectively by providing meaningful updates, even when predictions are close but not quite accurate.
+
+Logarithmic Penalty: The logarithmic nature of cross-entropy makes it sensitive to misclassified examples, pushing the model harder to correctly classify difficult samples. This helps the network make predictions that align well with ground truth classes.
 
 
 ## 7. (max points 4). Describe forward and backward propagation for a multilayer (deep) neural network.
