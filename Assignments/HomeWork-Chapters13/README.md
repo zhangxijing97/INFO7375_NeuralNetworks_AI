@@ -45,11 +45,54 @@ To apply the filter to the image, we place it over the top-left corner of the im
 - Multiply each element in the filter by the corresponding element in the image.
 - Sum the products to get a single value for that position.
 
+For the top-left corner:<br>
 (1∗1)+(2∗0)+(3∗−1)+(6∗1)+(7∗0)+(8∗−1)+(11∗1)+(12∗0)+(13∗−1) = −6<br>
 
 Key Points:<br>
 - The filter extracts local patterns in the image, such as edges or textures, by emphasizing specific features in the image region.
 - By using multiple filters in a convolutional layer, the network can learn to detect increasingly complex patterns as the image moves through deeper layers of the network.
+
+If the output values from the convolution are very close to each other, it generally means that the image does not have strong vertical edges in the region being processed by the filter.<br>
+
+```
+# Image with Strong Vertical Edge
+[  0,   0,   0, 255, 255]
+[  0,   0,   0, 255, 255]
+[  0,   0,   0, 255, 255]
+[  0,   0,   0, 255, 255]
+[  0,   0,   0, 255, 255]
+
+# Vertical Edge Filter (Sobel Filter, 3x3)
+[ 1,  0, -1]
+[ 1,  0, -1]
+[ 1,  0, -1]
+
+# Convolution output with a vertical edge filter
+[   0,  -510, -765]
+[   0,  -510, -765]
+[   0,  -510, -765]
+[   0,  -510, -765]
+[   0,  -510, -765]
+
+# Image with Smooth Vertical Edge
+[  0,   0,   0, 127, 127]
+[  0,   0,   0, 127, 127]
+[  0,   0,   0, 127, 127]
+[  0,   0,   0, 127, 127]
+[  0,   0,   0, 127, 127]
+
+# Vertical Edge Filter (Sobel Filter, 3x3)
+[ 1,  0, -1]
+[ 1,  0, -1]
+[ 1,  0, -1]
+
+# Convolution output with a vertical edge filter
+[   0,  -254, -381]
+[   0,  -254, -381]
+[   0,  -254, -381]
+[   0,  -254, -381]
+[   0,  -254, -381]
+```
 
 ## 2. Why do we need convolutional layers in neural networks?
 
