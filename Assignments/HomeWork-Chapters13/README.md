@@ -129,3 +129,46 @@ Convolutional layers are particularly well-suited for data with a grid-like stru
 
 8. Reduction of Overfitting<br>
 Since convolutional layers use fewer parameters (due to weight sharing and local receptive fields), they are less prone to overfitting compared to fully connected layers. This is particularly helpful when working with large datasets where the risk of overfitting is higher.<br>
+
+## 3. Why do we need convolutional layers in neural networks?
+
+The sizes of the riginal image, the filter (or kernel), and the resultant convoluted image are closely related and depend on several factors: image size, filter size, stride, and padding. Here's how they are related:<br>
+
+### Key Variables:
+- **Input image size**: The dimensions of the original image are typically given by height `H` and width `W`.
+- **Filter (kernel) size**: The filter is typically a smaller matrix, usually represented by the height `F` and width `F`, assuming a square filter (e.g., 3x3, 5x5).
+- **Stride (S)**: The stride is the number of pixels the filter moves across the image at each step. A stride of 1 means the filter moves one pixel at a time.
+- **Padding (P)**: Padding is the addition of extra pixels (usually zeros) around the borders of the image to control the output size. Padding can help maintain the spatial dimensions of the input after convolution, or to reduce the output size.
+
+For a square input image of size `H x W` and a square filter of size `F x F`, the output size `H_out` (height) and `W_out` (width) are given by:<br>
+
+`H_out = (H - F + 2P) / S + 1`
+`W_out = (W - F + 2P) / S + 1`
+
+Where:
+- `H` and `W` are the height and width of the input image.
+- `F` is the size of the filter (usually square, so `F x F`).
+- `P` is the padding added to the input image.
+- `S` is the stride (step size for the filter).
+
+### Example 1: No Padding, Stride = 1
+- **Input image size**: `H = 5, W = 5`
+- **Filter size**: `F = 3` (3x3 filter)
+- **Padding**: `P = 0` (no padding)
+- **Stride**: `S = 1`
+
+`H_out = (5 - 3 + 2(0)) / 1 + 1 = (2) / 1 + 1 = 3`
+`W_out = (5 - 3 + 2(0)) / 1 + 1 = (2) / 1 + 1 = 3`
+
+So, the output feature map will have a size of `3 x 3`.<br>
+
+### Example 2: Padding = 1, Stride = 1
+- **Input image size**: `H = 5, W = 5`
+- **Filter size**: `F = 3` (3x3 filter)
+- **Padding**: `P = 1`
+- **Stride**: `S = 1`
+
+`H_out = (5 - 3 + 2(1)) / 1 + 1 = (4) / 1 + 1 = 5`
+`W_out = (5 - 3 + 2(1)) / 1 + 1 = (4) / 1 + 1 = 5`
+
+So, the output feature map will have a size of `5 x 5`, the same as the input size due to the padding.<br>
