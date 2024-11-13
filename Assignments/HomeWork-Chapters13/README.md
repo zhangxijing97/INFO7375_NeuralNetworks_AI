@@ -6,8 +6,8 @@
 
 The convolution operation is a mathematical process used primarily in convolutional neural networks (CNNs) to extract features from input data, such as images or time series. It is a fundamental operation that allows the network to learn spatial hierarchies of features.<br>
 
-1. How Convolution Works:
-Input Image: The input is typically a multi-dimensional matrix (e.g., an image with height, width, and depth). For a grayscale image, the depth is 1, and for a color image (RGB), the depth is 3 (one channel per color).
+How Convolution Works:<br>
+1. Input Image: The input is typically a multi-dimensional matrix (e.g., an image with height, width, and depth). For a grayscale image, the depth is 1, and for a color image (RGB), the depth is 3 (one channel per color).
 
 2. Filter (Kernel): A filter (or kernel) is a smaller matrix that slides over the input image. It is also multi-dimensional, usually smaller than the input image. For example, a common filter size is 3x3 or 5x5. The filter is responsible for detecting specific features, such as edges, textures, or patterns in the image.
 
@@ -52,8 +52,7 @@ Key Points:<br>
 - The filter extracts local patterns in the image, such as edges or textures, by emphasizing specific features in the image region.
 - By using multiple filters in a convolutional layer, the network can learn to detect increasingly complex patterns as the image moves through deeper layers of the network.
 
-If the output values from the convolution are very close to each other, it generally means that the image does not have strong vertical edges in the region being processed by the filter.<br>
-
+If the output values from the convolution are very close to each other, it generally means that the image does not have strong vertical edges in the region being processed by the filter: <br>
 ```
 # Image with Strong Vertical Edge
 [  0,   0,   0, 255, 255]
@@ -96,8 +95,37 @@ If the output values from the convolution are very close to each other, it gener
 
 ## 2. Why do we need convolutional layers in neural networks?
 
-## 3. How are sizes of the original image, the filter, and the resultant convoluted image are relted?
+1. Feature Extraction
+Convolutional layers help in automatically detecting features from the raw input, such as edges, textures, shapes, and more complex patterns. In an image, low-level features (like edges and corners) can be learned by applying small filters (kernels) to the image. As the network deepens, these features combine to form high-level features (like faces, objects, or other complex patterns).<br>
 
-## 4. What is padding and why is it needed?
+- First layers may learn simple patterns like edges, corners, or textures.
+- Deeper layers combine these patterns to recognize more complex objects or structures.
 
-## 5. What is strided convolution and why is it needed?
+2. Parameter Sharing
+The same filter (kernel) is applied across different regions of the input image. This is known as parameter sharing. The same filter is reused across the entire image, meaning fewer parameters need to be learned compared to fully connected layers where each pixel is treated independently.
+
+- This reduces the number of parameters significantly, making the network more efficient and reducing the risk of overfitting.
+
+3. Translation Invariance
+The network can recognize features regardless of where they appear in the image.<br>
+
+For example, an edge in the top-left corner of an image can be detected by the same filter as an edge in the bottom-right corner.<br>
+
+4. Reduction in Computational Complexity
+Since convolutional layers use small filters and share weights across the image, they significantly reduce the computational complexity compared to fully connected layers. Instead of treating each pixel as a separate entity with its own set of weights, convolutions share weights and reduce the total number of calculations, making the model more efficient.<br>
+
+This makes convolutional layers ideal for high-dimensional data like images, where fully connected layers would be too computationally expensive.<br>
+
+5. Preserving Spatial Hierarchy
+Unlike fully connected layers, which flatten the image into a one-dimensional vector, convolutional layers preserve the spatial hierarchy of the data. This means that the relative position of features within the image is maintained.<br>
+
+In an image, nearby pixels are likely to be related in some way (e.g., in terms of color, texture, etc.), and convolutional layers respect this relationship, ensuring that the spatial arrangement is captured.<br>
+
+6. Learning Filters
+Instead of manually engineering features, convolutional layers automatically learn the most important features during training. Initially, filters might detect simple features like edges or textures, but as the network learns, it combines these features into more complex representations (like parts of objects or whole objects). This ability to learn relevant features from data is one of the main reasons why CNNs are powerful in tasks like image classification or object detection.<br>
+
+7. Efficient for Images and Time-Series Data
+Convolutional layers are particularly well-suited for data with a grid-like structure, such as images or time-series data. The local connectivity of neurons in a convolutional layer allows the network to focus on small patches of data at a time, learning the local patterns before combining them into larger features.<br>
+
+8. Reduction of Overfitting
+Since convolutional layers use fewer parameters (due to weight sharing and local receptive fields), they are less prone to overfitting compared to fully connected layers. This is particularly helpful when working with large datasets where the risk of overfitting is higher.<br>
