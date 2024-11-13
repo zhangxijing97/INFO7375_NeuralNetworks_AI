@@ -190,3 +190,15 @@ Padding refers to adding extra pixels (usually zeros) around the input image bef
 ### Example:
 - **Input**: 5x5 image, 3x3 filter, Padding = 1
 - **Output Size** (with padding): 5x5 (same as input)
+
+## 5. What is strided convolution and why is it needed?
+
+Strided Convolution refers to applying a convolution filter with a stride greater than 1, meaning the filter moves by more than one pixel at a time across the input image. Instead of sliding the filter pixel by pixel (stride = 1), a larger stride means the filter skips some pixels, effectively downsampling the image as it moves.<br>
+
+1. Reduce Spatial Dimensions: Strided convolution helps reduce the size of the output feature map. A larger stride (e.g., 2 or 3) results in a smaller output, which reduces the computational load and memory requirements.
+
+2. Downsampling: Strided convolution acts as a form of downsampling, summarizing the input information into a smaller representation, which helps focus on more important features and improves efficiency.
+
+3. Improve Computation Efficiency: By skipping pixels, the filter does fewer computations, which speeds up the process, especially for large images or when using deeper networks.
+
+4. Capture Larger Context: With larger strides, the convolutional layer captures a broader context from the image, allowing the network to process and summarize information over larger areas.
