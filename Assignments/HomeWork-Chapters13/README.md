@@ -142,8 +142,8 @@ The sizes of the riginal image, the filter (or kernel), and the resultant convol
 
 For a square input image of size `H x W` and a square filter of size `F x F`, the output size `H_out` (height) and `W_out` (width) are given by:<br>
 
-`H_out = (H - F + 2P) / S + 1`
-`W_out = (W - F + 2P) / S + 1`
+`H_out = (H - F + 2P) / S + 1`<br>
+`W_out = (W - F + 2P) / S + 1`<br>
 
 Where:
 - `H` and `W` are the height and width of the input image.
@@ -157,8 +157,8 @@ Where:
 - **Padding**: `P = 0` (no padding)
 - **Stride**: `S = 1`
 
-`H_out = (5 - 3 + 2(0)) / 1 + 1 = (2) / 1 + 1 = 3`
-`W_out = (5 - 3 + 2(0)) / 1 + 1 = (2) / 1 + 1 = 3`
+`H_out = (5 - 3 + 2(0)) / 1 + 1 = (2) / 1 + 1 = 3`<br>
+`W_out = (5 - 3 + 2(0)) / 1 + 1 = (2) / 1 + 1 = 3`<br>
 
 So, the output feature map will have a size of `3 x 3`.<br>
 
@@ -168,7 +168,7 @@ So, the output feature map will have a size of `3 x 3`.<br>
 - **Padding**: `P = 1`
 - **Stride**: `S = 1`
 
-`H_out = (5 - 3 + 2(1)) / 1 + 1 = (4) / 1 + 1 = 5`
-`W_out = (5 - 3 + 2(1)) / 1 + 1 = (4) / 1 + 1 = 5`
+`H_out = (5 - 3 + 2(1)) / 1 + 1 = (4) / 1 + 1 = 5`<br>
+`W_out = (5 - 3 + 2(1)) / 1 + 1 = (4) / 1 + 1 = 5`<br>
 
 So, the output feature map will have a size of `5 x 5`, the same as the input size due to the padding.<br>
