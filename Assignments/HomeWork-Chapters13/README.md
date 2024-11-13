@@ -172,3 +172,21 @@ So, the output feature map will have a size of `3 x 3`.<br>
 `W_out = (5 - 3 + 2(1)) / 1 + 1 = (4) / 1 + 1 = 5`<br>
 
 So, the output feature map will have a size of `5 x 5`, the same as the input size due to the padding.<br>
+
+## 4. What is padding and why is it needed?
+
+Padding refers to adding extra pixels (usually zeros) around the input image before applying the convolution filter<br>
+
+### Why Padding is Needed:
+1. **Control Output Size**: Padding helps maintain the spatial dimensions of the input image or controls the reduction in size, ensuring the output feature map is not too small.
+2. **Process Edge Information**: Without padding, the filter can't fully cover the edges of the image, leaving edge information unprocessed.
+3. **Uniform Filter Application**: Padding allows the filter to be applied evenly across the entire image, including edges.
+4. **Enable Larger Strides**: With padding, larger strides can be used without missing important regions of the image.
+
+### Types of Padding:
+- **Valid Padding (No Padding)**: No extra pixels added, resulting in a smaller output size.
+- **Same Padding**: Padding is added so the output has the same size as the input.
+
+### Example:
+- **Input**: 5x5 image, 3x3 filter, Padding = 1
+- **Output Size** (with padding): 5x5 (same as input)
