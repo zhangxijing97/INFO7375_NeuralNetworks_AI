@@ -1,20 +1,9 @@
-# Lab 2 – Training the Multilayer (Deep) Neural Network
+# HW to Chapter 13 “Convolutional Layer”
 
-Programming Assignment<br>
+# Non-programming Assignment
 
-Task 1: Train the Multilayer Neural Network<br>
+## 1. What is pooling layer and how it works?
 
-Train your neural network using your training set both developed in Lab 1.<br>
+## 2. What are three major types of layers in the convolutional neural network?
 
-Result:<br>
-Epoch 19000, Loss: 0.006538375412365913<br>
-Epoch 19100, Loss: 0.006538199332092883<br>
-Epoch 19200, Loss: 0.006538026323963844<br>
-Epoch 19300, Loss: 0.006537856430321204<br>
-Epoch 19400, Loss: 0.0065376894896086455<br>
-Epoch 19500, Loss: 0.006537525517924229<br>
-Epoch 19600, Loss: 0.006537364092815617<br>
-Epoch 19700, Loss: 0.006537205705531011<br>
-Epoch 19800, Loss: 0.006537050030733332<br>
-Epoch 19900, Loss: 0.006536896983646613<br>
-Accuracy: 98.25%<br>
+## 3. What is the architecture of a convolutional network?
