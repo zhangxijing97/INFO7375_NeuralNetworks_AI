@@ -78,8 +78,6 @@ If the output of a depthwise convolution has 3 channels (one for each original c
 
 ## 3. What is the sense of 1 x 1 convolution?
 
-# The Sense of \(1 \times 1\) Convolution
-
 A **\(1 \times 1\) convolution** is a special type of convolution used in Convolutional Neural Networks (CNNs) where the filter size is \(1 \times 1\). Despite its simplicity, the \(1 \times 1\) convolution has several important roles and can be highly effective in reducing computational cost, improving efficiency, and adding flexibility to the network. Here's an explanation of its purpose:
 
 ### 1. Reducing the Number of Channels (Dimensionality Reduction)
@@ -124,8 +122,6 @@ Suppose you have an input feature map of size \(32 \times 32 \times 64\), and yo
 The \(1 \times 1\) convolution is a powerful tool in CNNs that allows for efficient network design, mixing of features, dimensionality changes, and introduces non-linearities. It is used to reduce computation costs and enhance the flexibility of models, making it an essential component in modern CNN architectures.
 
 ## 4. What is the role of residual connections in neural networks?
-
-# Role of Residual Connections in Neural Networks
 
 **Residual connections**, also known as **skip connections**, are a key architectural component in deep neural networks, especially in **ResNet** (Residual Networks) and similar architectures. They are used to address several challenges encountered in deep learning, primarily **vanishing gradients**, **overfitting**, and **training difficulties** in very deep networks.
 
