@@ -1,4 +1,4 @@
-# HW to Chapter 13 “Convolutional Layer”
+# HW to Chapter 14 “Convolutional Neural Networks”
 
 # Non-programming Assignment
 
