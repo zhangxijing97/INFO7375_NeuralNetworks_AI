@@ -2,8 +2,6 @@
 
 # Describe the triple loss function and explain why is it needed.
 
-# Triplet Loss Function
-
 The **triplet loss function** is a metric-learning technique designed to improve the embedding space by ensuring that similar points are closer together while dissimilar points are farther apart. It is commonly used in tasks like face recognition, image similarity, and other applications requiring feature embedding.
 
 ## Components of the Triplet Loss
