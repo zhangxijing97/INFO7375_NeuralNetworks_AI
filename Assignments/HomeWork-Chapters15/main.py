@@ -1,48 +1,84 @@
 # main.py
 
 import numpy as np
-import pandas as pd
-from sklearn.preprocessing import StandardScaler
-from sklearn.model_selection import train_test_split
-from neural_network import NeuralNetwork
 
-# Load the dataset
-df = pd.read_csv('Datasets/breast_cancer_dataset.csv')
+def depthwise_convolution(image, kernel):
+    """
+    Perform depthwise convolution on a multi-channel image.
 
-# Separate features and labels
-X = df.drop('target', axis=1).values  # Features
-y = df['target'].values.reshape(-1, 1)  # Labels (0 or 1)
+    :param image: Input image, shape (height, width, channels)
+    :param kernel: Depthwise convolution kernel, shape (k_height, k_width, channels)
+    :return: Depthwise convoluted image
+    """
+    h, w, c = image.shape
+    k_h, k_w, c_k = kernel.shape
 
-# Standardize the features
-scaler = StandardScaler()
-X = scaler.fit_transform(X)
+    if c != c_k:
+        raise ValueError("Number of channels in image and kernel must match for depthwise convolution.")
 
-# Split the dataset into training and testing sets
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    out_h = h - k_h + 1
+    out_w = w - k_w + 1
+    output = np.zeros((out_h, out_w, c))
 
-# Define the network structure
-input_size = X_train.shape[1]  # Adjust input size dynamically
-layers = [
-    (input_size, 'ReLU'),  # Input layer: size matches the input data
-    (10, 'ReLU'),    # Layer 2: 10 neurons, ReLU
-    (8, 'ReLU'),    # Layer 3: 8 neurons, ReLU
-    (8, 'ReLU'),    # Layer 4: 8 neurons, ReLU
-    (4, 'ReLU'),    # Layer 5: 4 neurons, ReLU
-    (1, 'Sigmoid')  # Output layer: 1 neuron, Sigmoid
-]
+    for channel in range(c):
+        for i in range(out_h):
+            for j in range(out_w):
+                region = image[i:i+k_h, j:j+k_w, channel]
+                output[i, j, channel] = np.sum(region * kernel[:, :, channel])
 
-# Hyperparameters
-epochs = 20000
-learning_rate = 0.5
+    return output
 
-# Create and train the neural network
-nn = NeuralNetwork(layers)
-nn.train(X_train, y_train, epochs, learning_rate)
 
-# Test the neural network
-predictions = nn.forward(X_test)[f'A{len(layers)-1}']  # Adjust index for last layer
-predictions = (predictions > 0.5).astype(int)  # Convert probabilities to binary predictions
+def pointwise_convolution(image, kernel):
+    """
+    Perform pointwise convolution (1x1 convolution) on a multi-channel image.
 
-# Calculate accuracy
-accuracy = np.mean(predictions == y_test)
-print(f"Accuracy: {accuracy * 100:.2f}%")
+    :param image: Input image, shape (height, width, channels)
+    :param kernel: Pointwise kernel, shape (channels, num_filters)
+    :return: Pointwise convoluted image
+    """
+    h, w, c = image.shape
+    c_k, num_filters = kernel.shape
+
+    if c != c_k:
+        raise ValueError("Number of input channels in the image must match the channels in the kernel for pointwise convolution.")
+
+    output = np.zeros((h, w, num_filters))
+
+    for i in range(h):
+        for j in range(w):
+            region = image[i, j, :]
+            output[i, j, :] = np.dot(region, kernel)
+
+    return output
+
+
+def convolution(image, kernel, mode="depthwise"):
+    """
+    General function to perform convolution based on mode.
+
+    :param image: Input image, shape (height, width, channels)
+    :param kernel: Convolution kernel
+    :param mode: 'depthwise' or 'pointwise'
+    :return: Convoluted image
+    """
+    if mode == "depthwise":
+        return depthwise_convolution(image, kernel)
+    elif mode == "pointwise":
+        return pointwise_convolution(image, kernel)
+    else:
+        raise ValueError("Invalid mode. Choose 'depthwise' or 'pointwise'.")
+
+image = np.random.rand(5, 5, 3)  # Random 5x5 image with 3 channels
+depthwise_kernel = np.random.rand(3, 3, 3)  # 3x3 kernel for depthwise convolution
+pointwise_kernel = np.random.rand(3, 2)  # 1x1 kernel for pointwise convolution
+
+# Depthwise convolution
+depthwise_result = convolution(image, depthwise_kernel, mode="depthwise")
+print("Depthwise Convolution Result:")
+print(depthwise_result)
+
+# Pointwise convolution
+pointwise_result = convolution(image, pointwise_kernel, mode="pointwise")
+print("Pointwise Convolution Result:")
+print(pointwise_result)
