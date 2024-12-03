@@ -1,117 +1,59 @@
-# HW to Chapter 20 “LM, LSTM, and GRU”
+# HW to Chapter 21 “NLP and Machine Translation”
 
 # Non-programming Assignment
 
-## 1. How Does a Language Model (LM) Work?
-A Language Model (LM) is designed to predict the probability distribution of the next word in a sequence, given the previous words. It learns the relationships and patterns in text data to generate coherent and contextually appropriate sequences.
-
-### Key Steps:
-1. **Tokenization**: Input text is split into smaller units like words or subwords.
-2. **Embedding**: Tokens are mapped to dense vector representations.
-3. **Sequential Processing**: The model processes the sequence step-by-step using architectures like RNNs, LSTMs, GRUs, or Transformers.
-4. **Output Prediction**: For each step, the model predicts the likelihood of the next token.
+## 1. Describe word embedding.
+Word embedding is a technique in natural language processing (NLP) where words are represented as dense vectors in a continuous vector space. These vectors capture semantic and syntactic relationships between words by placing similar words closer to each other in the vector space. Examples of word embedding models include Word2Vec, GloVe, and FastText. Word embeddings help reduce the dimensionality of text data while preserving meaningful relationships between words.
 
 ---
 
-## 2. How Does Word Prediction Work?
-Word prediction involves estimating the probability of the next word in a sequence based on the words that precede it. For example, given the sequence "The cat is on the," the model predicts the next word might be "mat."
-
-### Steps:
-1. **Contextual Understanding**: The model uses previous words to establish context.
-2. **Conditional Probability**: The probability of the next word \( w_t \) is calculated as:
-   \[
-   P(w_t | w_1, w_2, \dots, w_{t-1})
-   \]
-3. **Output**: The model outputs the word with the highest probability.
+## 2. What is the measure of word similarity?
+Word similarity is measured by the closeness of word vectors in the embedding space. Common measures include:
+- **Cosine Similarity**: Computes the cosine of the angle between two word vectors. A value closer to 1 indicates higher similarity.
+- **Euclidean Distance**: Measures the straight-line distance between two vectors. Smaller distances indicate higher similarity.
+- **Dot Product**: Measures similarity based on the product of two vectors, often used in some models.
 
 ---
 
-## 3. How to Train a Language Model?
-### Steps:
-1. **Data Preparation**:
-   - Collect large datasets of text.
-   - Tokenize and preprocess the data.
-2. **Define the Model**:
-   - Use architectures like RNNs, LSTMs, GRUs, or Transformers.
-3. **Objective Function**:
-   - Minimize the negative log-likelihood or cross-entropy loss:
-   \[
-   L = -\sum_{t=1}^{T} \log P(w_t | w_1, w_2, \dots, w_{t-1})
-   \]
-4. **Training**:
-   - Use techniques like gradient descent with backpropagation to update parameters.
-5. **Validation**:
-   - Evaluate on a validation set to monitor overfitting.
+## 3. Describe the Neural Language Model.
+A Neural Language Model (NLM) uses neural networks to predict the probability distribution of word sequences. It typically includes:
+1. **Input Layer**: Takes word representations (e.g., embeddings) as input.
+2. **Hidden Layers**: Processes the input using architectures like Recurrent Neural Networks (RNNs), Long Short-Term Memory (LSTM), or Transformer-based models.
+3. **Output Layer**: Predicts the next word or sequence of words using a softmax function over the vocabulary.
+Modern NLMs, like GPT and BERT, leverage self-attention mechanisms to capture long-range dependencies and context.
 
 ---
 
-## 4. Describe the Problem and the Nature of Vanishing and Exploding Gradients
+## 4. What is a bias in word embedding, and how to do debiasing?
+**Bias in Word Embedding**: Word embeddings can capture and amplify societal biases present in the training data, such as gender or racial stereotypes. For example, embeddings may associate "man" with "engineer" and "woman" with "nurse" due to biased datasets.
 
-### Vanishing Gradients:
-- Occurs when gradients become too small during backpropagation through deep networks.
-- Causes weights to update very slowly, preventing the model from learning long-term dependencies.
-- Common in models like Vanilla RNNs.
-
-### Exploding Gradients:
-- Occurs when gradients grow exponentially during backpropagation.
-- Causes instability in training, with weights becoming excessively large.
-
-### Nature of the Problem:
-- Both issues arise due to repeated multiplication of gradients during backpropagation through time.
-- Mitigation Techniques:
-  - **Vanishing Gradients**: Use LSTMs or GRUs with gating mechanisms.
-  - **Exploding Gradients**: Gradient clipping to cap gradient values.
+**Debiasing Methods**:
+1. **Hard Debiasing**: Projects biased dimensions onto a neutral subspace and removes the bias component.
+2. **Soft Debiasing**: Adjusts word vector representations to reduce bias while preserving useful properties.
+3. **Bias Regularization**: Incorporates bias correction into the training process to mitigate bias during embedding generation.
 
 ---
 
-## 5. What is LSTM and the Main Idea Behind It?
-Long Short-Term Memory (LSTM) is a type of RNN designed to address the vanishing gradient problem and model long-term dependencies in sequential data.
-
-### Main Idea:
-- LSTMs use **gates** (input, forget, output) to control the flow of information.
-- A **cell state** acts as memory, retaining important information over long sequences.
-
-### Key Equations:
-1. **Forget Gate**:
-   \[
-   f_t = \sigma(W_f \cdot [h_{t-1}, x_t] + b_f)
-   \]
-2. **Input Gate**:
-   \[
-   i_t = \sigma(W_i \cdot [h_{t-1}, x_t] + b_i)
-   \]
-3. **Output Gate**:
-   \[
-   o_t = \sigma(W_o \cdot [h_{t-1}, x_t] + b_o)
-   \]
+## 5. How does modern machine translation work using the language model?
+Modern machine translation leverages neural networks, particularly Transformer-based architectures, such as the encoder-decoder model. The process involves:
+1. **Encoding**: The source text is encoded into a dense representation using the encoder.
+2. **Attention Mechanism**: Self-attention layers capture relationships between words in the context of the entire sentence.
+3. **Decoding**: The decoder generates the target language sequence word by word, guided by the encoder's output.
+Popular models like Google’s Neural Machine Translation (GNMT) and OpenAI’s GPT utilize this framework.
 
 ---
 
-## 6. What is GRU?
-Gated Recurrent Unit (GRU) is a simplified version of LSTM that uses fewer gates, making it computationally more efficient.
+## 6. What is beam search?
+Beam search is a heuristic search algorithm used in sequence generation tasks, such as machine translation. It works by:
+1. Maintaining a fixed number of candidate sequences (beam width) at each step.
+2. Expanding each sequence by appending possible next words.
+3. Keeping only the top-scoring sequences based on a scoring function.
+Beam search helps balance exploration and exploitation, leading to higher-quality translations compared to greedy decoding.
 
-### Key Features:
-- Combines the forget and input gates into a **reset gate**.
-- Uses an **update gate** to determine how much of the past information to retain.
+---
 
-### Key Equations:
-1. **Reset Gate**:
-   \[
-   r_t = \sigma(W_r \cdot [h_{t-1}, x_t] + b_r)
-   \]
-2. **Update Gate**:
-   \[
-   z_t = \sigma(W_z \cdot [h_{t-1}, x_t] + b_z)
-   \]
-3. **New Memory**:
-   \[
-   \tilde{h}_t = \tanh(W_h \cdot [r_t \odot h_{t-1}, x_t] + b_h)
-   \]
-4. **Final Output**:
-   \[
-   h_t = z_t \odot h_{t-1} + (1 - z_t) \odot \tilde{h}_t
-   \]
-
-### Why Use GRU?
-- Fewer parameters than LSTM.
-- Faster training while retaining the ability to model long-term dependencies.
+## 7. What is the BLEU score?
+The **BLEU (Bilingual Evaluation Understudy)** score is a metric for evaluating the quality of machine-translated text compared to human reference translations. It measures:
+- **N-gram Precision**: The overlap of n-grams between the machine translation and reference.
+- **Brevity Penalty**: Adjusts for overly short translations.
+Scores range from 0 to 1, with higher scores indicating better translation quality. A BLEU score close to 1 suggests the translation closely matches the reference text.
