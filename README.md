@@ -507,10 +507,10 @@ Face Recognition (one-to-many matching) identifies or verifies a person by searc
 
 Example: Airports use face recognition to scan and match faces against a criminal database to enhance security.<br>
 
-### Triplet Loss
-
-
-
 ### Similarity and Siamese Network
+
+
+
+### Triplet Loss
 
 ### Neural Style Transfer
