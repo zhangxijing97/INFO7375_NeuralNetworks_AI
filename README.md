@@ -497,15 +497,19 @@ The non-linearity enables solving complex, non-linear problems.
 
 ### Face Verification vs Face Recognition
 
+#### Face Verification
 Face Verification (one-to-one matching) authenticates a person's identity by comparing their facial features with those of a specific individual. It answers, "Is this the claimed person?"<br>
 
 Example: Unlocking your smartphone with your face.<br>
 
+#### Face Recognition
 Face Recognition (one-to-many matching) identifies or verifies a person by searching for matches within a larger database, without knowing their identity beforehand.<br>
 
 Example: Airports use face recognition to scan and match faces against a criminal database to enhance security.<br>
 
 ### Triplet Loss
+
+
 
 ### Similarity and Siamese Network
 
