@@ -596,6 +596,3 @@ Where `alpha` and `beta` are the weighting factors for content and style contrib
 
 #### Step 9: Display the Final Output
 - The final image `G` is now a fusion of the content of `C` and the style of `S`.
-
-### Conclusion
-The NST process uses deep learning to create art, demonstrating how AI can creatively blend different visual elements from various images.
