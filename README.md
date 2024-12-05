@@ -511,13 +511,18 @@ Example: Airports use face recognition to scan and match faces against a crimina
 
 A Siamese Network is a type of neural network architecture that is specialized in learning the similarities and differences between pairs of inputs. Useful in face verification, signature recognition and so on<br>
 
-### Twin Neural Networks:
-- Each input, \(x_1\) and \(x_2\), is processed by the same neural network function \(f\) with shared parameters \(\theta\).
-- Outputs are `\(f(x_1; \theta)\)` and `\(f(x_2; \theta)\)`, the feature representations of the inputs.
+Formula: f(x1;θ) and f(x2;θ)<br>
+f: the neural network function<br>
+θ: represents the shared weights<br>
 
-### Distance Metric:
-- The distance \(d\) between the feature vectors is commonly measured using the Euclidean distance:
+#### Distance Metric
 
-### Triplet Loss
+The distance d between the feature vectors is computed to assess similarity. A common choice is the Euclidean distance:<br>
+d(x1, x2) = || f(x1;θ) - f(x2;θ) ||<br>
+
+
+#### Triplet Loss
+
+
 
 ### Neural Style Transfer
