@@ -512,17 +512,31 @@ Example: Airports use face recognition to scan and match faces against a crimina
 A Siamese Network is a type of neural network architecture that is specialized in learning the similarities and differences between pairs of inputs. Useful in face verification, signature recognition and so on<br>
 
 Formula: f(x1;θ) and f(x2;θ)<br>
-f: the neural network function<br>
-θ: represents the shared weights<br>
+f: The neural network function<br>
+θ: The shared weights<br>
+
+### Training Siamese Networks with Triplet Loss
+
+Key Training Objective:<br>
+Minimize the distance between the anchor and the positive d(a, p)<br>
+Maximize the distance between the anchor and the negative d(a, n), with at least a predefined margin(m).<br>
 
 #### Distance Metric
 
 The distance d between the feature vectors is computed to assess similarity. A common choice is the Euclidean distance:<br>
 d(x1, x2) = || f(x1;θ) - f(x2;θ) ||<br>
 
+A large distance suggests that the images likely belong to different people.<br>
+A small distance might conclude that the images are of the same person.<br>
 
 #### Triplet Loss
+L = max(0, d(a, p) - d(a, n) + margin)
 
-
+Where:
+- `a`: Anchor sample
+- `p`: Positive sample, similar to the anchor
+- `n`: Negative sample, dissimilar to the anchor
+- `d(x, y)`: Distance function used to measure the distance between two samples `x` and `y`
+- `margin`: A predefined threshold that specifies the minimum distance difference needed between `d(a, p)` and `d(a, n)`
 
 ### Neural Style Transfer
