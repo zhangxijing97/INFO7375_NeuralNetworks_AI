@@ -518,12 +518,12 @@ f: The neural network function<br>
 ### Training Siamese Networks with Triplet Loss
 
 Key Training Objective:<br>
-Minimize the distance between the anchor and the positive d(a, p)<br>
+Minimize the distance between the anchor and the positive d(a, p).<br>
 Maximize the distance between the anchor and the negative d(a, n), with at least a predefined margin(m).<br>
 
 #### Distance Metric
 
-The distance d between the feature vectors is computed to assess similarity. A common choice is the Euclidean distance:<br>
+The distance d is computed to assess similarity. A common choice is the Euclidean distance:<br>
 d(x1, x2) = || f(x1;θ) - f(x2;θ) ||<br>
 
 A large distance suggests that the images likely belong to different people.<br>
@@ -554,3 +554,42 @@ Negative: An image of a different person.<br>
 The training process continuously adjusts the neural network to reduce the triplet loss, ensuring that images of the same person are closer together in the learned feature space than images of different people.<br>
 
 ### Neural Style Transfer
+
+#### Step 1: Select Images
+- **Content Image (C)**: Choose an image whose content you want to preserve.
+- **Style Image (S)**: Select an image whose style you want to transfer.
+
+#### Step 2: Prepare the Network
+- **Pre-Trained CNN**: Use a Convolutional Neural Network, such as VGG-19, trained on a dataset like ImageNet.
+
+#### Step 3: Initialize the Generated Image
+- **Generated Image (G)**: Start with a base image, which could be random noise or a duplicate of the content image.
+
+#### Step 4: Define Feature Extraction Layers
+- **Content Layers**: Determine which layers of the CNN will capture content details for content loss calculation.
+- **Style Layers**: Choose layers to capture texture and style for style loss computation.
+
+#### Step 5: Compute Loss Functions
+- **Content Loss**:
+`L_content(C, G) = 0.5 * sum((F^l_C - F^l_G)^2)`
+
+- **Style Loss**:
+`L_style(S, G) = sum((1 / (4 * N_l^2 * M_l^2)) * (G^l_S - G^l_G)^2)`
+Where `N_l` and `M_l` are the dimensions of each feature map in layer `l`.
+
+#### Step 6: Total Loss Calculation
+- Combine the content and style losses with their respective weights:
+`L_total = alpha * L_content + beta * L_style`
+Where `alpha` and `beta` are the weighting factors for content and style contributions.
+
+#### Step 7: Optimize the Generated Image
+- **Gradient Descent**: Minimize the total loss using an optimizer like L-BFGS, adjusting the pixel values of `G`.
+
+#### Step 8: Iterate Until Convergence
+- Repeat the optimization until the loss minimizes to a satisfactory level or stops improving significantly.
+
+#### Step 9: Display the Final Output
+- The final image `G` is now a fusion of the content of `C` and the style of `S`.
+
+### Conclusion
+The NST process uses deep learning to create art, demonstrating how AI can creatively blend different visual elements from various images.
