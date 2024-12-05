@@ -571,15 +571,21 @@ The training process continuously adjusts the neural network to reduce the tripl
 
 #### Step 5: Compute Loss Functions
 - **Content Loss**:
+
 `L_content(C, G) = 0.5 * sum((F^l_C - F^l_G)^2)`
 
 - **Style Loss**:
+
 `L_style(S, G) = sum((1 / (4 * N_l^2 * M_l^2)) * (G^l_S - G^l_G)^2)`
+
 Where `N_l` and `M_l` are the dimensions of each feature map in layer `l`.
 
 #### Step 6: Total Loss Calculation
+
 - Combine the content and style losses with their respective weights:
+
 `L_total = alpha * L_content + beta * L_style`
+
 Where `alpha` and `beta` are the weighting factors for content and style contributions.
 
 #### Step 7: Optimize the Generated Image
