@@ -25,7 +25,7 @@
 - [Chapter 18: Neural Style Transfer](#chapter-18-neural-style-transfer)
   - [Face Verification vs Face Recognition](#face-verification-vs-face-recognition)
   - [Similarity and Siamese Network](#similarity-and-siamese-network)
-  - [Triplet Loss](#triplet-loss)
+  - [Training Siamese Networks with Triplet Loss](#training-siamese-networks-with-triplet-loss)
   - [Neural Style Transfer](#neural-style-transfer)
 
 ## Chapter 1: Human Brain and Neural Networks
@@ -538,5 +538,19 @@ Where:
 - `n`: Negative sample, dissimilar to the anchor
 - `d(x, y)`: Distance function used to measure the distance between two samples `x` and `y`
 - `margin`: A predefined threshold that specifies the minimum distance difference needed between `d(a, p)` and `d(a, n)`
+
+#### Why use Triplet Loss rather than just Minimize d(a, p)
+
+- Balanced Learning: It pushes dissimilar items further apart while bringing similar items closer, enhancing model accuracy.
+- Prevents Overfitting: It avoids collapsing all features into indistinguishable points by maintaining a clear separation.
+- Better Discrimination: It strengthens the model’s ability to tell differences between classes, crucial for tasks requiring precise identification.
+
+#### Example: Face Verification
+In a face verification system using triplet loss:<br>
+
+Anchor: An image of a person's face.<br>
+Positive: Another image of the same person.<br>
+Negative: An image of a different person.<br>
+The training process continuously adjusts the neural network to reduce the triplet loss, ensuring that images of the same person are closer together in the learned feature space than images of different people.<br>
 
 ### Neural Style Transfer
