@@ -413,82 +413,43 @@ In essence, LSTM and GRU architectures are critical improvements over basic RNNs
 
 ## 10. Describe the principal idea of Transformers.
 
-Transformers fundamentally changed how we handle sequence processing tasks in natural language processing (NLP) and beyond. Prior to Transformers, models often relied on either recurrence (as in RNNs, LSTMs, and GRUs) or convolutional filters (as in CNN-based sequence models) to capture information over time or sequence positions. Both approaches had limitations: recurrent models struggled with long-range dependencies and were hard to parallelize, while convolutional models had fixed receptive fields that made modeling very long sequences challenging.
+1. Motivation Behind Transformers
+- Limitations of Sequential Models (RNNs/LSTMs):
+  - Sequential computation processes tokens one at a time, which is computationally expensive.
+  - Difficulty in modeling long-term dependencies effectively.
+  - Earlier context can be lost over time.
+- Attention Mechanism:
+  - Provides a way to focus on the most relevant parts of the input sequence when generating output.
 
-Transformers solve these problems by introducing a mechanism called self-attention, which allows the model to directly relate every token in the input to every other token, without requiring sequential or localized processing. This enables the model to capture long-range dependencies more easily, run computations in parallel, and scale effectively to large datasets and complex tasks.
+2. Key Components of Transformers
+- Self-Attention Mechanism:
+  - Enables the model to compute relationships between parts of the input sequence in parallel.
+  - Steps for each input token:
+    1. Query, Key, Value (Q, K, V): Each token is transformed using learned weight matrices.
+    2. Attention Weights: Calculated as the similarity between the query and all keys using a scaled dot-product formula.
+    3. Weighted Sum: Values are aggregated using attention weights, creating a new representation for the token.
+- Multi-Head Attention:
+  - Applies self-attention multiple times in parallel.
+  - Each "head" captures different dependencies within the sequence.
+- Positional Encoding:
+  - Adds position information to input embeddings to provide token order.
 
-### Core Ideas in Depth
+3. Transformer Architecture
+- Encoder:
+  - Composed of multiple layers, each containing:
+    - Self-Attention: Focuses on all tokens in the input sequence.
+    - Feedforward Network: Processes self-attention outputs.
+    - Layer Normalization: Stabilizes learning.
+- Decoder:
+  - Similar to the encoder, with an additional cross-attention layer connecting encoder outputs to decoder inputs.
+  - Generates tokens sequentially by attending to prior tokens and encoder outputs.
 
-1. Moving Away from Recurrence and Convolution  
-   Traditional recurrent models process a sequence step-by-step: the hidden state at time t is computed from the hidden state at time t-1 and the input token at time t. This inherently sequential computation means that to process the entire sequence of length N, you must go through it in order, making it hard to parallelize.  
-   
-   Transformers discard the idea of going through the sequence one step at a time. Instead, they look at the entire sequence at once, so computations for each token can happen in parallel. This dramatically speeds up training on modern hardware (like GPUs and TPUs).
+4. Benefits of Transformers
+- Parallelism: Processes entire sequences simultaneously, unlike sequential models.
+- Scalability: Efficient for tasks with large datasets and long sequences.
+- Versatility: Effective for translation, text generation, and other tasks.
 
-2. Self-Attention: The Key Innovation  
-   At the heart of the Transformer is the self-attention mechanism. Self-attention determines how each token in the input sequence should pay “attention” to other tokens in the same sequence. For example, consider a sentence:
-
-`"The cat sat on the mat."`
-
-When processing the word “cat,” a model might need to know which adjectives or verbs are associated with it. Self-attention allows the model to look at the entire sentence and highlight words that are important to “cat” in understanding the sentence’s meaning.
-
-How is this done? Each token in the sequence is represented as an embedding (a vector). From these embeddings, three distinct matrices are learned: Queries (Q), Keys (K), and Values (V). For a sequence of N tokens, each token’s embedding is transformed into a Q, K, and V vector (often by simple linear transformations).
-
-Consider N tokens, and let’s say each token embedding is of dimension d. The Q, K, and V matrices will each be of size N×d (one row per token). To compute self-attention, we do the following:
-- Compute the attention scores by taking the dot product of Q and K^T:
-  ```
-  scores = Q * K^T
-  ```
-  This results in an N×N matrix, where each entry (i, j) measures how relevant token i is to token j.
-
-- Scale the scores by √d to prevent large values and improve training stability:
-  ```
-  scores_scaled = scores / sqrt(d)
-  ```
-
-- Apply a softmax function to convert these scores into a probability distribution:
-  ```
-  attention_weights = softmax(scores_scaled)
-  ```
-  Now each row of `attention_weights` sums to 1, indicating how much each token should attend to every other token.
-
-- Finally, multiply these attention weights by the V matrix:
-  ```
-  output = attention_weights * V
-  ```
-  This produces a new representation for each token, enriched by information gathered from other tokens. If a particular token found another token highly relevant, that other token’s values are given more weight in the output representation.
-
-For the sentence “The cat sat on the mat,” if we are focusing on “cat,” the self-attention mechanism might assign higher weights to “sat” (a verb that describes what the cat is doing) than to “mat” or “the,” thus capturing the relationship that matters most for understanding “cat” in context.
-
-3. Multi-Head Attention  
-Instead of computing a single set of Q, K, V transformations and a single attention operation, Transformers use multiple "heads" of attention. Each head learns a different set of Q, K, and V matrices. This allows the model to attend to different aspects of the data at the same time. One head might focus on subject-object relations, another might focus on nearby words, and another might focus on longer-range dependencies. After each head computes its output, the results are concatenated and mixed, giving the model a richer, multi-faceted view of the relationships in the sequence.
-
-4. Position Information: Positional Encodings  
-Unlike RNNs that inherently process information in order, Transformers have no built-in notion of sequence order since they consider all tokens simultaneously. To address this, Transformers add “positional encodings” to token embeddings, providing a sense of “where” each token lies in the sequence. These positional encodings are often sinusoidal functions of the token position, designed so that the model can learn relative positions easily.
-
-For example, the token at position 1 might have a certain sinusoidal pattern added to its embedding, the token at position 2 a slightly different pattern, and so forth. This ensures the model knows that “The” comes before “cat,” which comes before “sat,” even though it sees them all at once.
-
-5. Encoder-Decoder Structure  
-The original Transformer architecture proposed in the “Attention Is All You Need” paper uses an encoder-decoder framework:
-- The encoder reads the input sequence and produces a set of contextualized embeddings.
-- The decoder uses these embeddings, along with its own self-attention on the already generated tokens, to produce the output sequence step-by-step. This is useful in tasks like machine translation, where you read the entire source sentence (through the encoder) and then generate the translation one token at a time (through the decoder).
-
-However, many models that followed (such as BERT and GPT) use only the encoder or only the decoder part of this architecture, depending on the task. BERT, for example, uses only the encoder to produce rich representations, which can be used for classification tasks. GPT uses only the decoder component to generate text.
-
-6. Parallelization and Efficiency  
-Because the Transformer does not need to process tokens sequentially, all tokens at a given layer can be computed in parallel. This makes training on large datasets much faster than RNN-based models, especially on modern hardware that is optimized for parallel operations. Transformers have thus enabled training on gigantic corpora of text, resulting in models that capture vast amounts of linguistic knowledge.
-
-7. Long-Range Dependencies and Improved Performance  
-RNNs and LSTMs had a hard time keeping track of information when the relevant context was far away (e.g., a word at the beginning of a paragraph influencing the interpretation of a word near the end). Transformers handle this better because every token can directly attend to every other token, regardless of how far apart they are. This often leads to better performance on tasks that require understanding of context that spans long distances.
-
-### Example: Machine Translation with a Transformer  
-Imagine you have a French sentence:  
-“Le chat noir dort sur le tapis.”  
-You want to translate it into English.  
-
-A Transformer-based model would:
-- Encode each French word into an embedding.
-- Apply self-attention in the encoder layers so that each French word’s representation now understands the context of the entire sentence. For instance, “chat” (cat) is influenced by “noir” (black) and “dort” (sleeps), and thus knows it is a black cat that is sleeping.
-- The decoder, when predicting the translation, starts with a special start-of-sequence token and uses self-attention on the output side along with cross-attention to the encoder’s output. It first predicts “The,” influenced by the context from the encoder that this is about a cat, and English grammar patterns. Then it predicts “black,” understanding the adjective describes the cat, and so on until it produces:  
-“The black cat sleeps on the mat.”
-
-This process utilizes the full sentence context for both source and target, making the translation more fluent and accurate than older RNN-based systems.
+5. Applications
+- Foundational architecture for models like:
+  - BERT: Used for bidirectional encoding in tasks such as classification.
+  - GPT: Autoregressive generation for text completion and dialogue tasks.
