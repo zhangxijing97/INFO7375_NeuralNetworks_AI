@@ -2,9 +2,85 @@
 
 ## 1. Describe forward and backward propagation for multilayer (deep) neural network.
 
-**Forward propagation** is the process where we start with an input and pass it through each layer of the neural network until we get an output. Imagine the network as a stack of layers, each performing a simple operation: a weighted sum of inputs followed by a non-linear function. For a single neuron, if `x` is the input, `w` the weight, and `b` the bias, we get something like `z = w*x + b`. Apply an activation function `f()`, and the neuron’s output is `a = f(z)`. For many neurons, we just repeat this idea across all connections. With multiple layers, we keep applying this process, passing `a` from one layer to the next, eventually producing a final output `y_pred`.
+Forward and backward propagation are key processes in deep neural network training. They involve calculating outputs, comparing predictions to true values, computing gradients, and updating parameters to improve the model's performance.
 
-**Backward propagation** comes after we compare our `y_pred` to the actual `y_true`. We measure how far off we are using a loss function, like mean squared error: `L = (1/N)*Σ(y_true - y_pred)^2`. To improve the network’s performance, we need to tweak the weights and biases. Backprop uses the chain rule from calculus to figure out how each parameter (like `w`) influenced the final error. We compute partial derivatives, such as `∂L/∂w`, and then adjust `w` a little bit in the direction that reduces the loss: `w_new = w_old - η*(∂L/∂w_old)`, where `η` is the learning rate. Repeating this process—forward pass, compute loss, backward pass, update parameters—over and over allows the network to learn from data.
+Forward Propagation
+
+1. Input Layer
+- The process begins by feeding input data `X` into the network.
+- The input layer does not perform any computations but serves as the starting point for subsequent layers.
+- For notation convenience, the input is sometimes referred to as layer `[0]`.
+
+2. Hidden Layers
+- Each hidden layer `[s]` processes the output of the previous layer `[s-1]` through a weighted transformation, bias addition, and activation function. The calculations are as follows:
+  - Compute the pre-activation value:
+    `Z[s] = W[s] * A[s-1] + b[s]`
+    where:
+    - `W[s]` is the weight matrix of layer `[s]` (of size `N[s] x N[s-1]`).
+    - `b[s]` is the bias vector of layer `[s]` (of size `N[s]`).
+    - `A[s-1]` is the activation (output) of the previous layer.
+  - Apply the activation function to obtain the activation:
+    `A[s] = f[s](Z[s])`
+    - `f[s]` is the activation function, typically ReLU, sigmoid, tanh, or softmax.
+
+3. Output Layer
+- The final layer `[L]` computes the output using:
+  `A[L] = f[L](Z[L])`
+- The activation function for the output layer depends on the task:
+  - Sigmoid for binary classification.
+  - Softmax for multi-class classification.
+  - Linear for regression tasks.
+
+4. Cost Function
+- The network's output is compared with the true values `Y` using a cost function `C`, such as cross-entropy for classification tasks:
+  `C = - (1/M) * sum(Y * log(A[L]) + (1 - Y) * log(1 - A[L]))`
+  where `M` is the number of training samples.
+
+Backward Propagation
+
+Backward propagation calculates gradients of the cost function with respect to weights and biases. These gradients guide the parameter updates to minimize the cost function.
+
+1. Output Layer
+- The error at the output layer `[L]` is calculated as:
+  `δZ[L] = A[L] - Y`
+- Gradients for weights and biases are computed:
+  - `δW[L] = (1/M) * δZ[L] * A[L-1]^T`
+  - `δb[L] = (1/M) * sum(δZ[L])`
+
+2. Hidden Layers
+- Errors are propagated backward through the network, starting from the output layer and moving to earlier layers. For layer `[s]`, the error is:
+  `δZ[s] = W[s+1]^T * δZ[s+1] * f'[s](Z[s])`
+  where `f'[s](Z[s])` is the derivative of the activation function `f[s]`.
+- Gradients for weights and biases are computed:
+  - `δW[s] = (1/M) * δZ[s] * A[s-1]^T`
+  - `δb[s] = (1/M) * sum(δZ[s])`
+
+3. Parameter Updates
+- Once the gradients are calculated, the weights and biases are updated using gradient descent:
+  - `W[s] = W[s] - r * δW[s]`
+  - `b[s] = b[s] - r * δb[s]`
+  where `r` is the learning rate, controlling the size of the updates.
+
+4. Recursive Nature
+- Forward propagation is computed sequentially for all layers, from input to output.
+- Backward propagation calculates gradients layer by layer, moving from the output to the input.
+
+Summary of Forward and Backward Propagation
+
+Forward propagation:
+- Computes the outputs `A[s]` for each layer by applying the weights, biases, and activation functions.
+
+Backward propagation:
+- Calculates gradients `δZ[s]`, `δW[s]`, and `δb[s]` layer by layer, starting at the output layer.
+- Updates the weights and biases to reduce the cost function `C`.
+
+Applications
+These processes are fundamental to training deep neural networks for tasks such as:
+- Image recognition (e.g., object detection, face recognition).
+- Natural language processing (e.g., text classification, machine translation).
+- Speech recognition and time-series forecasting.
+
+By iteratively applying forward and backward propagation over multiple epochs, the network learns the optimal parameters to improve its accuracy on unseen data.
 
 ## 2. Describe how a normal convolution works.
 
